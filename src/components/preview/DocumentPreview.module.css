@@ -1,0 +1,142 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-main);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.scoreBoard {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.scoreCircle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: conic-gradient(var(--success) 85%, var(--border) 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scoreText {
+  background: var(--bg-main);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--success);
+}
+
+.keywords {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 2px solid var(--border);
+  gap: 2rem;
+}
+
+.tab {
+  padding: 1rem 0;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--text-main);
+}
+
+.activeTab {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.content {
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  min-height: 400px;
+}
+
+.document h2 {
+  font-size: 1.25rem;
+  color: var(--primary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.document h2:first-child {
+  margin-top: 0;
+}
+
+.experience {
+  margin-bottom: 1.5rem;
+}
+
+.expHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.expHeader strong {
+  color: var(--text-main);
+}
+
+.expHeader span {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.document ul {
+  padding-left: 1.5rem;
+  color: var(--text-main);
+}
+
+.document li {
+  margin-bottom: 0.25rem;
+}
+
+.preText {
+  white-space: pre-wrap;
+  font-family: inherit;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}

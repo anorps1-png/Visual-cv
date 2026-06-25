@@ -1,0 +1,124 @@
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3005
+- Network:       http://192.168.1.58:3005
+- Environments: .env.local, .env
+✓ Ready in 10.5s
+⚠ Slow filesystem detected. The benchmark took 933ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+
+[browser] Uncaught Error: ./src/lib/parser/pdfExtractor.ts:1:1
+Export default doesn't exist in target module
+> 1 | import pdfParse from 'pdf-parse';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | export async function extractTextFromPdf(buffer: Buffer): Promise<string> {
+  4 |   try {
+
+The export default was not found in module [project]/node_modules/pdf-parse/dist/pdf-parse/esm/index.js [app-route] (ecmascript).
+Did you mean to import Rectangle?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  App Route:
+    ./src/lib/parser/pdfExtractor.ts
+    ./src/app/api/cv/parse/route.ts
+
+
+    at <unknown> (Error: ./src/lib/parser/pdfExtractor.ts:1:1)
+    at <unknown> (Error: (./src/lib/parser/pdfExtractor.ts:1:1)
+○ Compiling / ...
+✓ Finished writing to filesystem cache in 18.5s
+✓ Finished writing to filesystem cache in 21.3s
+✓ Finished writing to filesystem cache in 16.4s
+✓ Finished writing to filesystem cache in 38.2s
+✓ Finished writing to filesystem cache in 14.2s
+✓ Finished writing to filesystem cache in 75s
+✓ Finished writing to filesystem cache in 37.5s
+✓ Finished filesystem cache database compaction in 12.5min
+ GET / 200 in 29.7min (next.js: 24.9min, application-code: 4.7min)
+✓ Finished writing to filesystem cache in 9.7min
+ GET / 200 in 22.5s (next.js: 17.6s, application-code: 4.9s)
+✓ Finished writing to filesystem cache in 82s
+✓ Finished writing to filesystem cache in 111s
+✓ Finished writing to filesystem cache in 59s
+✓ Finished writing to filesystem cache in 2.5min
+○ Compiling /api/cv/parse ...
+✓ Finished writing to filesystem cache in 15.0s
+✓ Finished writing to filesystem cache in 13.8s
+✓ Finished writing to filesystem cache in 42s
+Error parsing PDF: TypeError: Failed to parse body as FormData.
+    at POST (src\app\api\cv\parse\route.ts:6:36)
+  4 | export async function POST(request: Request) {
+  5 |   try {
+> 6 |     const formData = await request.formData();
+    |                                    ^
+  7 |     const file = formData.get('file') as File;
+  8 |
+  9 |     if (!file) { {
+  [cause]: TypeError: no boundary found in multipart body
+      at POST (src\app\api\cv\parse\route.ts:6:36)
+    4 | export async function POST(request: Request) {
+    5 |   try {
+  > 6 |     const formData = await request.formData();
+      |                                    ^
+    7 |     const file = formData.get('file') as File;
+    8 |
+    9 |     if (!file) {
+}
+✓ Finished writing to filesystem cache in 18.8s
+✓ Finished writing to filesystem cache in 53s
+✓ Finished filesystem cache database compaction in 2.4min
+✓ Compiled in 891ms
+[browser] TypeError: Failed to fetch
+TypeError: Failed to fetch (.next\dev\static\chunks\src_1vt7qpl._.js:977:21)
+ GET / 200 in 1728ms (next.js: 1588ms, application-code: 139ms)
+ GET / 200 in 2.0s (next.js: 1485ms, application-code: 522ms)
+ GET / 200 in 2.3s (next.js: 354ms, application-code: 1950ms)
+ GET / 200 in 43s (next.js: 24.2s, application-code: 18.8s)
+ POST /api/cv/parse 400 in 7.9s (next.js: 5.7s, application-code: 2.2s)
+ POST /api/cv/parse 200 in 24.4s (next.js: 550ms, application-code: 23.9s)
+○ Compiling /api/cv/generate ...
+✓ Finished writing to filesystem cache in 12.1s
+✓ Finished writing to filesystem cache in 37.2s
+✓ Finished writing to filesystem cache in 38.6s
+✓ Finished writing to filesystem cache in 30.3s
+Erreur génération IA: Error: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+    at async POST (src\app\api\cv\generate\route.ts:40:22)
+  38 |     }
+  39 |
+> 40 |     const response = await openai.chat.completions.create({
+     |                      ^
+  41 |       model: 'gpt-4o',
+  42 |       messages: [
+  43 |         { role: 'system', content: CV_GENERATION_PROMPT }, {
+  status: 429,
+  headers: Headers {
+    date: 'Thu, 25 Jun 2026 14:57:50 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'content-length': '337',
+    connection: 'keep-alive',
+    'set-cookie': '__cf_bm=f8Yj6YdB0q1dwh_BbXO60G3gWIS7rRVlTBdtJuIW8MQ-1782399470.055451-1.0.1.1-AT1uoNkmcIiZibhvu.lDAglV6fBSvi2dxHxjyF4kpAPyZCFJIwHbqURj8ICzhTnB7Fqzfnohx9fOhoEerQ34EejdU3q6B9ucgjWsnxPQSKalFCh20QSHLkXUk.gozsHN; HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Thu, 25 Jun 2026 15:27:50 GMT, _cfuvid=6NIhCNAyU.MN_Jb7JiSBqER.AGt_DmQMWRKxIkDjFsM-1782399470.055451-1.0.1.1-YO9ecuHuBuudgN9ieWg33LBv3slm2MKxtTeFvnQgJNs; HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com',
+    'cf-ray': 'a114d3afdb7e2b18-GIG',
+    'cf-cache-status': 'DYNAMIC',
+    server: 'cloudflare',
+    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+    vary: 'Origin',
+    'access-control-expose-headers': 'CF-Ray, CF-Ray',
+    'x-content-type-options': 'nosniff',
+    'x-openai-proxy-wasm': 'v0.1',
+    'x-request-id': 'req_34ecafe8d9874d2fa2e92c64a776f2ff',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  requestID: 'req_34ecafe8d9874d2fa2e92c64a776f2ff',
+  error: {
+    message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+    type: 'insufficient_quota',
+    param: null,
+    code: 'insufficient_quota'
+  },
+  code: 'insufficient_quota',
+  param: null,
+  type: 'insufficient_quota'
+}
+ POST /api/cv/generate 500 in 11.9min (next.js: 11.4min, application-code: 32.2s)
+✓ Finished writing to filesystem cache in 29.9s

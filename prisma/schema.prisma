@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "sqlite"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cvs       Cv[]
+}
+
+model Cv {
+  id             String   @id @default(uuid())
+  userId         String?
+  originalText   String?
+  generatedCVUrl String?
+  coverLetterUrl String?
+  emailText      String?
+  createdAt      DateTime @default(now())
+  
+  user User? @relation(fields: [userId], references: [id])
+}
+
+model Job {
+  id          String   @id @default(uuid())
+  title       String
+  company     String?
+  location    String?
+  description String
+  sourceUrl   String?
+  createdAt   DateTime @default(now())
+}
