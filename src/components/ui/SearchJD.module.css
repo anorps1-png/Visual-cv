@@ -1,0 +1,208 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.searchBar {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.inputWrapper {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-muted);
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background-color: var(--bg-offset);
+  color: var(--text-main);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  background-color: var(--bg-main);
+}
+
+.layout {
+  display: flex;
+  gap: 1.5rem;
+  min-height: 380px;
+}
+
+.listSection {
+  width: 45%;
+  border-right: 1px solid var(--border);
+  padding-right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.listSection h4, .detailSection h4 {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.statusText {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.jobList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.jobCard {
+  background-color: var(--bg-offset);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.jobCard:hover {
+  border-color: var(--primary);
+  background-color: var(--bg-main);
+}
+
+.activeCard {
+  border-color: var(--primary);
+  background-color: var(--bg-main);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.jobCard h5 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.detailSection {
+  width: 55%;
+}
+
+.detailPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+  height: 100%;
+}
+
+.detailHeader {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.detailHeader h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.detailCompany {
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 0.25rem;
+}
+
+.detailLocation {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.sourceLink {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--primary);
+  margin-top: 0.5rem;
+  text-decoration: underline;
+}
+
+.descriptionBox {
+  flex-grow: 1;
+  background-color: var(--bg-offset);
+  border-radius: 8px;
+  padding: 1rem;
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+}
+
+.descriptionBox h5 {
+  font-size: 0.875rem;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.descriptionText {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  white-space: pre-line;
+}
+
+.emptyDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 100%;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 2rem;
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+}
+
+.emptyIcon {
+  color: var(--border);
+}

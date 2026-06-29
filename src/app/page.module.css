@@ -130,3 +130,132 @@
   opacity: 0.8;
 }
 
+.selectorGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.selectorLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.selectInput {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background-color: var(--bg-offset);
+  color: var(--text-main);
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.selectInput:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+/* Photo Upload Box Styles */
+.photoUploadBox {
+  margin-top: 1.5rem;
+  border-top: 1px dashed var(--border);
+  padding-top: 1.5rem;
+  text-align: left;
+}
+
+.photoLabel {
+  display: block;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.photoUploadControls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.photoPreviewWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: var(--bg-offset);
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  width: 100%;
+}
+
+.photoPreview {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary);
+}
+
+.photoRemoveBtn {
+  font-size: 0.875rem;
+  color: var(--error);
+  font-weight: 600;
+}
+
+.photoRemoveBtn:hover {
+  text-decoration: underline;
+}
+
+.photoInputWrapper {
+  width: 100%;
+}
+
+.photoInput {
+  width: 100%;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Tab Header and Buttons */
+.tabHeader {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.tabBtn {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.tabBtn:hover {
+  color: var(--text-main);
+}
+
+.activeTabBtn {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+.tabContent {
+  width: 100%;
+  animation: fadeIn 0.3s ease-out;
+}
+
+
+

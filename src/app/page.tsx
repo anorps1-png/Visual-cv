@@ -6,6 +6,7 @@ import { FileUpload } from '@/components/ui/FileUpload';
 import { PasteJD } from '@/components/ui/PasteJD';
 import { Button } from '@/components/ui/Button';
 import { DocumentPreview } from '@/components/preview/DocumentPreview';
+import { SearchJD } from '@/components/ui/SearchJD';
 
 export default function Home() {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
@@ -16,6 +17,9 @@ export default function Home() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedData, setGeneratedData] = useState<any>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [modelProvider, setModelProvider] = useState<'openai' | 'deepseek'>('openai');
+  const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+  const [jdMode, setJdMode] = useState<'search' | 'paste'>('search');
 
   const handleFileSelect = async (file: File) => {
     setCvFile(file);
@@ -55,7 +59,7 @@ export default function Home() {
       const res = await fetch('/api/cv/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cvText, jobDescription })
+        body: JSON.stringify({ cvText, jobDescription, provider: modelProvider })
       });
       const resData = await res.json();
       if (resData.success) {
@@ -90,7 +94,10 @@ export default function Home() {
         </div>
       )}
 
-      <section className={styles.contentArea}>
+      <section 
+        className={styles.contentArea} 
+        style={{ maxWidth: step === 2 && jdMode === 'search' ? '850px' : '600px', width: '100%', transition: 'max-width 0.3s ease' }}
+      >
         {errorMsg && (
           <div className={styles.errorBanner}>
             <span>{errorMsg}</span>
@@ -102,13 +109,74 @@ export default function Home() {
           <div className={styles.card}>
             <h2>Importez votre CV actuel</h2>
             <FileUpload onFileSelect={handleFileSelect} isLoading={isParsing} />
+
+            <div className={styles.photoUploadBox}>
+              <label className={styles.photoLabel}>Photo de profil (Optionnelle) :</label>
+              <div className={styles.photoUploadControls}>
+                {photoUrl ? (
+                  <div className={styles.photoPreviewWrapper}>
+                    <img src={photoUrl} alt="Aperçu" className={styles.photoPreview} />
+                    <button 
+                      type="button" 
+                      onClick={() => setPhotoUrl(null)} 
+                      className={styles.photoRemoveBtn}
+                    >
+                      Supprimer la photo
+                    </button>
+                  </div>
+                ) : (
+                  <div className={styles.photoInputWrapper}>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onloadend = () => {
+                            setPhotoUrl(reader.result as string);
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                      className={styles.photoInput}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         )}
 
         {step === 2 && (
           <div className={styles.card}>
             <h2>L'offre d'emploi cible</h2>
-            <PasteJD onSubmit={handleJDSubmit} />
+            
+            <div className={styles.tabHeader}>
+              <button 
+                type="button"
+                className={`${styles.tabBtn} ${jdMode === 'search' ? styles.activeTabBtn : ''}`}
+                onClick={() => setJdMode('search')}
+              >
+                Rechercher une offre réelle
+              </button>
+              <button 
+                type="button"
+                className={`${styles.tabBtn} ${jdMode === 'paste' ? styles.activeTabBtn : ''}`}
+                onClick={() => setJdMode('paste')}
+              >
+                Coller une offre manuellement
+              </button>
+            </div>
+
+            <div className={styles.tabContent}>
+              {jdMode === 'search' ? (
+                <SearchJD onSelect={handleJDSubmit} />
+              ) : (
+                <PasteJD onSubmit={handleJDSubmit} />
+              )}
+            </div>
+
             <button 
               className={styles.textButton} 
               onClick={() => setStep(1)}
@@ -122,6 +190,23 @@ export default function Home() {
           <div className={styles.card}>
             <h2>Prêt à générer !</h2>
             <p>Nous allons comparer votre CV <strong>{cvFile?.name}</strong> avec l'offre sélectionnée.</p>
+            
+            <div className={styles.selectorGroup}>
+              <label htmlFor="llm-select" className={styles.selectorLabel}>
+                Modèle d'IA à utiliser :
+              </label>
+              <select
+                id="llm-select"
+                value={modelProvider}
+                onChange={(e) => setModelProvider(e.target.value as 'openai' | 'deepseek')}
+                className={styles.selectInput}
+                disabled={isGenerating}
+              >
+                <option value="openai">OpenAI (GPT-4o)</option>
+                <option value="deepseek">DeepSeek (DeepSeek Chat)</option>
+              </select>
+            </div>
+
             <div className={styles.generateBox}>
               <Button 
                 onClick={handleGenerate} 
@@ -144,12 +229,14 @@ export default function Home() {
         {step === 4 && generatedData && (
           <DocumentPreview 
             data={generatedData} 
+            photoUrl={photoUrl}
             onReset={() => {
               setStep(1);
               setCvFile(null);
               setCvText('');
               setJobDescription('');
               setGeneratedData(null);
+              setPhotoUrl(null);
             }} 
           />
         )}
