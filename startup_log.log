@@ -1,0 +1,48 @@
+[02/07/2026 11:19:00,30] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.20:3000
+- Environments: .env.local, .env
+✓ Ready in 17.1s
+test-vbs 
+[02/07/2026 11:21:23,88] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.20:3000
+- Environments: .env.local, .env
+✓ Ready in 1309ms
+⚠ Slow filesystem detected. The benchmark took 323ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+[02/07/2026 11:23:38,26] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.20:3000
+- Environments: .env.local, .env
+✓ Ready in 1153ms
+[02/07/2026 11:23:58,87] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.20:3000
+- Environments: .env.local, .env
+✓ Ready in 1021ms
+⚠ Slow filesystem detected. The benchmark took 3239ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+
+○ Compiling / ...
+ GET / 200 in 33.8s (next.js: 25.9s, application-code: 7.9s)

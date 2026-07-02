@@ -1,8 +1,0 @@
-▲ Next.js 16.2.9 (Turbopack)
-- Local:         http://localhost:3005
-- Network:       http://192.168.1.58:3005
-- Environments: .env.local, .env
-✓ Ready in 21.3s
-⚠ Slow filesystem detected. The benchmark took 805ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
-See more: https://nextjs.org/docs/app/guides/local-development
-

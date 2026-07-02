@@ -45,7 +45,14 @@ Renvoie UNIQUEMENT un objet JSON avec la structure suivante :
     }
   ],
   "languages": ["Français (Langue maternelle)", "Anglais (Courant)"],
-  "cover_letter": "Texte complet de la lettre de motivation...",
-  "email_text": "Texte complet du mail d'accompagnement..."
+  "hobbies": ["Centre d'intérêt 1", "Centre d'intérêt 2"],
+  "cover_letter": "Texte du corps de la lettre de motivation uniquement, commençant par 'Madame, Monsieur,' et se terminant par la formule de politesse. Le texte doit être entièrement personnalisé pour l'entreprise et rédigé de façon professionnelle, sans aucun placeholder (pas de crochets comme [Nom du candidat], [Date], [Nom de l'entreprise], etc.).",
+  "email_text": "Texte complet du mail d'accompagnement...",
+  "letter_metadata": {
+    "date": "Ville et Date du jour (ex: Yaoundé, le 29 juin 2026)",
+    "recipient": "Titre du destinataire (ex: Responsable des Ressources Humaines)",
+    "company": "Nom de l'entreprise cible (ex: ECOBANK CAMEROUN SA)",
+    "subject": "Objet de la lettre (ex: Objet : Candidature au poste de Caissier)"
+  }
 }
 `;

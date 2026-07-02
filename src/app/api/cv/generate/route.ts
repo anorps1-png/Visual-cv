@@ -60,8 +60,15 @@ export async function POST(request: Request) {
               }
             ],
             languages: ["Français (Maternelle)", "Anglais (Professionnel)"],
-            cover_letter: "Lettre de motivation mock...\nCordialement.",
-            email_text: "Bonjour,\nCeci est un mock.\nCordialement."
+            hobbies: ["Arts Martiaux", "Musique", "Lecture"],
+            cover_letter: "Madame, Monsieur,\n\nActuellement à la recherche d'une opportunité stimulante dans le domaine du génie logiciel au Cameroun, c'est avec un grand intérêt que je vous soumets ma candidature. Fort de mon expérience de Master en Informatique à l'Université de Yaoundé I, je souhaite apporter mes compétences en développement React et Node.js au service de vos projets innovants.\n\nRigoureux et motivé, je reste disponible pour toute entrevue afin de vous détailler mon parcours.\n\nJe vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.",
+            email_text: "Bonjour,\nCeci est un mock.\nCordialement.",
+            letter_metadata: {
+              date: "Yaoundé, le 29 juin 2026",
+              recipient: "Responsable des Ressources Humaines",
+              company: "ECOBANK CAMEROUN SA",
+              subject: "Objet : Candidature au poste de Développeur Fullstack React"
+            }
           }
         });
       }

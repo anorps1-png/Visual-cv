@@ -122,3 +122,1919 @@ Erreur génération IA: Error: 429 You exceeded your current quota, please check
 }
  POST /api/cv/generate 500 in 11.9min (next.js: 11.4min, application-code: 32.2s)
 ✓ Finished writing to filesystem cache in 29.9s
+✓ Finished writing to filesystem cache in 10.2s
+✓ Finished writing to filesystem cache in 56s
+✓ Finished writing to filesystem cache in 86s
+✓ Finished filesystem cache database compaction in 3.9min
+✓ Finished writing to filesystem cache in 118s
+✓ Finished writing to filesystem cache in 22.1s
+✓ Compiled in 695.4s
+✓ Finished writing to filesystem cache in 16.7s
+ GET / 200 in 7.5min (next.js: 7.0min, application-code: 30.1s)
+ GET / 200 in 7.5min (next.js: 7.4min, application-code: 7.8s)
+ GET / 200 in 7.5min (next.js: 7.4min, application-code: 4.0s)
+ GET / 200 in 7.9min (next.js: 7.9min, application-code: 3.8s)
+ GET / 200 in 7.9min (next.js: 7.4min, application-code: 27.5s)
+ GET / 200 in 7.9min (next.js: 7.5min, application-code: 25.6s)
+ GET / 200 in 31.6s (next.js: 19.2s, application-code: 12.4s)
+ GET / 200 in 31.7s (next.js: 17.5s, application-code: 14.2s)
+ GET / 200 in 8.9s (next.js: 2.9s, application-code: 6.0s)
+ GET / 200 in 8.9s (next.js: 13ms, application-code: 8.9s)
+ GET / 200 in 44s (next.js: 115ms, application-code: 44s)
+ POST /api/cv/parse 200 in 9.6s (next.js: 5.8s, application-code: 3.8s)
+○ Compiling /api/jobs ...
+ GET /api/jobs?q= 200 in 111s (next.js: 111s, application-code: 267ms)
+ GET /api/jobs?q= 200 in 91s (next.js: 91s, application-code: 29ms)
+✓ Finished writing to filesystem cache in 36.0s
+ GET /api/jobs?q= 200 in 68ms (next.js: 48ms, application-code: 19ms)
+ GET /api/jobs?q= 200 in 36ms (next.js: 12ms, application-code: 24ms)
+✓ Finished writing to filesystem cache in 3.1min
+✓ Finished writing to filesystem cache in 74s
+✓ Finished writing to filesystem cache in 16.3s
+✓ Compiled in 536.9s
+✓ Finished writing to filesystem cache in 11.7s
+ GET / 200 in 6.4min (next.js: 3.7min, application-code: 2.7min)
+ GET / 200 in 6.4min (next.js: 5.2min, application-code: 71s)
+ GET / 200 in 6.4min (next.js: 6.0min, application-code: 25.4s)
+ GET / 200 in 6.4min (next.js: 5.1min, application-code: 77s)
+ GET / 200 in 12.0min (next.js: 11.6min, application-code: 23.9s)
+ GET / 200 in 6.6min (next.js: 5.3min, application-code: 75s)
+ GET / 200 in 15.0s (next.js: 7.3s, application-code: 7.7s)
+ GET / 200 in 14.5s (next.js: 8.8s, application-code: 5.7s)
+ GET / 200 in 5.1s (next.js: 706ms, application-code: 4.4s)
+ GET / 200 in 5.6s (next.js: 394ms, application-code: 5.2s)
+ GET / 200 in 4.7s (next.js: 317ms, application-code: 4.3s)
+ GET / 200 in 17.8s (next.js: 10.0s, application-code: 7.8s)
+ GET / 200 in 3.4s (next.js: 115ms, application-code: 3.3s)
+ GET / 200 in 3.4s (next.js: 1189ms, application-code: 2.2s)
+ GET / 200 in 1513ms (next.js: 38ms, application-code: 1476ms)
+ GET / 200 in 984ms (next.js: 14ms, application-code: 970ms)
+ GET / 200 in 733ms (next.js: 16ms, application-code: 717ms)
+✓ Finished filesystem cache database compaction in 4.4min
+  Reload env: .env.local
+✓ Finished writing to filesystem cache in 14.0s
+ GET / 200 in 26.0s (next.js: 18.9s, application-code: 7.0s)
+  Reload env: .env.local
+ GET / 200 in 4.7s (next.js: 4.4s, application-code: 335ms)
+ GET / 200 in 529ms (next.js: 277ms, application-code: 252ms)
+✓ Compiled in 34.2s
+ GET / 200 in 742ms (next.js: 614ms, application-code: 128ms)
+ GET / 200 in 26.7s (next.js: 6.9s, application-code: 19.9s)
+ GET / 200 in 320ms (next.js: 11ms, application-code: 309ms)
+ POST /api/cv/parse 200 in 69s (next.js: 39.0s, application-code: 30.3s)
+ GET /api/jobs?q= 200 in 12.1s (next.js: 7.6s, application-code: 4.5s)
+ GET /api/jobs?q= 200 in 23ms (next.js: 7ms, application-code: 16ms)
+○ Compiling /api/jd/parse ...
+Error parsing JD: Error: 401 Incorrect API key provided: sk-proj-********************************************************************************************************************************************************bqQA. You can find your API key at https://platform.openai.com/account/api-keys.
+    at async POST (src\app\api\jd\parse\route.ts:51:24)
+  49 |
+  50 |       // Call OpenAI with GPT-4o vision
+> 51 |       const response = await openai.chat.completions.create({
+     |                        ^
+  52 |         model: 'gpt-4o',
+  53 |         messages: [
+  54 |           { {
+  status: 401,
+  headers: Headers {
+    date: 'Mon, 29 Jun 2026 09:17:23 GMT',
+    'content-type': 'text/plain',
+    'content-length': '410',
+    connection: 'keep-alive',
+    'set-cookie': '__cf_bm=iY7KT22a6RVpW5LKZx8AYmhsiOi3vRLUwEhVHiBOpcs-1782724642.7032106-1.0.1.1-18O0f95ihzfIGW_2oOvf.DUbKDdOd69Xt_j5MY91All.BZCil7L9EUQ2W32VtkBF44uTgfoXvZcLgA642_2PXjO0_nWNF9QkGcTZ69OZA6SsMCspbvGePs.RT06yzwcr; HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Mon, 29 Jun 2026 09:47:23 GMT, _cfuvid=7MEvEMBOtpTyOGcuuNFs7e2o53OuhRb6issZxwbtl1E-1782724642.7032106-1.0.1.1-L7Da10ET1mEZtFveUarkM7z.7eeVXA.CFMznSTL7DWE; HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com',
+    'cf-ray': 'a133d678ee64ad25-GIG',
+    'cf-cache-status': 'DYNAMIC',
+    server: 'cloudflare',
+    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+    'access-control-expose-headers': 'CF-Ray, CF-Ray',
+    'x-content-type-options': 'nosniff',
+    'x-error-json': 'ewogICJlcnJvciI6IHsKICAgICJtZXNzYWdlIjogIkluY29ycmVjdCBBUEkga2V5IHByb3ZpZGVkOiBzay1wcm9qLSoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqYnFRQS4gWW91IGNhbiBmaW5kIHlvdXIgQVBJIGtleSBhdCBodHRwczovL3BsYXRmb3JtLm9wZW5haS5jb20vYWNjb3VudC9hcGkta2V5cy4iLAogICAgInR5cGUiOiAiaW52YWxpZF9yZXF1ZXN0X2Vycm9yIiwKICAgICJjb2RlIjogImludmFsaWRfYXBpX2tleSIsCiAgICAicGFyYW0iOiBudWxsCiAgfSwKICAic3RhdHVzIjogNDAxCn0=',
+    'x-openai-authorization-error': '401',
+    'x-openai-ide-error-code': 'invalid_api_key',
+    'x-openai-internal-caller': 'unknown_through_ide',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  requestID: null,
+  error: {
+    message: 'Incorrect API key provided: sk-proj-********************************************************************************************************************************************************bqQA. You can find your API key at https://platform.openai.com/account/api-keys.',
+    type: 'invalid_request_error',
+    code: 'invalid_api_key',
+    param: null
+  },
+  code: 'invalid_api_key',
+  param: null,
+  type: 'invalid_request_error'
+}
+ POST /api/jd/parse 500 in 2.8min (next.js: 2.2min, application-code: 33.2s)
+✓ Finished writing to filesystem cache in 68s
+ GET / 200 in 4.7s (next.js: 4.5s, application-code: 234ms)
+ POST /api/cv/generate 200 in 14.9s (next.js: 1734ms, application-code: 13.2s)
+✓ Compiled in 19.8s
+✓ Compiled in 99.7s
+✓ Finished writing to filesystem cache in 24.7s
+ GET / 200 in 2.5min (next.js: 2.2min, application-code: 17.3s)
+✓ Compiled in 46.6s
+ GET / 200 in 14.8s (next.js: 13.8s, application-code: 935ms)
+ GET / 200 in 398ms (next.js: 213ms, application-code: 184ms)
+ GET / 200 in 2.5s (next.js: 76ms, application-code: 2.4s)
+ POST /api/cv/parse 200 in 3.8s (next.js: 2.3s, application-code: 1478ms)
+ GET /api/jobs?q= 200 in 1824ms (next.js: 1671ms, application-code: 153ms)
+ GET /api/jobs?q= 200 in 28ms (next.js: 9ms, application-code: 18ms)
+ POST /api/cv/parse 200 in 344ms (next.js: 46ms, application-code: 298ms)
+ GET /api/jobs?q= 200 in 25ms (next.js: 9ms, application-code: 16ms)
+ GET /api/jobs?q= 200 in 39ms (next.js: 15ms, application-code: 25ms)
+ POST /api/cv/generate 200 in 14.7s (next.js: 1155ms, application-code: 13.6s)
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+✓ Finished writing to filesystem cache in 18.2s
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+✓ Compiled in 86.2s
+ GET / 200 in 30.3s (next.js: 22.4s, application-code: 7.9s)
+✓ Compiled in 10.9s
+ GET / 200 in 2.2s (next.js: 1278ms, application-code: 874ms)
+ GET / 200 in 3.1s (next.js: 616ms, application-code: 2.5s)
+ POST /api/cv/parse 200 in 4.3s (next.js: 2.2s, application-code: 2.1s)
+ POST /api/cv/generate 200 in 19.3s (next.js: 1828ms, application-code: 17.4s)
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+✓ Compiled in 73.2s
+ GET / 200 in 67s (next.js: 42s, application-code: 25.4s)
+✓ Compiled in 60.6s
+✓ Finished writing to filesystem cache in 21.9s
+ GET / 200 in 51s (next.js: 17.0s, application-code: 33.6s)
+ GET / 200 in 22.3s (next.js: 16.5s, application-code: 5.8s)
+ POST /api/cv/parse 200 in 2.3s (next.js: 1386ms, application-code: 935ms)
+ POST /api/cv/generate 200 in 19.0s (next.js: 2.6s, application-code: 16.4s)
+✓ Compiled in 48.9s
+ GET / 200 in 3.9s (next.js: 3.6s, application-code: 339ms)
+✓ Compiled in 3.8s
+ GET / 200 in 1016ms (next.js: 694ms, application-code: 322ms)
+ GET / 200 in 1899ms (next.js: 20ms, application-code: 1880ms)
+ POST /api/cv/parse 200 in 4.5s (next.js: 2.7s, application-code: 1775ms)
+ GET /api/jobs?q= 200 in 1030ms (next.js: 852ms, application-code: 177ms)
+ GET /api/jobs?q= 200 in 51ms (next.js: 35ms, application-code: 16ms)
+ POST /api/cv/generate 200 in 15.9s (next.js: 1222ms, application-code: 14.7s)
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+✓ Compiled in 4.6s
+ GET / 200 in 3.3s (next.js: 3.1s, application-code: 280ms)
+ POST /api/cv/parse 200 in 1890ms (next.js: 1519ms, application-code: 371ms)
+ GET /api/jobs?q= 200 in 629ms (next.js: 590ms, application-code: 39ms)
+ GET /api/jobs?q= 200 in 20ms (next.js: 5ms, application-code: 15ms)
+ POST /api/cv/generate 200 in 13.8s (next.js: 835ms, application-code: 12.9s)
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+✓ Compiled in 1537ms
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+ GET / 200 in 1457ms (next.js: 1298ms, application-code: 159ms)
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+[browser] Base64 image invalid format: bmp
+ POST /api/cv/parse 200 in 3.0s (next.js: 2.1s, application-code: 955ms)
+ GET /api/jobs?q= 200 in 1012ms (next.js: 970ms, application-code: 42ms)
+ GET /api/jobs?q= 200 in 21ms (next.js: 5ms, application-code: 16ms)
+ POST /api/cv/generate 200 in 13.6s (next.js: 677ms, application-code: 13.0s)
+✓ Compiled in 6.6s
+ GET / 200 in 1312ms (next.js: 1186ms, application-code: 127ms)
+ POST /api/cv/parse 200 in 1191ms (next.js: 759ms, application-code: 432ms)
+ GET /api/jobs?q= 200 in 527ms (next.js: 460ms, application-code: 67ms)
+ GET /api/jobs?q= 200 in 28ms (next.js: 7ms, application-code: 21ms)
+ POST /api/cv/generate 200 in 13.2s (next.js: 453ms, application-code: 12.7s)
+ POST /api/cv/parse 200 in 239ms (next.js: 9ms, application-code: 230ms)
+ GET /api/jobs?q= 200 in 20ms (next.js: 6ms, application-code: 15ms)
+ GET /api/jobs?q= 200 in 24ms (next.js: 7ms, application-code: 18ms)
+ POST /api/cv/generate 200 in 13.2s (next.js: 7ms, application-code: 13.2s)
+✓ Compiled in 84.8s
+✓ Finished writing to filesystem cache in 16.6s
+ GET / 200 in 23.3s (next.js: 9.1s, application-code: 14.2s)
+✓ Finished writing to filesystem cache in 34.9s
+✓ Finished writing to filesystem cache in 38.7s
+✓ Finished writing to filesystem cache in 19.5s
+✓ Finished writing to filesystem cache in 10.2s
+✓ Compiled in 470.3s
+ GET / 200 in 3.5min (next.js: 109s, application-code: 99s)
+ GET / 200 in 15.5s (next.js: 4.5s, application-code: 10.9s)
+✓ Finished writing to filesystem cache in 11.9s
+✓ Finished writing to filesystem cache in 55s
+✓ Compiled in 222.3s
+ GET / 200 in 16.3s (next.js: 13.2s, application-code: 3.1s)
+ GET / 200 in 1550ms (next.js: 653ms, application-code: 897ms)
+ GET / 200 in 5.5s (next.js: 445ms, application-code: 5.1s)
+ POST /api/cv/parse 200 in 3.2s (next.js: 2.2s, application-code: 907ms)
+ GET /api/jobs?q= 200 in 917ms (next.js: 776ms, application-code: 141ms)
+ GET /api/jobs?q= 200 in 34ms (next.js: 10ms, application-code: 24ms)
+ POST /api/cv/generate 200 in 17.9s (next.js: 1543ms, application-code: 16.3s)

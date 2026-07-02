@@ -19,6 +19,7 @@ export default function Home() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [modelProvider, setModelProvider] = useState<'openai' | 'deepseek'>('openai');
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+  const [signatureUrl, setSignatureUrl] = useState<string | null>(null);
   const [jdMode, setJdMode] = useState<'search' | 'paste'>('search');
 
   const handleFileSelect = async (file: File) => {
@@ -230,6 +231,8 @@ export default function Home() {
           <DocumentPreview 
             data={generatedData} 
             photoUrl={photoUrl}
+            signatureUrl={signatureUrl}
+            setSignatureUrl={setSignatureUrl}
             onReset={() => {
               setStep(1);
               setCvFile(null);
@@ -237,7 +240,13 @@ export default function Home() {
               setJobDescription('');
               setGeneratedData(null);
               setPhotoUrl(null);
+              setSignatureUrl(null);
             }} 
+            onNewDocuments={() => {
+              setStep(2);
+              setJobDescription('');
+              setGeneratedData(null);
+            }}
           />
         )}
       </section>
