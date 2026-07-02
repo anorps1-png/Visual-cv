@@ -1,22 +1,14 @@
-import { PDFParse } from 'pdf-parse';
+import { extractText, getDocumentProxy } from 'unpdf';
 
 export async function extractTextFromPdf(buffer: Buffer): Promise<string> {
-  let parser: PDFParse | null = null;
   try {
-    parser = new PDFParse({ data: buffer });
-    const result = await parser.getText();
-    return result.text;
+    // getDocumentProxy expects a Uint8Array
+    const pdf = await getDocumentProxy(new Uint8Array(buffer));
+    const { text } = await extractText(pdf, { mergePages: true });
+    return text;
   } catch (error) {
-    console.error('pdf-parse error:', error);
+    console.error('unpdf error:', error);
     throw new Error('Impossible de lire le fichier PDF');
-  } finally {
-    if (parser) {
-      try {
-        await parser.destroy();
-      } catch (destroyError) {
-        console.error('Failed to destroy PDFParse instance:', destroyError);
-      }
-    }
   }
 }
 
