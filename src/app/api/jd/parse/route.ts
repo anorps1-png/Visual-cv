@@ -4,6 +4,7 @@ import { extractTextFromPdf } from '@/lib/parser/pdfExtractor';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || 'dummy_key',
+  baseURL: process.env.OPENAI_BASE_URL || undefined,
 });
 
 const deepseek = new OpenAI({
@@ -92,7 +93,7 @@ export async function POST(request: Request) {
 
       // Call OpenAI with GPT-4o vision
       const response = await openai.chat.completions.create({
-        model: 'gpt-4o',
+        model: process.env.OPENAI_MODEL || 'gpt-4o',
         messages: [
           {
             role: 'user',

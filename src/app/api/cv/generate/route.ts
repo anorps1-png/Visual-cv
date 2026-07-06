@@ -4,6 +4,7 @@ import { CV_GENERATION_PROMPT } from '@/lib/ai/prompts';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || 'dummy_key',
+  baseURL: process.env.OPENAI_BASE_URL || undefined,
 });
 
 const deepseek = new OpenAI({
@@ -87,7 +88,7 @@ export async function POST(request: Request) {
       });
     } else {
       response = await openai.chat.completions.create({
-        model: 'gpt-4o',
+        model: process.env.OPENAI_MODEL || 'gpt-4o',
         messages: [
           { role: 'system', content: CV_GENERATION_PROMPT },
           { role: 'user', content: `=== CV MAÎTRE ===\n${cvText}\n\n=== OFFRE D'EMPLOI ===\n${jobDescription}` }
