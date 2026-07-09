@@ -257,5 +257,109 @@
   animation: fadeIn 0.3s ease-out;
 }
 
+/* Styles pour la barre de navigation SaaS */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+  background-color: var(--bg-main);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navLogo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navLogoSpan {
+  background-color: rgba(37, 99, 235, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.navLinks {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navLink {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.navLink:hover {
+  color: var(--text-main);
+  background-color: var(--secondary);
+}
+
+.navLinkActive {
+  color: var(--primary);
+  background-color: rgba(37, 99, 235, 0.08);
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.userEmail {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.loginBtn {
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+  transition: background-color 0.2s;
+}
+
+.loginBtn:hover {
+  background-color: var(--primary-hover);
+}
+
+.logoutBtn {
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.logoutBtn:hover {
+  background-color: var(--secondary);
+}
+
+
 
 
