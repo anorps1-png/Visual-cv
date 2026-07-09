@@ -360,6 +360,20 @@
   background-color: var(--secondary);
 }
 
+.themeToggleBtn {
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
 
-
-
+.themeToggleBtn:hover {
+  background-color: var(--secondary);
+  color: var(--text-main);
+  border-color: var(--text-muted);
+}

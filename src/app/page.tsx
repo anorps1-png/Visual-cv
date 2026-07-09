@@ -11,12 +11,36 @@ import { supabase } from '@/lib/supabase';
 import { AuthModal } from '@/components/ui/AuthModal';
 import { History } from '@/components/ui/History';
 import { Pricing } from '@/components/ui/Pricing';
+import { Landing } from '@/components/ui/Landing';
+import { Sun, Moon } from 'lucide-react';
+
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<'generator' | 'history' | 'pricing'>('generator');
+  const [activeTab, setActiveTab] = useState<'landing' | 'generator' | 'history' | 'pricing'>('landing');
   const [session, setSession] = useState<any>(null);
   const [userPlan, setUserPlan] = useState<string>('Gratuit');
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else {
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = systemPrefersDark ? 'dark' : 'light';
+      setTheme(initialTheme);
+      document.documentElement.setAttribute('data-theme', initialTheme);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(nextTheme);
+    document.documentElement.setAttribute('data-theme', nextTheme);
+    localStorage.setItem('theme', nextTheme);
+  };
 
   // original generator states
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
@@ -145,16 +169,22 @@ export default function Home() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    setActiveTab('generator');
+    setActiveTab('landing');
   };
 
   return (
     <main className={styles.main} style={{ paddingTop: '0' }}>
       <nav className={styles.navbar}>
-        <div className={styles.navLogo}>
+        <div className={styles.navLogo} onClick={() => setActiveTab('landing')} style={{ cursor: 'pointer' }}>
           🇨🇲 Visual CV <span className={styles.navLogoSpan}>SaaS</span>
         </div>
         <div className={styles.navLinks}>
+          <button 
+            onClick={() => setActiveTab('landing')} 
+            className={`${styles.navLink} ${activeTab === 'landing' ? styles.navLinkActive : ''}`}
+          >
+            Accueil
+          </button>
           <button 
             onClick={() => setActiveTab('generator')} 
             className={`${styles.navLink} ${activeTab === 'generator' ? styles.navLinkActive : ''}`}
@@ -181,6 +211,9 @@ export default function Home() {
           </button>
         </div>
         <div className={styles.userSection}>
+          <button onClick={toggleTheme} className={styles.themeToggleBtn} aria-label="Toggle Theme">
+            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
           {session ? (
             <>
               <span className={styles.userEmail} title={session.user.email}>
@@ -200,6 +233,13 @@ export default function Home() {
           )}
         </div>
       </nav>
+      
+      {activeTab === 'landing' && (
+        <Landing 
+          onStart={() => setActiveTab('generator')} 
+          onViewPricing={() => setActiveTab('pricing')} 
+        />
+      )}
       
       {activeTab === 'generator' && (
         <>
