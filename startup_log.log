@@ -46,3 +46,1738 @@ See more: https://nextjs.org/docs/app/guides/local-development
 
 ○ Compiling / ...
  GET / 200 in 33.8s (next.js: 25.9s, application-code: 7.9s)
+✓ Compiled in 3s
+ GET / 200 in 421ms (next.js: 302ms, application-code: 119ms)
+✓ Compiled in 1732ms
+ GET / 200 in 332ms (next.js: 204ms, application-code: 128ms)
+✓ Compiled in 205ms
+ GET / 200 in 1906ms (next.js: 1789ms, application-code: 117ms)
+ GET / 200 in 4.3s (next.js: 69ms, application-code: 4.3s)
+ POST /api/cv/parse 200 in 11.0s (next.js: 9.8s, application-code: 1155ms)
+ GET /api/jobs?q= 200 in 690ms (next.js: 607ms, application-code: 83ms)
+ GET /api/jobs?q= 200 in 24ms (next.js: 8ms, application-code: 15ms)
+ POST /api/cv/generate 200 in 13.1s (next.js: 1200ms, application-code: 11.9s)
+✓ Compiled in 259ms
+ GET / 200 in 2.1s (next.js: 1963ms, application-code: 139ms)
+✓ Compiled in 168ms
+ GET / 200 in 542ms (next.js: 402ms, application-code: 139ms)
+ POST /api/cv/generate 200 in 10.8s (next.js: 756ms, application-code: 10.0s)
+ GET / 200 in 1690ms (next.js: 152ms, application-code: 1538ms)
+ POST /api/cv/parse 200 in 835ms (next.js: 558ms, application-code: 278ms)
+ GET /api/jobs?q= 200 in 378ms (next.js: 340ms, application-code: 38ms)
+ GET /api/jobs?q= 200 in 20ms (next.js: 6ms, application-code: 14ms)
+ POST /api/cv/generate 200 in 16.5s (next.js: 261ms, application-code: 16.3s)
+ POST /api/cv/generate 200 in 14.3s (next.js: 31ms, application-code: 14.3s)
+ POST /api/cv/generate 200 in 13.6s (next.js: 7ms, application-code: 13.6s)
+ POST /api/cv/generate 200 in 13.5s (next.js: 21ms, application-code: 13.5s)
+✓ Compiled in 20s
+ GET / 200 in 2.3s (next.js: 1941ms, application-code: 336ms)
+✓ Finished writing to filesystem cache in 11.8s
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.20:3000
+- Environments: .env.local, .env
+✓ Ready in 55s
+⚠ Slow filesystem detected. The benchmark took 635ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+
+○ Compiling / ...
+✓ Finished writing to filesystem cache in 24.2s
+ GET / 200 in 83s (next.js: 39.5s, application-code: 43s)
+[03/07/2026 10:06:02,77] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.20:3000
+- Environments: .env.local, .env
+✓ Ready in 3.3min
+⚠ Slow filesystem detected. The benchmark took 756ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+
+[03/07/2026 11:25:15,48] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.20:3000
+- Environments: .env.local, .env
+✓ Ready in 120s
+⚠ Slow filesystem detected. The benchmark took 1799ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+
+○ Compiling / ...
+ GET / 200 in 47s (next.js: 28.4s, application-code: 19.1s)
+[03/07/2026 18:06:51,96] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.20:3000
+- Environments: .env.local, .env
+✓ Ready in 2.4min
+⚠ Slow filesystem detected. The benchmark took 1110ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+
+✓ Finished writing to filesystem cache in 39.2s
+[06/07/2026  9:42:07,24] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.24:3000
+- Environments: .env.local, .env
+✓ Ready in 56s
+⚠ Slow filesystem detected. The benchmark took 1453ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+
+[07/07/2026  9:51:43,33] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Environments: .env.local, .env
+✓ Ready in 40s
+⚠ Slow filesystem detected. The benchmark took 584ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+
+[07/07/2026 13:05:39,29] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.13:3000
+- Environments: .env.local, .env
+✓ Ready in 3.3min
+⚠ Slow filesystem detected. The benchmark took 439ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+
+[07/07/2026 17:06:17,52] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.13:3000
+- Environments: .env.local, .env
+✓ Ready in 110s
+⚠ Slow filesystem detected. The benchmark took 2426ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+✓ Finished writing to filesystem cache in 14.0s
+
+[08/07/2026  9:20:30,97] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.117:3000
+- Environments: .env.local, .env
+✓ Ready in 27.3s
+⚠ Slow filesystem detected. The benchmark took 603ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+
+[08/07/2026  9:42:32,73] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+[08/07/2026  9:55:17,84] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.13:3000
+- Environments: .env.local, .env
+✓ Ready in 3.2min
+⚠ Slow filesystem detected. The benchmark took 699ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+✓ Finished writing to filesystem cache in 32.4s
+
+✓ Finished writing to filesystem cache in 10.6s
+✓ Finished writing to filesystem cache in 13.0s
+✓ Finished writing to filesystem cache in 70s
+✓ Finished filesystem cache database compaction in 50s
+✓ Finished writing to filesystem cache in 22.8s
+✓ Finished writing to filesystem cache in 31.5s
+✓ Finished writing to filesystem cache in 16.6s
+✓ Finished writing to filesystem cache in 26.5s
+✓ Finished filesystem cache database compaction in 116s
+✓ Finished filesystem cache database compaction in 71s
+✓ Finished writing to filesystem cache in 10.5s
+✓ Finished writing to filesystem cache in 66s
+✓ Finished writing to filesystem cache in 11.6s
+✓ Finished writing to filesystem cache in 18.4s
+✓ Finished writing to filesystem cache in 10.9s
+✓ Finished writing to filesystem cache in 17.8s
+○ Compiling / ...
+✓ Finished writing to filesystem cache in 18.9s
+ GET / 200 in 110s (next.js: 75s, application-code: 35.2s)
+[browser] TypeError: Failed to fetch
+    at handleSubmit (src/components/ui/AuthModal.tsx:32:53)
+  30 |     try {
+  31 |       if (isSignUp) {
+> 32 |         const { data, error } = await supabase.auth.signUp({
+     |                                                     ^
+  33 |           email,
+  34 |           password,
+  35 |         }); (src/components/ui/AuthModal.tsx:32:33)
+[browser] AuthRetryableFetchError: Failed to fetch
+    at async handleSubmit (src/components/ui/AuthModal.tsx:32:33)
+  30 |     try {
+  31 |       if (isSignUp) {
+> 32 |         const { data, error } = await supabase.auth.signUp({
+     |                                 ^
+  33 |           email,
+  34 |           password,
+  35 |         }); (src/components/ui/AuthModal.tsx:58:15)
+✓ Compiled in 76s
+ GET / 200 in 10.1s (next.js: 8.4s, application-code: 1634ms)
+✓ Finished writing to filesystem cache in 14.6s
+✓ Finished writing to filesystem cache in 16.7s
+✓ Finished writing to filesystem cache in 18.2s
+✓ Finished writing to filesystem cache in 38.3s
+✓ Finished writing to filesystem cache in 17.1s
+ GET / 200 in 11.8min (next.js: 3.4min, application-code: 8.4min)
+✓ Finished writing to filesystem cache in 32.5s
+✓ Finished writing to filesystem cache in 14.1s
+✓ Finished writing to filesystem cache in 29.6s
+✓ Finished writing to filesystem cache in 44s
+✓ Finished writing to filesystem cache in 15.2s
+✓ Finished writing to filesystem cache in 12.8s
+✓ Finished writing to filesystem cache in 13.7s
+✓ Finished writing to filesystem cache in 15.8s
+✓ Finished writing to filesystem cache in 33.9s
+✓ Finished writing to filesystem cache in 47s
+✓ Compiled in 710s
+✓ Finished writing to filesystem cache in 27.8s
+⨯ ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m               [31m[1m^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+
+./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m                [31m[1m^^^^^^^^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+⨯ ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m               [31m[1m^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+
+./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m                [31m[1m^^^^^^^^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+⨯ ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m               [31m[1m^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+
+./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m                [31m[1m^^^^^^^^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+⨯ ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m               [31m[1m^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+
+./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m                [31m[1m^^^^^^^^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+○ Compiling /_error ...
+⨯ ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m               [31m[1m^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+
+./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m                [31m[1m^^^^^^^^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+⨯ ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m               [31m[1m^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+
+./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m                [31m[1m^^^^^^^^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+✓ Finished filesystem cache database compaction in 4.9min
+✓ Finished writing to filesystem cache in 24.3s
+✓ Finished writing to filesystem cache in 11.6s
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+✓ Finished writing to filesystem cache in 16.1s
+ GET / 500 in 10.7min (next.js: 9.8min, application-code: 53s)
+ GET / 500 in 11.3min (next.js: 11.2min, application-code: 1873ms)
+ GET / 500 in 11.1min (next.js: 11.1min, application-code: 1789ms)
+ GET / 500 in 11.1min (next.js: 11.1min, application-code: 1749ms)
+ GET / 500 in 11.1min (next.js: 11.1min, application-code: 1638ms)
+ GET / 500 in 10.7min (next.js: 10.7min, application-code: 2.3s)
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+⨯ ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m               [31m[1m^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+
+./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m                [31m[1m^^^^^^^^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+ GET / 500 in 4.6s (next.js: 4.5s, application-code: 126ms)
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+⨯ ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m               [31m[1m^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+
+./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  [90m57 |[0m               [33mCréer[0m mon [33mCV[0m gratuitement
+  [90m58 |[0m               <[33mArrowRight[0m size={[35m18[0m} />
+[31m[1m>[0m [90m59 |[0m             <[35m/</button[0m>
+  [90m   |[0m                [31m[1m^^^^^^^^[0m
+  [90m60 |[0m             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  [90m61 |[0m               [33mDécouvrir[0m les offres
+  [90m62 |[0m             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+ GET / 500 in 1417ms (next.js: 504ms, application-code: 912ms)
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] Uncaught Error: ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/components/ui/Landing.tsx:59:15)
+    at <unknown> (Error: (./src/components/ui/Landing.tsx:59:15)
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+✓ Finished writing to filesystem cache in 11.3s
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+✓ Finished filesystem cache database compaction in 5.2min
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+[browser] ./src/components/ui/Landing.tsx:59:16
+Unterminated regexp literal
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |                ^^^^^^^^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component] 
+✓ Finished writing to filesystem cache in 43s
+✓ Finished writing to filesystem cache in 17.1s
+✓ Finished writing to filesystem cache in 56s
+✓ Compiled in 394.3s
+○ Compiling / ...
+✓ Finished writing to filesystem cache in 12.7s
+ GET / 200 in 4.9min (next.js: 3.6min, application-code: 80s)
+✓ Finished writing to filesystem cache in 13.3s
+✓ Finished writing to filesystem cache in 25.7s
+✓ Finished writing to filesystem cache in 20.7s
+✓ Finished writing to filesystem cache in 18.2s
+[browser] Uncaught Error: ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/components/ui/Landing.tsx:59:15)
+    at <unknown> (Error: (./src/components/ui/Landing.tsx:59:15)
+[browser] Uncaught Error: ./src/components/ui/Landing.tsx:59:15
+Expression expected
+  57 |               Créer mon CV gratuitement
+  58 |               <ArrowRight size={18} />
+> 59 |             </</button>
+     |               ^
+  60 |             <button onClick={onViewPricing} className={styles.secondaryBtn}>
+  61 |               Découvrir les offres
+  62 |             </button>
+
+Parsing ecmascript source code failed
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ui/Landing.tsx [Client Component Browser]
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ui/Landing.tsx [Client Component SSR]
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/components/ui/Landing.tsx:59:15)
+    at <unknown> (Error: (./src/components/ui/Landing.tsx:59:15)
+✓ Finished writing to filesystem cache in 21.2s
+ GET / 200 in 2.7min (next.js: 30.3s, application-code: 2.2min)
+✓ Finished writing to filesystem cache in 18.0s
+✓ Finished writing to filesystem cache in 2.1min
+✓ Finished writing to filesystem cache in 25.8s
+✓ Finished writing to filesystem cache in 16.3s
+✓ Finished writing to filesystem cache in 48s
+✓ Compiled in 706.8s
+✓ Finished writing to filesystem cache in 22.8s
+ GET / 200 in 4.8s (next.js: 730ms, application-code: 4.0s)
+ GET / 200 in 5.1s (next.js: 2.1s, application-code: 3.0s)
+ GET / 200 in 5.1s (next.js: 2.3s, application-code: 2.8s)
+ GET / 200 in 5.1s (next.js: 2.7s, application-code: 2.4s)
+ GET / 200 in 4.9s (next.js: 2.9s, application-code: 1962ms)
+ GET / 200 in 8.1min (next.js: 7.5min, application-code: 35.4s)
+ GET / 200 in 5.8s (next.js: 420ms, application-code: 5.3s)
+ GET / 200 in 5.6s (next.js: 2.8s, application-code: 2.8s)
+ GET / 200 in 491ms (next.js: 91ms, application-code: 399ms)
+✓ Finished writing to filesystem cache in 24.1s
+✓ Finished writing to filesystem cache in 49s
+✓ Finished writing to filesystem cache in 11.9s
+[10/07/2026 10:34:46,50] Tentative de démarrage du serveur Next.js... 
+
+> visual-cv-cameroon@0.1.0 dev
+> next dev -p 3000
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.13:3000
+- Environments: .env.local, .env
+✓ Ready in 3.4min
+⚠ Slow filesystem detected. The benchmark took 481ms. If C:\Users\USER\Desktop\JOB\visual-cv-cameroon\.next/dev is a network drive, consider moving it to a local folder.
+See more: https://nextjs.org/docs/app/guides/local-development
+
+○ Compiling / ...
+ GET / 200 in 73s (next.js: 37.8s, application-code: 35.7s)
+ GET / 200 in 13.5s (next.js: 9.3s, application-code: 4.2s)
+[browser] TypeError: Failed to fetch
+    at handleSubmit (src/components/ui/AuthModal.tsx:32:53)
+  30 |     try {
+  31 |       if (isSignUp) {
+> 32 |         const { data, error } = await supabase.auth.signUp({
+     |                                                     ^
+  33 |           email,
+  34 |           password,
+  35 |           options: { (src/components/ui/AuthModal.tsx:32:33)
+[browser] AuthRetryableFetchError: Failed to fetch
+    at async handleSubmit (src/components/ui/AuthModal.tsx:32:33)
+  30 |     try {
+  31 |       if (isSignUp) {
+> 32 |         const { data, error } = await supabase.auth.signUp({
+     |                                 ^
+  33 |           email,
+  34 |           password,
+  35 |           options: { (src/components/ui/AuthModal.tsx:61:15)
+ GET / 200 in 2.1s (next.js: 1740ms, application-code: 388ms)
+[browser] TypeError: Failed to fetch
+    at handleSubmit (src/components/ui/AuthModal.tsx:32:53)
+  30 |     try {
+  31 |       if (isSignUp) {
+> 32 |         const { data, error } = await supabase.auth.signUp({
+     |                                                     ^
+  33 |           email,
+  34 |           password,
+  35 |           options: { (src/components/ui/AuthModal.tsx:32:33)
+[browser] AuthRetryableFetchError: Failed to fetch
+    at async handleSubmit (src/components/ui/AuthModal.tsx:32:33)
+  30 |     try {
+  31 |       if (isSignUp) {
+> 32 |         const { data, error } = await supabase.auth.signUp({
+     |                                 ^
+  33 |           email,
+  34 |           password,
+  35 |           options: { (src/components/ui/AuthModal.tsx:61:15)
+ GET / 200 in 9.8s (next.js: 68ms, application-code: 9.8s)
+[browser] TypeError: Failed to fetch
+    at handleSubmit (src/components/ui/AuthModal.tsx:32:53)
+  30 |     try {
+  31 |       if (isSignUp) {
+> 32 |         const { data, error } = await supabase.auth.signUp({
+     |                                                     ^
+  33 |           email,
+  34 |           password,
+  35 |           options: { (src/components/ui/AuthModal.tsx:32:33)
+[browser] AuthRetryableFetchError: Failed to fetch
+    at async handleSubmit (src/components/ui/AuthModal.tsx:32:33)
+  30 |     try {
+  31 |       if (isSignUp) {
+> 32 |         const { data, error } = await supabase.auth.signUp({
+     |                                 ^
+  33 |           email,
+  34 |           password,
+  35 |           options: { (src/components/ui/AuthModal.tsx:61:15)

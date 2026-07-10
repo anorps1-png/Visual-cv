@@ -12,6 +12,7 @@ import { AuthModal } from '@/components/ui/AuthModal';
 import { History } from '@/components/ui/History';
 import { Pricing } from '@/components/ui/Pricing';
 import { Landing } from '@/components/ui/Landing';
+import { CVBuilder } from '@/components/ui/CVBuilder';
 import { Sun, Moon } from 'lucide-react';
 
 
@@ -55,6 +56,7 @@ export default function Home() {
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
   const [signatureUrl, setSignatureUrl] = useState<string | null>(null);
   const [jdMode, setJdMode] = useState<'search' | 'paste'>('search');
+  const [cvMode, setCvMode] = useState<'upload' | 'build'>('upload');
   const [loadedJobMeta, setLoadedJobMeta] = useState<{ jobTitle: string; companyName: string } | null>(null);
 
   useEffect(() => {
@@ -271,43 +273,110 @@ export default function Home() {
 
             {step === 1 && (
               <div className={styles.card}>
-                <h2>Importez votre CV actuel</h2>
-                <FileUpload onFileSelect={handleFileSelect} isLoading={isParsing} />
+                <h2>Première étape : Votre Profil</h2>
+                
+                <div className={styles.tabHeader}>
+                  <button 
+                    type="button"
+                    className={`${styles.tabBtn} ${cvMode === 'upload' ? styles.activeTabBtn : ''}`}
+                    onClick={() => setCvMode('upload')}
+                  >
+                    Importer un CV existant (PDF)
+                  </button>
+                  <button 
+                    type="button"
+                    className={`${styles.tabBtn} ${cvMode === 'build' ? styles.activeTabBtn : ''}`}
+                    onClick={() => setCvMode('build')}
+                  >
+                    Créer de A à Z
+                  </button>
+                </div>
 
-                <div className={styles.photoUploadBox}>
-                  <label className={styles.photoLabel}>Photo de profil (Optionnelle) :</label>
-                  <div className={styles.photoUploadControls}>
-                    {photoUrl ? (
-                      <div className={styles.photoPreviewWrapper}>
-                        <img src={photoUrl} alt="Aperçu" className={styles.photoPreview} />
-                        <button 
-                          type="button" 
-                          onClick={() => setPhotoUrl(null)} 
-                          className={styles.photoRemoveBtn}
-                        >
-                          Supprimer la photo
-                        </button>
+                <div className={styles.tabContent}>
+                  {cvMode === 'upload' ? (
+                    <>
+                      <FileUpload onFileSelect={handleFileSelect} isLoading={isParsing} />
+
+                      <div className={styles.photoUploadBox}>
+                        <label className={styles.photoLabel}>Photo de profil (Optionnelle) :</label>
+                        <div className={styles.photoUploadControls}>
+                          {photoUrl ? (
+                            <div className={styles.photoPreviewWrapper}>
+                              <img src={photoUrl} alt="Aperçu" className={styles.photoPreview} />
+                              <button 
+                                type="button" 
+                                onClick={() => setPhotoUrl(null)} 
+                                className={styles.photoRemoveBtn}
+                              >
+                                Supprimer la photo
+                              </button>
+                            </div>
+                          ) : (
+                            <div className={styles.photoInputWrapper}>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => {
+                                  const file = e.target.files?.[0];
+                                  if (file) {
+                                    const reader = new FileReader();
+                                    reader.onloadend = () => {
+                                      setPhotoUrl(reader.result as string);
+                                    };
+                                    reader.readAsDataURL(file);
+                                  }
+                                }}
+                                className={styles.photoInput}
+                              />
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    ) : (
-                      <div className={styles.photoInputWrapper}>
-                        <input
-                          type="file"
-                          accept="image/*"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) {
-                              const reader = new FileReader();
-                              reader.onloadend = () => {
-                                setPhotoUrl(reader.result as string);
-                              };
-                              reader.readAsDataURL(file);
-                            }
-                          }}
-                          className={styles.photoInput}
-                        />
+                    </>
+                  ) : (
+                    <>
+                      <CVBuilder onComplete={(text) => {
+                        setCvText(text);
+                        setCvFile(new File([text], 'cv_builder.txt', { type: 'text/plain' }));
+                        setStep(2);
+                      }} />
+                      <div className={styles.photoUploadBox} style={{ marginTop: '2rem' }}>
+                        <label className={styles.photoLabel}>Photo de profil (Optionnelle) :</label>
+                        <div className={styles.photoUploadControls}>
+                          {photoUrl ? (
+                            <div className={styles.photoPreviewWrapper}>
+                              <img src={photoUrl} alt="Aperçu" className={styles.photoPreview} />
+                              <button 
+                                type="button" 
+                                onClick={() => setPhotoUrl(null)} 
+                                className={styles.photoRemoveBtn}
+                              >
+                                Supprimer la photo
+                              </button>
+                            </div>
+                          ) : (
+                            <div className={styles.photoInputWrapper}>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => {
+                                  const file = e.target.files?.[0];
+                                  if (file) {
+                                    const reader = new FileReader();
+                                    reader.onloadend = () => {
+                                      setPhotoUrl(reader.result as string);
+                                    };
+                                    reader.readAsDataURL(file);
+                                  }
+                                }}
+                                className={styles.photoInput}
+                              />
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    )}
-                  </div>
+                    </>
+                  )}
                 </div>
               </div>
             )}
@@ -396,6 +465,7 @@ export default function Home() {
                 photoUrl={photoUrl}
                 signatureUrl={signatureUrl}
                 setSignatureUrl={setSignatureUrl}
+                userPlan={userPlan}
                 onReset={() => {
                   setStep(1);
                   setCvFile(null);

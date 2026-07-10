@@ -32,6 +32,9 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            emailRedirectTo: typeof window !== 'undefined' ? window.location.origin : '',
+          },
         });
         if (error) throw error;
         
@@ -55,7 +58,7 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
         }
       }
     } catch (err: any) {
-      console.error(err);
+      console.warn("Auth Error:", err);
       setErrorMsg(err.message || 'Une erreur est survenue lors de l\'authentification.');
     } finally {
       setIsLoading(false);

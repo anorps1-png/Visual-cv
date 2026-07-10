@@ -50,10 +50,13 @@ interface DocumentPreviewProps {
   onNewDocuments?: () => void;
   signatureUrl: string | null;
   setSignatureUrl: (url: string | null) => void;
+  userPlan?: string;
 }
 
-export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signatureUrl, setSignatureUrl }: DocumentPreviewProps) {
+export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signatureUrl, setSignatureUrl, userPlan = 'Gratuit' }: DocumentPreviewProps) {
   const [activeTab, setActiveTab] = useState<'cv' | 'letter' | 'email'>('cv');
+  const [cvTemplate, setCvTemplate] = useState<'standard' | 'modern' | 'executive'>('standard');
+  const isPremium = userPlan === 'Étudiant' || userPlan === 'Professionnel';
   const [cvData, setCvData] = useState<GeneratedData>({
     ...data,
     hobbies: data.hobbies || []
@@ -232,6 +235,10 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
     } finally {
       setIsCvLoading(false);
     }
+  };
+
+  const handleTemplateSelect = (template: 'standard' | 'modern' | 'executive') => {
+    setCvTemplate(template);
   };
 
   // Enregistrer la lettre de motivation PDF en demandant le dossier cible
@@ -450,7 +457,10 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
           <Button variant="outline" onClick={onReset}>Recommencer</Button>
           
           {activeTab === 'cv' && (
-            <Button disabled={isCvLoading} onClick={saveCvPdf}>
+            <Button 
+              disabled={isCvLoading || (!isPremium && cvTemplate !== 'standard')} 
+              onClick={saveCvPdf}
+            >
               {isCvLoading ? 'Préparation...' : 'Télécharger CV (PDF)'}
             </Button>
           )}
@@ -492,7 +502,38 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
       <div className={styles.content}>
         {activeTab === 'cv' && (
           <div className={styles.document}>
-            <div className={styles.cvLayout}>
+            <div className={styles.templateSelector}>
+              <button 
+                className={`${styles.templateBtn} ${cvTemplate === 'standard' ? styles.activeTemplate : ''}`}
+                onClick={() => handleTemplateSelect('standard')}
+              >
+                Standard
+              </button>
+              <button 
+                className={`${styles.templateBtn} ${cvTemplate === 'modern' ? styles.activeTemplate : ''}`}
+                onClick={() => handleTemplateSelect('modern')}
+              >
+                Modern <span className={styles.premiumBadge}>PRO</span>
+              </button>
+              <button 
+                className={`${styles.templateBtn} ${cvTemplate === 'executive' ? styles.activeTemplate : ''}`}
+                onClick={() => handleTemplateSelect('executive')}
+              >
+                Executive <span className={styles.premiumBadge}>PRO</span>
+              </button>
+            </div>
+
+            {!isPremium && cvTemplate !== 'standard' && (
+              <div className={styles.premiumLockMsg}>
+                🔒 Ce modèle est réservé aux abonnés Premium (Étudiant ou Professionnel). Vous pouvez le prévisualiser, mais le téléchargement est désactivé.
+              </div>
+            )}
+
+            <div className={
+              cvTemplate === 'modern' ? styles.cvLayoutModern : 
+              cvTemplate === 'executive' ? styles.cvLayoutExecutive : 
+              styles.cvLayout
+            }>
               {/* Sidebar */}
               <div className={styles.cvSidebar}>
                 {photoUrl ? (

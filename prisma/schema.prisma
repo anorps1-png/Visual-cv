@@ -18,6 +18,8 @@ model User {
 model Cv {
   id             String   @id @default(uuid())
   userId         String?
+  jobTitle       String?
+  companyName    String?
   originalText   String?
   generatedCVUrl String?
   coverLetterUrl String?
