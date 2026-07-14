@@ -14,11 +14,14 @@ La persistance est désormais dans Postgres (Supabase), plus dans des fichiers J
    - `migrations/0002_seed_jobs.sql` — import des offres existantes (optionnel)
    - `migrations/0003_rate_limits.sql` — rate limiting atomique (anti-abus API)
    - `migrations/0004_billing.sql` — abonnements, paiements et quotas mensuels
+   - `migrations/0005_jobs_search.sql` — recherche plein-texte + date d'expiration
 
 ## Modèle
 
 - `cvs` — historique par utilisateur. RLS : chacun ne voit/écrit/supprime que ses lignes (`auth.uid() = user_id`).
 - `jobs` — offres d'emploi. Lecture publique ; écriture réservée au service-role côté serveur.
+  Alimentée par le cron (`/api/cron/scrape-jobs`), **pas** pendant la requête utilisateur.
+  `search_vector` (généré) sert la recherche plein-texte ; `expires_at` filtre les offres périmées en SQL.
 - `rate_limits` — compteurs anti-abus (fenêtre glissante). RPC `check_rate_limit`, service-role uniquement.
 - `subscriptions` — plan courant par utilisateur. Lecture par le propriétaire ; écriture via webhook (service-role).
 - `payments` — journal auditable des paiements. Lecture par le propriétaire.
