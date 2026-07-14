@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
+import { z } from 'zod';
 import { getAuthUser, getUserClient } from '@/lib/supabase/server';
+import { historyPostSchema } from '@/lib/validation/cv';
 
 interface CvRow {
   id: string;
@@ -64,8 +66,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
     }
 
+    const body = await request.json().catch(() => null);
+    const input = historyPostSchema.safeParse(body);
+    if (!input.success) {
+      return NextResponse.json(
+        { error: input.error.issues[0]?.message ?? 'Requête invalide' },
+        { status: 400 }
+      );
+    }
     const { jobTitle, companyName, originalText, generatedCVUrl, coverLetterUrl, emailText } =
-      await request.json();
+      input.data;
 
     // generatedCVUrl peut arriver en objet (front) ou en chaîne JSON : on normalise en jsonb.
     let generatedCv: unknown = null;
@@ -118,8 +128,10 @@ export async function DELETE(request: Request) {
 
     const { searchParams } = new URL(request.url);
     const cvId = searchParams.get('id');
-    if (!cvId) {
-      return NextResponse.json({ error: 'ID requis' }, { status: 400 });
+    // Un id non-UUID ferait échouer la requête Postgres (erreur 500) : on le
+    // rejette proprement en 400.
+    if (!cvId || !z.uuid().safeParse(cvId).success) {
+      return NextResponse.json({ error: 'ID invalide' }, { status: 400 });
     }
 
     const supabase = getUserClient(auth.token);

@@ -3,6 +3,7 @@ import OpenAI from 'openai';
 import { extractTextFromPdf } from '@/lib/parser/pdfExtractor';
 import { getAuthUser } from '@/lib/supabase/server';
 import { enforceRateLimit, rateLimitResponse } from '@/lib/rateLimit';
+import { validateUpload, PDF_MIME, IMAGE_MIMES } from '@/lib/validation/upload';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || 'dummy_key',
@@ -71,11 +72,13 @@ export async function POST(request: Request) {
     }
 
     const formData = await request.formData();
-    const file = formData.get('file') as File;
 
-    if (!file) {
-      return NextResponse.json({ error: 'Aucun fichier fourni' }, { status: 400 });
+    // Valide type + taille AVANT de charger le fichier en mémoire.
+    const check = validateUpload(formData.get('file'), [PDF_MIME, ...IMAGE_MIMES]);
+    if ('error' in check) {
+      return NextResponse.json({ error: check.error.error }, { status: check.error.status });
     }
+    const file = check.file;
 
     // PDF extraction
     if (file.type === 'application/pdf') {

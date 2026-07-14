@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 import { getAuthUser, getAdminClient } from '@/lib/supabase/server';
-import { isValidPlan, amountFor, type BillingCycle } from '@/lib/billing/plans';
+import { amountFor } from '@/lib/billing/plans';
 import { activateSubscription } from '@/lib/billing/subscription';
 import { getPaymentProvider } from '@/lib/payments';
+import { checkoutSchema } from '@/lib/validation/cv';
 
 // Initie un paiement d'abonnement. Auth requise.
 export async function POST(request: Request) {
@@ -12,12 +13,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Connexion requise.' }, { status: 401 });
     }
 
-    const { plan, cycle } = await request.json();
-    const billingCycle: BillingCycle = cycle === 'annual' ? 'annual' : 'monthly';
-
-    if (!isValidPlan(plan) || plan === 'Gratuit') {
-      return NextResponse.json({ error: 'Plan invalide.' }, { status: 400 });
+    const body = await request.json().catch(() => null);
+    const input = checkoutSchema.safeParse(body);
+    if (!input.success) {
+      return NextResponse.json({ error: 'Plan ou cycle invalide.' }, { status: 400 });
     }
+    const { plan, cycle: billingCycle } = input.data;
 
     // Le montant est calculé SERVEUR (jamais reçu du client).
     const amount = amountFor(plan, billingCycle);

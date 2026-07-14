@@ -5,6 +5,7 @@ import { getAuthUser } from '@/lib/supabase/server';
 import { enforceRateLimit, rateLimitResponse } from '@/lib/rateLimit';
 import { getEffectiveSubscription, consumeGenerationQuota } from '@/lib/billing/subscription';
 import { getPlan } from '@/lib/billing/plans';
+import { generateRequestSchema, generatedCvSchema } from '@/lib/validation/cv';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || 'dummy_key',
@@ -35,12 +36,15 @@ export async function POST(request: Request) {
       return rateLimitResponse(rl.retryAfter);
     }
 
-    const { cvText, jobDescription, provider } = await request.json();
-    const selectedProvider = provider || 'openai';
-
-    if (!cvText || !jobDescription) {
-      return NextResponse.json({ error: 'CV Text et Job Description requis' }, { status: 400 });
+    const body = await request.json().catch(() => null);
+    const input = generateRequestSchema.safeParse(body);
+    if (!input.success) {
+      return NextResponse.json(
+        { error: input.error.issues[0]?.message ?? 'Requête invalide' },
+        { status: 400 }
+      );
     }
+    const { cvText, jobDescription, provider: selectedProvider } = input.data;
 
     // Quota mensuel selon le plan (Gratuit=1, Étudiant=5, Pro=illimité).
     // Consommé APRÈS validation d'entrée : une requête invalide ne décompte pas.
@@ -137,12 +141,36 @@ export async function POST(request: Request) {
       });
     }
 
-    const content = response.choices[0].message.content;
+    const content = response.choices[0]?.message?.content;
     if (!content) throw new Error("Réponse vide de l'IA");
 
-    const result = JSON.parse(content);
+    // La sortie d'un LLM n'est jamais une donnée de confiance : elle peut être
+    // du JSON invalide, ou du JSON valide à la mauvaise forme. Sans validation,
+    // l'erreur ne surgit qu'au rendu PDF, côté client.
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(content);
+    } catch {
+      console.error('Sortie IA non parsable en JSON:', content.slice(0, 500));
+      return NextResponse.json(
+        { error: "L'IA a renvoyé une réponse illisible. Veuillez réessayer." },
+        { status: 502 }
+      );
+    }
 
-    return NextResponse.json({ success: true, data: result });
+    const validated = generatedCvSchema.safeParse(parsed);
+    if (!validated.success) {
+      console.error(
+        'Sortie IA non conforme au schéma:',
+        JSON.stringify(validated.error.issues.slice(0, 5))
+      );
+      return NextResponse.json(
+        { error: "L'IA a renvoyé un dossier incomplet. Veuillez réessayer." },
+        { status: 502 }
+      );
+    }
+
+    return NextResponse.json({ success: true, data: validated.data });
   } catch (error) {
     console.error('Erreur génération IA:', error);
     return NextResponse.json({ error: 'Échec de la génération IA' }, { status: 500 });

@@ -119,7 +119,8 @@ function isDeadlinePassed(description: string, title: string): boolean {
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const query = searchParams.get('q')?.trim() || '';
+    // Borné : `q` alimente une URL de scraping et un filtre — pas d'entrée illimitée.
+    const query = (searchParams.get('q')?.trim() || '').slice(0, 200);
 
     const admin = getAdminClient();
 
