@@ -3,15 +3,19 @@
 import React, { useState } from 'react';
 import styles from './Pricing.module.css';
 import { Button } from './Button';
+import { authFetch } from '@/lib/authFetch';
 
 interface PricingProps {
   currentPlan?: string;
   onSelectPlan?: (plan: string) => void;
+  onRequireAuth?: () => void;
 }
 
-export function Pricing({ currentPlan = 'Gratuit', onSelectPlan }: PricingProps) {
+export function Pricing({ currentPlan = 'Gratuit', onSelectPlan, onRequireAuth }: PricingProps) {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
   const [simulatedPlan, setSimulatedPlan] = useState<string | null>(null);
+  const [pendingPlan, setPendingPlan] = useState<string | null>(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const plans = [
     {
@@ -58,13 +62,45 @@ export function Pricing({ currentPlan = 'Gratuit', onSelectPlan }: PricingProps)
     }
   ];
 
-  const handleSubscribe = (planName: string) => {
+  const handleSubscribe = async (planName: string) => {
     if (planName === 'Gratuit') return;
-    
-    // Simulate payment / checkout
-    setSimulatedPlan(planName);
-    if (onSelectPlan) {
-      onSelectPlan(planName);
+
+    setErrorMsg(null);
+    setPendingPlan(planName);
+    try {
+      const res = await authFetch('/api/billing/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plan: planName, cycle: billingCycle }),
+      });
+
+      if (res.status === 401) {
+        onRequireAuth?.();
+        return;
+      }
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) {
+        setErrorMsg(data.error || "Impossible d'initier le paiement.");
+        return;
+      }
+
+      // Paiement Mobile Money réel : redirection vers le PSP.
+      if (data.checkoutUrl) {
+        window.location.href = data.checkoutUrl;
+        return;
+      }
+
+      // Confirmation immédiate (mode sandbox / mock).
+      if (data.status === 'paid') {
+        setSimulatedPlan(planName);
+        onSelectPlan?.(planName);
+      }
+    } catch (e) {
+      console.error('Checkout error:', e);
+      setErrorMsg('Erreur réseau lors du paiement.');
+    } finally {
+      setPendingPlan(null);
     }
   };
 
@@ -89,6 +125,16 @@ export function Pricing({ currentPlan = 'Gratuit', onSelectPlan }: PricingProps)
           </button>
         </div>
       </div>
+
+      {errorMsg && (
+        <div
+          className={styles.simulationBanner}
+          style={{ background: 'rgba(239,68,68,0.1)', color: '#ef4444' }}
+        >
+          <span>{errorMsg}</span>
+          <button className={styles.closeBanner} onClick={() => setErrorMsg(null)}>&times;</button>
+        </div>
+      )}
 
       {simulatedPlan && (
         <div className={styles.simulationBanner}>
@@ -123,10 +169,11 @@ export function Pricing({ currentPlan = 'Gratuit', onSelectPlan }: PricingProps)
                 </div>
               )}
 
-              <Button 
+              <Button
                 onClick={() => handleSubscribe(plan.name)}
-                disabled={isActive}
-                style={{ 
+                disabled={isActive || pendingPlan !== null}
+                isLoading={pendingPlan === plan.name}
+                style={{
                   width: '100%', 
                   margin: '1.5rem 0', 
                   backgroundColor: isActive ? 'var(--secondary)' : (plan.popular ? 'var(--primary)' : 'transparent'),

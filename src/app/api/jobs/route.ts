@@ -1,7 +1,47 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-import crypto from 'crypto';
+import { getAdminClient } from '@/lib/supabase/server';
+
+interface JobRow {
+  id: string;
+  title: string;
+  company: string | null;
+  location: string | null;
+  description: string;
+  source_url: string | null;
+  created_at: string;
+}
+
+interface ClientJob {
+  id: string;
+  title: string;
+  company: string | null;
+  location: string | null;
+  description: string;
+  sourceUrl: string | null;
+  createdAt: string;
+}
+
+/** Offre fraîchement scrapée, avant insertion (id/created_at générés par Postgres). */
+interface ScrapedJob {
+  title: string;
+  company: string;
+  location: string;
+  description: string;
+  source_url: string;
+}
+
+// Forme DB (snake_case) -> forme client (camelCase attendue par SearchJD.tsx)
+function toClientJob(row: JobRow): ClientJob {
+  return {
+    id: row.id,
+    title: row.title,
+    company: row.company,
+    location: row.location,
+    description: row.description,
+    sourceUrl: row.source_url,
+    createdAt: row.created_at,
+  };
+}
 
 function cleanHtml(rawHtml: string): string {
   let text = rawHtml.replace(/<[^>]+>/g, ' ');
@@ -81,11 +121,16 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const query = searchParams.get('q')?.trim() || '';
 
-    const filePath = path.join(process.cwd(), 'src', 'lib', 'data', 'jobs.json');
-    let existingJobs: any[] = [];
-    if (fs.existsSync(filePath)) {
-      existingJobs = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-    }
+    const admin = getAdminClient();
+
+    // Lecture des offres existantes depuis Supabase.
+    const { data: existingRows, error: readErr } = await admin
+      .from('jobs')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (readErr) throw readErr;
+
+    let existingJobs: ClientJob[] = ((existingRows || []) as JobRow[]).map(toClientJob);
 
     if (query.length > 2) {
       try {
@@ -183,15 +228,7 @@ export async function GET(request: Request) {
                 location = "Yaoundé, Cameroun";
               }
 
-              return {
-                id: crypto.randomUUID(),
-                title,
-                company,
-                location,
-                description,
-                sourceUrl: detailUrl,
-                createdAt: new Date().toISOString()
-              };
+              return { title, company, location, description, source_url: detailUrl };
             } else {
               const detailMatch = detailHtml.match(/<div class="detail-font"\s*>(.*?)<\/div>/s) || 
                                   detailHtml.match(/<div class="detail-font"[^>]*>(.*?)<\/div>/s);
@@ -227,15 +264,7 @@ export async function GET(request: Request) {
                   location = "Yaoundé, Cameroun";
                 }
 
-                return {
-                  id: crypto.randomUUID(),
-                  title,
-                  company,
-                  location,
-                  description,
-                  sourceUrl: detailUrl,
-                  createdAt: new Date().toISOString()
-                };
+                return { title, company, location, description, source_url: detailUrl };
               }
             }
           } catch (e) {
@@ -244,11 +273,19 @@ export async function GET(request: Request) {
           return null;
         });
 
-        const newJobs = (await Promise.all(scrapePromises)).filter(Boolean) as any[];
+        const newJobs = (await Promise.all(scrapePromises)).filter(Boolean) as ScrapedJob[];
 
         if (newJobs.length > 0) {
-          existingJobs = [...newJobs, ...existingJobs];
-          fs.writeFileSync(filePath, JSON.stringify(existingJobs, null, 2), 'utf-8');
+          // Upsert idempotent : source_url est unique, on ignore les doublons.
+          const { data: inserted, error: upsertErr } = await admin
+            .from('jobs')
+            .upsert(newJobs, { onConflict: 'source_url', ignoreDuplicates: true })
+            .select();
+          if (upsertErr) {
+            console.error('Error upserting scraped jobs:', upsertErr);
+          } else if (inserted) {
+            existingJobs = [...inserted.map(toClientJob), ...existingJobs];
+          }
         }
       } catch (err) {
         console.error('Error during live scraping process:', err);
@@ -261,14 +298,14 @@ export async function GET(request: Request) {
     }
 
     const lowercaseQuery = query.toLowerCase();
-    const filteredJobs = existingJobs.filter((job: any) => {
-      const matchesSearch = 
-        job.title.toLowerCase().includes(lowercaseQuery) ||
-        job.company.toLowerCase().includes(lowercaseQuery) ||
-        job.location.toLowerCase().includes(lowercaseQuery) ||
-        job.description.toLowerCase().includes(lowercaseQuery);
-      
-      return matchesSearch && !isDeadlinePassed(job.description, job.title);
+    const filteredJobs = existingJobs.filter((job) => {
+      const matchesSearch =
+        (job.title || '').toLowerCase().includes(lowercaseQuery) ||
+        (job.company || '').toLowerCase().includes(lowercaseQuery) ||
+        (job.location || '').toLowerCase().includes(lowercaseQuery) ||
+        (job.description || '').toLowerCase().includes(lowercaseQuery);
+
+      return matchesSearch && !isDeadlinePassed(job.description || '', job.title || '');
     });
 
     return NextResponse.json({ success: true, jobs: filteredJobs });

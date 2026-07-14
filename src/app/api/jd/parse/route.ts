@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { extractTextFromPdf } from '@/lib/parser/pdfExtractor';
+import { getAuthUser } from '@/lib/supabase/server';
+import { enforceRateLimit, rateLimitResponse } from '@/lib/rateLimit';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || 'dummy_key',
@@ -49,8 +51,25 @@ async function extractJdInfoWithDeepSeek(rawText: string): Promise<string> {
   }
 }
 
+// Parsing d'offre (PDF/OCR) : peut appeler l'IA -> login + rate limiting.
+const JD_PARSE_LIMIT = 20;
+const JD_PARSE_WINDOW = 60 * 60;
+
 export async function POST(request: Request) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) {
+      return NextResponse.json(
+        { error: 'Connexion requise pour analyser une offre.' },
+        { status: 401 }
+      );
+    }
+
+    const rl = await enforceRateLimit(`jd_parse:${auth.user.id}`, JD_PARSE_LIMIT, JD_PARSE_WINDOW);
+    if (!rl.allowed) {
+      return rateLimitResponse(rl.retryAfter);
+    }
+
     const formData = await request.formData();
     const file = formData.get('file') as File;
 

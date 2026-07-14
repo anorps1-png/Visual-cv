@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Loader2, Upload, AlertCircle } from 'lucide-react';
 import { Button } from './Button';
+import { authFetch } from '@/lib/authFetch';
 import styles from './PasteJD.module.css';
 
 interface PasteJDProps {
@@ -25,7 +26,7 @@ export function PasteJD({ onSubmit }: PasteJDProps) {
     formData.append('file', file);
 
     try {
-      const res = await fetch('/api/jd/parse', {
+      const res = await authFetch('/api/jd/parse', {
         method: 'POST',
         body: formData,
       });
@@ -33,6 +34,8 @@ export function PasteJD({ onSubmit }: PasteJDProps) {
       const data = await res.json();
       if (res.ok && data.success) {
         setText(data.text);
+      } else if (res.status === 401) {
+        setError('Veuillez vous connecter pour analyser une offre.');
       } else {
         setError(data.error || "Erreur lors de l'analyse du fichier.");
       }

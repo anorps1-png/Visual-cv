@@ -1,8 +1,26 @@
 import { NextResponse } from 'next/server';
 import { extractTextFromPdf } from '@/lib/parser/pdfExtractor';
+import { getAuthUser } from '@/lib/supabase/server';
+import { enforceRateLimit, rateLimitResponse } from '@/lib/rateLimit';
+
+const CV_PARSE_LIMIT = 30;
+const CV_PARSE_WINDOW = 60 * 60;
 
 export async function POST(request: Request) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) {
+      return NextResponse.json(
+        { error: 'Connexion requise pour importer un CV.' },
+        { status: 401 }
+      );
+    }
+
+    const rl = await enforceRateLimit(`cv_parse:${auth.user.id}`, CV_PARSE_LIMIT, CV_PARSE_WINDOW);
+    if (!rl.allowed) {
+      return rateLimitResponse(rl.retryAfter);
+    }
+
     const formData = await request.formData();
     const file = formData.get('file') as File;
 

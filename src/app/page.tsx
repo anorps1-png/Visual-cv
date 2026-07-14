@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { DocumentPreview } from '@/components/preview/DocumentPreview';
 import { SearchJD } from '@/components/ui/SearchJD';
 import { supabase } from '@/lib/supabase';
+import { authFetch } from '@/lib/authFetch';
 import { AuthModal } from '@/components/ui/AuthModal';
 import { History } from '@/components/ui/History';
 import { Pricing } from '@/components/ui/Pricing';
@@ -59,16 +60,33 @@ export default function Home() {
   const [cvMode, setCvMode] = useState<'upload' | 'build'>('upload');
   const [loadedJobMeta, setLoadedJobMeta] = useState<{ jobTitle: string; companyName: string } | null>(null);
 
+  // Charge le plan RÉEL depuis le serveur : source de vérité, survit au refresh.
+  const refreshPlan = async () => {
+    try {
+      const res = await authFetch('/api/me');
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data.success && data.plan) {
+        setUserPlan(data.plan);
+      }
+    } catch (e) {
+      console.error('Failed to load plan:', e);
+    }
+  };
+
   useEffect(() => {
     // Check initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+      if (session) refreshPlan();
     });
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      if (!session) {
+      if (session) {
+        refreshPlan();
+      } else {
         setUserPlan('Gratuit');
       }
     });
@@ -77,20 +95,28 @@ export default function Home() {
   }, []);
 
   const handleFileSelect = async (file: File) => {
+    // Login obligatoire : on ouvre la modale plutôt que d'appeler l'API pour rien.
+    if (!session) {
+      setIsAuthModalOpen(true);
+      return;
+    }
+
     setCvFile(file);
     setIsParsing(true);
     setErrorMsg(null);
-    
+
     // Upload the file to our /api/cv/parse endpoint
     const formData = new FormData();
     formData.append('file', file);
-    
+
     try {
-      const res = await fetch('/api/cv/parse', { method: 'POST', body: formData });
+      const res = await authFetch('/api/cv/parse', { method: 'POST', body: formData });
       const data = await res.json();
       if (data.success) {
         setCvText(data.text);
         setStep(2);
+      } else if (res.status === 401) {
+        setIsAuthModalOpen(true);
       } else {
         setErrorMsg(data.error || 'Erreur lors du parsing du PDF');
       }
@@ -108,15 +134,35 @@ export default function Home() {
   };
 
   const handleGenerate = async () => {
+    // Login obligatoire pour la génération IA.
+    if (!session) {
+      setIsAuthModalOpen(true);
+      return;
+    }
+
     setIsGenerating(true);
     setErrorMsg(null);
     try {
-      const res = await fetch('/api/cv/generate', {
+      const res = await authFetch('/api/cv/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cvText, jobDescription, provider: modelProvider })
       });
-      const resData = await res.json();
+      const resData = await res.json().catch(() => ({}));
+      if (res.status === 401) {
+        setIsAuthModalOpen(true);
+        return;
+      }
+      if (res.status === 429) {
+        setErrorMsg(resData.error || 'Trop de générations. Veuillez réessayer plus tard.');
+        return;
+      }
+      if (res.status === 402) {
+        // Quota du plan atteint : on redirige vers les tarifs.
+        setErrorMsg(resData.error || 'Limite de votre plan atteinte. Passez à un plan supérieur.');
+        setActiveTab('pricing');
+        return;
+      }
       if (resData.success) {
         const genData = resData.data;
         setGeneratedData(genData);
@@ -165,8 +211,10 @@ export default function Home() {
     setActiveTab('generator');
   };
 
-  const handleSelectPlan = (plan: string) => {
-    setUserPlan(plan);
+  // Après une souscription : on recharge le plan réel depuis le serveur
+  // (ne jamais faire confiance à un plan décidé côté client).
+  const handleSelectPlan = () => {
+    refreshPlan();
   };
 
   const handleLogout = async () => {
@@ -495,7 +543,7 @@ export default function Home() {
 
       {activeTab === 'pricing' && (
         <section style={{ width: '100%', maxWidth: '1200px', padding: '0 2rem' }}>
-          <Pricing currentPlan={userPlan} onSelectPlan={handleSelectPlan} />
+          <Pricing currentPlan={userPlan} onSelectPlan={handleSelectPlan} onRequireAuth={() => setIsAuthModalOpen(true)} />
         </section>
       )}
 

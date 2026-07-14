@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { CV_GENERATION_PROMPT } from '@/lib/ai/prompts';
+import { getAuthUser } from '@/lib/supabase/server';
+import { enforceRateLimit, rateLimitResponse } from '@/lib/rateLimit';
+import { getEffectiveSubscription, consumeGenerationQuota } from '@/lib/billing/subscription';
+import { getPlan } from '@/lib/billing/plans';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || 'dummy_key',
@@ -12,13 +16,48 @@ const deepseek = new OpenAI({
   apiKey: process.env.DEEPSEEK_API_KEY || 'dummy_key',
 });
 
+// La génération IA est coûteuse : login obligatoire + rate limiting par utilisateur.
+const GENERATE_LIMIT = 10; // requêtes
+const GENERATE_WINDOW = 60 * 60; // par heure
+
 export async function POST(request: Request) {
   try {
+    const auth = await getAuthUser(request);
+    if (!auth) {
+      return NextResponse.json(
+        { error: 'Connexion requise pour générer un dossier de candidature.' },
+        { status: 401 }
+      );
+    }
+
+    const rl = await enforceRateLimit(`generate:${auth.user.id}`, GENERATE_LIMIT, GENERATE_WINDOW);
+    if (!rl.allowed) {
+      return rateLimitResponse(rl.retryAfter);
+    }
+
     const { cvText, jobDescription, provider } = await request.json();
     const selectedProvider = provider || 'openai';
 
     if (!cvText || !jobDescription) {
       return NextResponse.json({ error: 'CV Text et Job Description requis' }, { status: 400 });
+    }
+
+    // Quota mensuel selon le plan (Gratuit=1, Étudiant=5, Pro=illimité).
+    // Consommé APRÈS validation d'entrée : une requête invalide ne décompte pas.
+    const subscription = await getEffectiveSubscription(auth.user.id);
+    const planDef = getPlan(subscription.plan);
+    const quota = await consumeGenerationQuota(auth.user.id, planDef.monthlyQuota);
+    if (!quota.allowed) {
+      return NextResponse.json(
+        {
+          error:
+            `Vous avez atteint la limite de votre plan ${subscription.plan} ` +
+            `(${planDef.monthlyQuota} génération(s)/mois). Passez à un plan supérieur pour continuer.`,
+          code: 'QUOTA_EXCEEDED',
+          plan: subscription.plan,
+        },
+        { status: 402 }
+      );
     }
 
     if (selectedProvider === 'deepseek') {
