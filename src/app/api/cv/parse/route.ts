@@ -3,6 +3,7 @@ import { extractTextFromPdf } from '@/lib/parser/pdfExtractor';
 import { getAuthUser } from '@/lib/supabase/server';
 import { enforceRateLimit, rateLimitResponse } from '@/lib/rateLimit';
 import { validateUpload, PDF_MIME } from '@/lib/validation/upload';
+import { logger } from '@/lib/logger';
 
 const CV_PARSE_LIMIT = 30;
 const CV_PARSE_WINDOW = 60 * 60;
@@ -42,7 +43,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ text, success: true });
   } catch (error) {
-    console.error('Error parsing PDF:', error);
+    logger.error('cv.parse.failed', error);
     return NextResponse.json({ error: 'Erreur lors de l\'extraction du texte' }, { status: 500 });
   }
 }

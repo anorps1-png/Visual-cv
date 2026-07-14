@@ -5,6 +5,7 @@ import type {
   InitiatePaymentResult,
   WebhookResult,
 } from '@/lib/payments/provider';
+import { logger } from '@/lib/logger';
 
 /**
  * Adaptateur KPay (Mobile Money Cameroun).
@@ -75,7 +76,7 @@ export class KPayProvider implements PSPProvider {
         signature.length === expected.length &&
         crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
       if (!ok) {
-        console.error('KPay webhook: signature invalide.');
+        logger.error('billing.webhook.invalid_signature', undefined, { provider: 'kpay' });
         return null;
       }
     }

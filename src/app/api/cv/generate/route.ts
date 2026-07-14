@@ -6,6 +6,7 @@ import { enforceRateLimit, rateLimitResponse } from '@/lib/rateLimit';
 import { getEffectiveSubscription, consumeGenerationQuota } from '@/lib/billing/subscription';
 import { getPlan } from '@/lib/billing/plans';
 import { generateRequestSchema, generatedCvSchema } from '@/lib/validation/cv';
+import { logger } from '@/lib/logger';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || 'dummy_key',
@@ -151,7 +152,11 @@ export async function POST(request: Request) {
     try {
       parsed = JSON.parse(content);
     } catch {
-      console.error('Sortie IA non parsable en JSON:', content.slice(0, 500));
+      // On ne logge PAS le contenu brut : il contient le CV de l'utilisateur.
+      logger.error('cv.generate.llm_invalid_json', undefined, {
+        provider: selectedProvider,
+        contentLength: content.length,
+      });
       return NextResponse.json(
         { error: "L'IA a renvoyé une réponse illisible. Veuillez réessayer." },
         { status: 502 }
@@ -160,10 +165,11 @@ export async function POST(request: Request) {
 
     const validated = generatedCvSchema.safeParse(parsed);
     if (!validated.success) {
-      console.error(
-        'Sortie IA non conforme au schéma:',
-        JSON.stringify(validated.error.issues.slice(0, 5))
-      );
+      // Les chemins des champs invalides suffisent à diagnostiquer, sans les valeurs.
+      logger.error('cv.generate.llm_schema_mismatch', undefined, {
+        provider: selectedProvider,
+        issues: validated.error.issues.slice(0, 5).map((i) => i.path.join('.')),
+      });
       return NextResponse.json(
         { error: "L'IA a renvoyé un dossier incomplet. Veuillez réessayer." },
         { status: 502 }
@@ -172,7 +178,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, data: validated.data });
   } catch (error) {
-    console.error('Erreur génération IA:', error);
+    logger.error('cv.generate.failed', error);
     return NextResponse.json({ error: 'Échec de la génération IA' }, { status: 500 });
   }
 }

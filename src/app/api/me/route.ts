@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getAuthUser } from '@/lib/supabase/server';
 import { getEffectiveSubscription, getCurrentUsage } from '@/lib/billing/subscription';
 import { getPlan } from '@/lib/billing/plans';
+import { logger } from '@/lib/logger';
 
 // Renvoie le plan RÉEL + l'usage courant pour l'utilisateur connecté.
 // Appelé par le front à la connexion : le plan ne vit plus dans un état local.
@@ -30,7 +31,7 @@ export async function GET(request: Request) {
       },
     });
   } catch (error) {
-    console.error('Error in /api/me:', error);
+    logger.error('me.fetch_failed', error);
     return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
   }
 }

@@ -4,6 +4,7 @@ import { extractTextFromPdf } from '@/lib/parser/pdfExtractor';
 import { getAuthUser } from '@/lib/supabase/server';
 import { enforceRateLimit, rateLimitResponse } from '@/lib/rateLimit';
 import { validateUpload, PDF_MIME, IMAGE_MIMES } from '@/lib/validation/upload';
+import { logger } from '@/lib/logger';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || 'dummy_key',
@@ -47,7 +48,7 @@ async function extractJdInfoWithDeepSeek(rawText: string): Promise<string> {
 
     return response.choices[0].message.content || rawText;
   } catch (error) {
-    console.error('Erreur DeepSeek lors du formatage de la JD:', error);
+    logger.error('jd.parse.deepseek_failed', error);
     return rawText;
   }
 }
@@ -143,7 +144,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ error: 'Format de fichier non supporté (seuls PDF et Images sont acceptés)' }, { status: 400 });
   } catch (error) {
-    console.error('Error parsing JD:', error);
+    logger.error('jd.parse.failed', error);
     return NextResponse.json({ error: "Erreur lors de l'extraction des données de l'offre" }, { status: 500 });
   }
 }

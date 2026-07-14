@@ -4,6 +4,7 @@ import { amountFor } from '@/lib/billing/plans';
 import { activateSubscription } from '@/lib/billing/subscription';
 import { getPaymentProvider } from '@/lib/payments';
 import { checkoutSchema } from '@/lib/validation/cv';
+import { logger } from '@/lib/logger';
 
 // Initie un paiement d'abonnement. Auth requise.
 export async function POST(request: Request) {
@@ -78,7 +79,7 @@ export async function POST(request: Request) {
       paymentId: payment.id,
     });
   } catch (error) {
-    console.error('Checkout error:', error);
+    logger.error('billing.checkout.failed', error);
     return NextResponse.json({ error: "Impossible d'initier le paiement." }, { status: 500 });
   }
 }

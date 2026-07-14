@@ -1,5 +1,6 @@
 import { getAdminClient } from '@/lib/supabase/server';
 import { getPlan, type PlanName, type BillingCycle } from '@/lib/billing/plans';
+import { logger } from '@/lib/logger';
 
 export interface EffectiveSubscription {
   plan: PlanName;
@@ -60,7 +61,7 @@ export async function consumeGenerationQuota(
   });
 
   if (error) {
-    console.error('consume_generation_quota RPC error:', error);
+    logger.error('billing.quota.rpc_failed', error);
     // Fail-closed : en cas de doute on refuse, pour ne pas offrir du premium gratuit.
     return { allowed: false, used: 0, remaining: 0 };
   }
@@ -113,7 +114,7 @@ export async function activateSubscription(
   );
 
   if (error) {
-    console.error('activateSubscription error:', error);
+    logger.error('billing.subscription.activate_failed', error);
     throw error;
   }
 }

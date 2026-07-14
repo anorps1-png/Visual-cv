@@ -1,4 +1,5 @@
 import { getAdminClient } from '@/lib/supabase/server';
+import { logger } from '@/lib/logger';
 
 export interface RateLimitResult {
   allowed: boolean;
@@ -28,7 +29,7 @@ export async function enforceRateLimit(
     });
 
     if (error) {
-      console.error('Rate limit RPC error:', error);
+      logger.error('ratelimit.rpc_failed', error);
       return { allowed: true, remaining: limit, retryAfter: 0 };
     }
 
@@ -43,7 +44,7 @@ export async function enforceRateLimit(
       retryAfter: row.retry_after ?? 0,
     };
   } catch (e) {
-    console.error('Rate limit unexpected error:', e);
+    logger.error('ratelimit.unexpected', e);
     return { allowed: true, remaining: limit, retryAfter: 0 };
   }
 }

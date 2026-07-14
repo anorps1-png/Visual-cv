@@ -3,6 +3,7 @@ import { getAdminClient } from '@/lib/supabase/server';
 import { getPaymentProvider } from '@/lib/payments';
 import { activateSubscription } from '@/lib/billing/subscription';
 import { isValidPlan, type BillingCycle } from '@/lib/billing/plans';
+import { logger } from '@/lib/logger';
 
 // Webhook PSP : confirme (ou rejette) un paiement. Idempotent.
 // Pas d'auth utilisateur : l'authenticité vient de la signature du PSP.
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
       .maybeSingle();
 
     if (error || !payment) {
-      console.error('Webhook: paiement introuvable pour ref', result.providerRef);
+      logger.error('billing.webhook.payment_not_found', undefined, { providerRef: result.providerRef });
       return NextResponse.json({ error: 'Paiement introuvable' }, { status: 404 });
     }
 
@@ -53,7 +54,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Webhook error:', error);
+    logger.error('billing.webhook.failed', error);
     return NextResponse.json({ error: 'Erreur webhook' }, { status: 500 });
   }
 }

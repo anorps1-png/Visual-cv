@@ -1,4 +1,5 @@
 import { extractText, getDocumentProxy } from 'unpdf';
+import { logger } from '@/lib/logger';
 
 export async function extractTextFromPdf(buffer: Buffer): Promise<string> {
   try {
@@ -7,7 +8,7 @@ export async function extractTextFromPdf(buffer: Buffer): Promise<string> {
     const { text } = await extractText(pdf, { mergePages: true });
     return text;
   } catch (error) {
-    console.error('unpdf error:', error);
+    logger.error('pdf.extract_failed', error);
     throw new Error('Impossible de lire le fichier PDF');
   }
 }

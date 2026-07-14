@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getAuthUser, getUserClient } from '@/lib/supabase/server';
 import { historyPostSchema } from '@/lib/validation/cv';
+import { logger } from '@/lib/logger';
 
 interface CvRow {
   id: string;
@@ -50,7 +51,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json({ success: true, cvs: (data || []).map(toClientShape) });
   } catch (error) {
-    console.error('Error fetching CV history:', error);
+    logger.error('cv.history.fetch_failed', error);
     return NextResponse.json(
       { error: 'Impossible de récupérer l\'historique' },
       { status: 500 }
@@ -110,7 +111,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, cv: toClientShape(data) });
   } catch (error) {
-    console.error('Error saving CV to history:', error);
+    logger.error('cv.history.save_failed', error);
     return NextResponse.json(
       { error: 'Impossible d\'enregistrer dans l\'historique' },
       { status: 500 }
@@ -150,7 +151,7 @@ export async function DELETE(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Error deleting CV:', error);
+    logger.error('cv.history.delete_failed', error);
     return NextResponse.json(
       { error: 'Impossible de supprimer de l\'historique' },
       { status: 500 }
