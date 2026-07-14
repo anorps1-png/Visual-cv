@@ -16,7 +16,7 @@ export interface EffectiveSubscription {
 export async function getEffectiveSubscription(userId: string): Promise<EffectiveSubscription> {
   const admin = getAdminClient();
   const { data, error } = await admin
-    .from('cv_subscriptions')
+    .from('subscriptions')
     .select('plan, status, billing_cycle, current_period_end')
     .eq('user_id', userId)
     .maybeSingle();
@@ -79,7 +79,7 @@ export async function getCurrentUsage(userId: string): Promise<number> {
   const admin = getAdminClient();
   const period = new Date().toISOString().slice(0, 7); // YYYY-MM
   const { data } = await admin
-    .from('cv_quota_usage')
+    .from('quota_usage')
     .select('used')
     .eq('user_id', userId)
     .eq('period', period)
@@ -101,7 +101,7 @@ export async function activateSubscription(
     end.setMonth(end.getMonth() + 1);
   }
 
-  const { error } = await admin.from('cv_subscriptions').upsert(
+  const { error } = await admin.from('subscriptions').upsert(
     {
       user_id: userId,
       plan,

@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
     // 1. Journalise la tentative (pending).
     const { data: payment, error: insErr } = await admin
-      .from('cv_payments')
+      .from('payments')
       .insert({
         user_id: auth.user.id,
         plan,
@@ -56,14 +56,14 @@ export async function POST(request: Request) {
 
     // 3. Stocke la référence PSP (clé d'idempotence du webhook).
     await admin
-      .from('cv_payments')
+      .from('payments')
       .update({ provider_ref: result.providerRef, updated_at: new Date().toISOString() })
       .eq('id', payment.id);
 
     // 4. Confirmation synchrone (mock) : on active immédiatement.
     if (result.immediateStatus === 'paid') {
       await admin
-        .from('cv_payments')
+        .from('payments')
         .update({ status: 'paid', updated_at: new Date().toISOString() })
         .eq('id', payment.id);
       await activateSubscription(auth.user.id, plan, billingCycle);

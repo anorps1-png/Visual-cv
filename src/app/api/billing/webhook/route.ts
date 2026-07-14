@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     const admin = getAdminClient();
 
     const { data: payment, error } = await admin
-      .from('cv_payments')
+      .from('payments')
       .select('*')
       .eq('provider_ref', result.providerRef)
       .maybeSingle();
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
 
     if (result.status === 'paid') {
       await admin
-        .from('cv_payments')
+        .from('payments')
         .update({ status: 'paid', updated_at: new Date().toISOString() })
         .eq('id', payment.id);
 
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
       }
     } else if (result.status === 'failed') {
       await admin
-        .from('cv_payments')
+        .from('payments')
         .update({ status: 'failed', updated_at: new Date().toISOString() })
         .eq('id', payment.id);
     }
