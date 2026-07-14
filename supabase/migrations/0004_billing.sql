@@ -1,11 +1,14 @@
--- Migration 0004 : facturation & quotas.
--- Tables : subscriptions (plan courant), payments (journal), quota_usage (compteur mensuel).
--- RPC : consume_generation_quota (atomique).
+-- Migration 0004 : facturation & quotas (Visual-CV).
+--
+-- ⚠️ Cette base Supabase est PARTAGÉE avec d'autres applications (ERP/factures,
+-- réservations, etc.). Une table `payments` y existe déjà et appartient au module
+-- facturation (payments.invoice_id -> invoices). Pour éviter toute collision, les
+-- tables de Visual-CV sont préfixées `cv_`.
 
 -- =====================================================================
--- subscriptions : une ligne par utilisateur
+-- cv_subscriptions : une ligne par utilisateur
 -- =====================================================================
-create table if not exists public.subscriptions (
+create table if not exists public.cv_subscriptions (
   user_id            uuid primary key references auth.users (id) on delete cascade,
   plan               text not null default 'Gratuit',   -- 'Gratuit' | 'Étudiant' | 'Professionnel'
   status             text not null default 'active',    -- 'active' | 'past_due' | 'canceled'
@@ -14,17 +17,17 @@ create table if not exists public.subscriptions (
   updated_at         timestamptz not null default now()
 );
 
-alter table public.subscriptions enable row level security;
+alter table public.cv_subscriptions enable row level security;
 
 -- Lecture par le propriétaire ; écriture réservée au service-role (webhook).
-drop policy if exists "subscriptions_select_own" on public.subscriptions;
-create policy "subscriptions_select_own" on public.subscriptions
+drop policy if exists "cv_subscriptions_select_own" on public.cv_subscriptions;
+create policy "cv_subscriptions_select_own" on public.cv_subscriptions
   for select using (auth.uid() = user_id);
 
 -- =====================================================================
--- payments : journal auditable de toutes les tentatives
+-- cv_payments : journal auditable des tentatives de paiement
 -- =====================================================================
-create table if not exists public.payments (
+create table if not exists public.cv_payments (
   id            uuid primary key default gen_random_uuid(),
   user_id       uuid not null references auth.users (id) on delete cascade,
   plan          text not null,
@@ -38,26 +41,27 @@ create table if not exists public.payments (
   updated_at    timestamptz not null default now()
 );
 
-create index if not exists payments_user_id_idx on public.payments (user_id, created_at desc);
+create index if not exists cv_payments_user_id_idx
+  on public.cv_payments (user_id, created_at desc);
 
-alter table public.payments enable row level security;
+alter table public.cv_payments enable row level security;
 
-drop policy if exists "payments_select_own" on public.payments;
-create policy "payments_select_own" on public.payments
+drop policy if exists "cv_payments_select_own" on public.cv_payments;
+create policy "cv_payments_select_own" on public.cv_payments
   for select using (auth.uid() = user_id);
 -- Écriture : service-role uniquement.
 
 -- =====================================================================
--- quota_usage : compteur mensuel de générations
+-- cv_quota_usage : compteur mensuel de générations
 -- =====================================================================
-create table if not exists public.quota_usage (
+create table if not exists public.cv_quota_usage (
   user_id uuid not null references auth.users (id) on delete cascade,
   period  text not null,                 -- 'YYYY-MM'
   used    integer not null default 0,
   primary key (user_id, period)
 );
 
-alter table public.quota_usage enable row level security;
+alter table public.cv_quota_usage enable row level security;
 -- Aucune policy : accès via service-role / RPC uniquement.
 
 -- Consomme 1 unité de quota mensuel, de façon atomique.
@@ -76,13 +80,13 @@ declare
   v_period text := to_char(now(), 'YYYY-MM');
   v_used integer;
 begin
-  insert into public.quota_usage (user_id, period, used)
+  insert into public.cv_quota_usage (user_id, period, used)
   values (p_user_id, v_period, 0)
   on conflict (user_id, period) do nothing;
 
   -- Verrouille la ligne : empêche deux générations concurrentes de dépasser le quota.
   select qu.used into v_used
-    from public.quota_usage qu
+    from public.cv_quota_usage qu
     where qu.user_id = p_user_id and qu.period = v_period
     for update;
 
@@ -91,10 +95,12 @@ begin
     return;
   end if;
 
-  update public.quota_usage
-    set used = used + 1
-    where user_id = p_user_id and period = v_period
-    returning used into v_used;
+  -- `used` est qualifié : sans cela il est ambigu avec la colonne de sortie
+  -- homonyme déclarée dans le RETURNS TABLE.
+  update public.cv_quota_usage qu
+    set used = qu.used + 1
+    where qu.user_id = p_user_id and qu.period = v_period
+    returning qu.used into v_used;
 
   if p_limit < 0 then
     return query select true, v_used, -1;
