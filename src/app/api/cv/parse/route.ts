@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { extractTextFromPdf } from '@/lib/parser/pdfExtractor';
+import { extractPhotoFromPdf } from '@/lib/parser/photoExtractor';
 import { getAuthUser } from '@/lib/supabase/server';
 import { enforceRateLimit, rateLimitResponse } from '@/lib/rateLimit';
 import { validateUpload, PDF_MIME } from '@/lib/validation/upload';
@@ -32,7 +33,14 @@ export async function POST(request: Request) {
     }
 
     const buffer = Buffer.from(await check.file.arrayBuffer());
-    const text = await extractTextFromPdf(buffer);
+
+    // Texte + photo extraits en parallèle. L'extraction de photo est
+    // best-effort (renvoie null si aucune photo) et ne doit jamais faire
+    // échouer l'import du CV.
+    const [text, photo] = await Promise.all([
+      extractTextFromPdf(buffer),
+      extractPhotoFromPdf(buffer),
+    ]);
 
     if (!text || !text.trim()) {
       return NextResponse.json(
@@ -41,7 +49,7 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ text, success: true });
+    return NextResponse.json({ text, photo, success: true });
   } catch (error) {
     logger.error('cv.parse.failed', error);
     return NextResponse.json({ error: 'Erreur lors de l\'extraction du texte' }, { status: 500 });

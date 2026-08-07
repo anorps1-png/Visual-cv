@@ -118,6 +118,11 @@ export default function Home() {
       const data = await res.json();
       if (data.success) {
         setCvText(data.text);
+        // Photo détectée dans le CV : on pré-remplit (sans écraser une photo que
+        // l'utilisateur aurait déjà choisie manuellement).
+        if (data.photo && !photoUrl) {
+          setPhotoUrl(data.photo);
+        }
         setStep(2);
       } else if (res.status === 401) {
         setIsAuthModalOpen(true);
