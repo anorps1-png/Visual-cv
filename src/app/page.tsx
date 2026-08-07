@@ -441,12 +441,12 @@ export default function Home() {
                   >
                     Rechercher une offre réelle
                   </button>
-                  <button 
+                  <button
                     type="button"
                     className={`${styles.tabBtn} ${jdMode === 'paste' ? styles.activeTabBtn : ''}`}
                     onClick={() => setJdMode('paste')}
                   >
-                    Coller une offre manuellement
+                    Coller le texte ou importer (PDF / image)
                   </button>
                 </div>
 

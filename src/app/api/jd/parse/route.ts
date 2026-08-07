@@ -85,6 +85,18 @@ export async function POST(request: Request) {
     if (file.type === 'application/pdf') {
       const buffer = Buffer.from(await file.arrayBuffer());
       const rawText = await extractTextFromPdf(buffer);
+      // Un PDF scanné (image) ne rend aucun texte : on guide l'utilisateur vers
+      // l'upload d'image (OCR) plutôt que de renvoyer une offre vide à l'IA.
+      if (!rawText || !rawText.trim()) {
+        return NextResponse.json(
+          {
+            error:
+              "Ce PDF ne contient pas de texte sélectionnable (il est peut-être scanné). " +
+              "Importez-le plutôt en image, ou collez le texte manuellement.",
+          },
+          { status: 422 }
+        );
+      }
       const structuredText = await extractJdInfoWithDeepSeek(rawText);
       return NextResponse.json({ text: structuredText, success: true });
     }
@@ -114,30 +126,56 @@ export async function POST(request: Request) {
       const base64Image = buffer.toString('base64');
       const mimeType = file.type;
 
-      // Call OpenAI with GPT-4o vision
-      const response = await openai.chat.completions.create({
-        model: process.env.OPENAI_MODEL || 'gpt-4o',
-        messages: [
-          {
-            role: 'user',
-            content: [
-              {
-                type: 'text',
-                text: "Extrais l'intégralité du texte lisible et pertinent de cette offre d'emploi. Conserve bien la structure, les titres, les compétences requises, les missions et le profil recherché. Ne rajoute aucun commentaire introductif ou conclusif, donne uniquement le texte brut de l'offre."
-              },
-              {
-                type: 'image_url',
-                image_url: {
-                  url: `data:${mimeType};base64,${base64Image}`
+      // OCR via vision. Isolé dans son propre try : si le fournisseur échoue
+      // (clé invalide, modèle sans vision, timeout), on renvoie un message
+      // clair au lieu d'un 500 opaque — l'utilisateur peut coller le texte.
+      let rawText = '';
+      try {
+        const response = await openai.chat.completions.create({
+          model: process.env.OPENAI_MODEL || 'gpt-4o',
+          messages: [
+            {
+              role: 'user',
+              content: [
+                {
+                  type: 'text',
+                  text: "Extrais l'intégralité du texte lisible et pertinent de cette offre d'emploi. Conserve bien la structure, les titres, les compétences requises, les missions et le profil recherché. Ne rajoute aucun commentaire introductif ou conclusif, donne uniquement le texte brut de l'offre."
+                },
+                {
+                  type: 'image_url',
+                  image_url: {
+                    url: `data:${mimeType};base64,${base64Image}`
+                  }
                 }
-              }
-            ]
-          }
-        ],
-        temperature: 0.2
-      });
+              ]
+            }
+          ],
+          temperature: 0.2
+        });
+        rawText = response.choices[0]?.message?.content?.trim() || '';
+      } catch (error) {
+        logger.error('jd.parse.ocr_failed', error, { mimeType });
+        return NextResponse.json(
+          {
+            error:
+              "Impossible de lire le texte de cette image pour le moment. " +
+              "Réessayez avec une photo plus nette, ou collez le texte de l'offre manuellement.",
+          },
+          { status: 502 }
+        );
+      }
 
-      const rawText = response.choices[0].message.content || '';
+      if (!rawText) {
+        return NextResponse.json(
+          {
+            error:
+              "Aucun texte n'a pu être extrait de cette image. " +
+              "Vérifiez qu'elle contient bien une offre lisible, ou collez le texte manuellement.",
+          },
+          { status: 422 }
+        );
+      }
+
       const structuredText = await extractJdInfoWithDeepSeek(rawText);
       return NextResponse.json({ text: structuredText, success: true });
     }
