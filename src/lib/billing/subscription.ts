@@ -118,3 +118,33 @@ export async function activateSubscription(
     throw error;
   }
 }
+
+/**
+ * Fixe le plan d'un utilisateur manuellement (action admin, sans paiement).
+ * - 'Gratuit' : rétrogradation, on efface la période payée.
+ * - plan payant : on accorde une période mensuelle par défaut.
+ */
+export async function setUserPlan(userId: string, plan: PlanName): Promise<void> {
+  const admin = getAdminClient();
+
+  if (plan === 'Gratuit') {
+    const { error } = await admin.from('subscriptions').upsert(
+      {
+        user_id: userId,
+        plan: 'Gratuit',
+        status: 'active',
+        billing_cycle: null,
+        current_period_end: null,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: 'user_id' }
+    );
+    if (error) {
+      logger.error('admin.set_plan_failed', error);
+      throw error;
+    }
+    return;
+  }
+
+  await activateSubscription(userId, plan, 'monthly');
+}

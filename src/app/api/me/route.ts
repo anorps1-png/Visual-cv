@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getAuthUser } from '@/lib/supabase/server';
 import { getEffectiveSubscription, getCurrentUsage } from '@/lib/billing/subscription';
 import { getPlan } from '@/lib/billing/plans';
+import { isAdmin } from '@/lib/auth/admin';
 import { logger } from '@/lib/logger';
 
 // Renvoie le plan RÉEL + l'usage courant pour l'utilisateur connecté.
@@ -20,6 +21,7 @@ export async function GET(request: Request) {
     return NextResponse.json({
       success: true,
       email: auth.user.email,
+      isAdmin: isAdmin(auth.user),
       plan: subscription.plan,
       status: subscription.status,
       billingCycle: subscription.billingCycle,

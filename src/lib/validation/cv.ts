@@ -115,3 +115,10 @@ export const checkoutSchema = z.object({
   plan: z.enum(['Étudiant', 'Professionnel']),
   cycle: z.enum(['monthly', 'annual']).default('monthly'),
 });
+
+// Changement de plan par un admin : ici 'Gratuit' est autorisé (rétrogradation),
+// contrairement au checkout où souscrire au plan gratuit n'a pas de sens.
+export const adminSetPlanSchema = z.object({
+  userId: z.uuid(),
+  plan: z.enum(['Gratuit', 'Étudiant', 'Professionnel']),
+});

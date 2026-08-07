@@ -14,6 +14,7 @@ import { History } from '@/components/ui/History';
 import { Pricing } from '@/components/ui/Pricing';
 import { Landing } from '@/components/ui/Landing';
 import { CVBuilder } from '@/components/ui/CVBuilder';
+import Link from 'next/link';
 import { Sun, Moon } from 'lucide-react';
 
 
@@ -21,6 +22,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'landing' | 'generator' | 'history' | 'pricing'>('landing');
   const [session, setSession] = useState<any>(null);
   const [userPlan, setUserPlan] = useState<string>('Gratuit');
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
@@ -68,6 +70,7 @@ export default function Home() {
       const data = await res.json();
       if (data.success && data.plan) {
         setUserPlan(data.plan);
+        setIsAdmin(!!data.isAdmin);
       }
     } catch (e) {
       console.error('Failed to load plan:', e);
@@ -88,6 +91,7 @@ export default function Home() {
         refreshPlan();
       } else {
         setUserPlan('Gratuit');
+        setIsAdmin(false);
       }
     });
 
@@ -253,12 +257,17 @@ export default function Home() {
           >
             Mon Historique
           </button>
-          <button 
-            onClick={() => setActiveTab('pricing')} 
+          <button
+            onClick={() => setActiveTab('pricing')}
             className={`${styles.navLink} ${activeTab === 'pricing' ? styles.navLinkActive : ''}`}
           >
             Tarifs
           </button>
+          {isAdmin && (
+            <Link href="/admin" className={styles.navLink}>
+              Admin
+            </Link>
+          )}
         </div>
         <div className={styles.userSection}>
           <button onClick={toggleTheme} className={styles.themeToggleBtn} aria-label="Toggle Theme">
