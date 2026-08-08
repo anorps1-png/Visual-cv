@@ -112,54 +112,74 @@
   padding-bottom: 0.5rem;
 }
 
-/* Executive Template */
+/* Executive Template — bandeau latéral bleu marine (modèle de référence) */
 .cvLayoutExecutive {
-  display: flex;
-  flex-direction: column;
-  padding: 3rem;
+  display: grid;
+  grid-template-columns: 35% 1fr;
+  gap: 0;
   background: #ffffff;
-  color: #111827;
-  font-family: 'Georgia', serif;
+  color: #1f2937;
 }
 
 .cvLayoutExecutive .cvSidebar {
-  display: none; /* In executive, we merge sidebar data into header usually, or just hide sidebar styles for simplicity in this demo */
+  display: block;
+  background: #25374d;
+  color: #ffffff;
+  border-right: 0;
+  padding: 1.5rem 1.25rem;
 }
 
-.cvLayoutExecutive .cvMain {
-  padding: 0;
+.cvLayoutExecutive .previewPhoto {
+  width: 100%;
+  height: 150px;
+  border-radius: 0 !important;
+  border: 0;
+  object-fit: cover;
+  margin-bottom: 1rem;
 }
+
+.cvLayoutExecutive .cvSidebar .cvSection h3 {
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+.cvLayoutExecutive .sidebarEditGroup label { color: #aab4c2; }
+.cvLayoutExecutive .sidebarInput,
+.cvLayoutExecutive .sidebarListItemInput,
+.cvLayoutExecutive .sidebarTextarea { color: #e6eaf0; }
+
+.cvLayoutExecutive .cvMain { padding: 1.75rem 1.5rem; }
 
 .cvLayoutExecutive .cvHeader {
-  text-align: center;
-  border-bottom: 3px double #d1d5db;
-  padding-bottom: 1.5rem;
-  margin-bottom: 2rem;
+  border-bottom: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0;
 }
 
 .cvLayoutExecutive .nameInput {
-  font-size: 2.5rem;
-  text-align: center;
-  font-weight: normal;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #1f2937;
 }
 
 .cvLayoutExecutive .titleInput {
-  text-align: center;
-  color: #4b5563;
-  font-style: italic;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.95rem;
 }
 
-.cvLayoutExecutive .cvSection h3 {
-  text-align: center;
+.cvLayoutExecutive .cvMain .cvSection h3 {
+  color: #1f2937;
   text-transform: uppercase;
-  font-size: 1.2rem;
-  letter-spacing: 1.5px;
-  color: #374151;
-  border-bottom: 1px solid #d1d5db;
-  margin-top: 1.5rem;
-  padding-bottom: 0.5rem;
+  letter-spacing: 2px;
+  font-size: 1.05rem;
+  border-bottom: 0;
+  margin-top: 1.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .premiumLockMsg {

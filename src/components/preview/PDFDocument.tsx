@@ -354,22 +354,128 @@ const ModernDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null }) 
   );
 };
 
-const ExecutiveDoc = ({ data }: { data: any }) => {
+const NAVY = '#25374d';
+const navy = StyleSheet.create({
+  page: { backgroundColor: '#ffffff', fontFamily: EXEC_FONT, flexDirection: 'row' },
+  bar: { position: 'absolute', top: 0, left: 0, bottom: 0, width: '35%', backgroundColor: NAVY },
+  side: { width: '35%', paddingVertical: 22, paddingHorizontal: 16 },
+  main: { width: '65%', paddingVertical: 28, paddingHorizontal: 24 },
+  photo: { width: '100%', height: 128, objectFit: 'cover', marginBottom: 16 },
+  sideHeading: { fontSize: 10, fontFamily: EXEC_BOLD, color: '#ffffff', textTransform: 'uppercase', letterSpacing: 2, textAlign: 'center', marginTop: 10, marginBottom: 6 },
+  sideBody: { fontSize: 8.5, color: '#d7dce3', lineHeight: 1.5, textAlign: 'center', marginBottom: 3 },
+  sideContact: { fontSize: 8.5, color: '#d7dce3', lineHeight: 1.4, marginBottom: 4 },
+  name: { fontSize: 30, color: '#1f2937', fontFamily: EXEC_BOLD },
+  title: { fontSize: 12, color: '#6b7280', textTransform: 'uppercase', letterSpacing: 3, marginTop: 2, marginBottom: 18 },
+  heading: { fontSize: 12, color: '#1f2937', fontFamily: EXEC_BOLD, textTransform: 'uppercase', letterSpacing: 2, marginTop: 12, marginBottom: 4 },
+  headingRule: { borderBottomWidth: 1.2, borderBottomColor: NAVY, width: 38, marginBottom: 8 },
+  formationItem: { fontSize: 9, color: '#374151', marginBottom: 4, lineHeight: 1.4 },
+  expRow: { flexDirection: 'row', marginBottom: 9 },
+  expDateCol: { width: '27%', paddingRight: 6 },
+  expDate: { fontSize: 8.5, fontFamily: EXEC_BOLD, color: '#1f2937' },
+  expCompany: { fontSize: 8, color: '#6b7280', marginTop: 1 },
+  expBodyCol: { width: '73%' },
+  expRole: { fontSize: 9, fontFamily: EXEC_BOLD, color: '#1f2937', textTransform: 'uppercase', marginBottom: 3 },
+  bulletRow: { flexDirection: 'row', marginBottom: 1.5 },
+  bulletDot: { width: 8, fontSize: 8.5, color: NAVY },
+  bulletText: { flex: 1, fontSize: 8.5, color: '#374151', lineHeight: 1.35 },
+  compCols: { flexDirection: 'row', justifyContent: 'space-between' },
+  compCol: { width: '48%' },
+  compSub: { fontSize: 8.5, fontFamily: EXEC_BOLD, color: '#1f2937', marginBottom: 4 },
+  compItem: { fontSize: 8.5, color: '#374151', marginBottom: 2 },
+});
+
+const ExecutiveDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null }) => {
   const p = data.personal_info || {};
+  const contacts = contactArr(p);
+  const exps = data.cv_experiences || [];
+  const edu = data.education || [];
+  const langs = data.languages || [];
+  const skills = data.keywords_matched || [];
+  const hobbies = data.hobbies || [];
   return (
     <Document>
-      <Page size="A4" style={tpl.exPage}>
-        <View style={tpl.exHeadWrap}>
-          <Text style={tpl.exName}>{p.name}</Text>
-          {p.title ? <Text style={tpl.exTitle}>{p.title}</Text> : null}
-          <Text style={tpl.exContact}>{contactArr(p).join('  ·  ')}</Text>
+      <Page size="A4" style={navy.page}>
+        <View fixed style={navy.bar} />
+        <View style={navy.side}>
+          {photoUrl ? <Image src={photoUrl} style={navy.photo} /> : null}
+          {data.cv_summary ? (
+            <View>
+              <Text style={navy.sideHeading}>Profil</Text>
+              <Text style={navy.sideBody}>{data.cv_summary}</Text>
+            </View>
+          ) : null}
+          {contacts.length ? (
+            <View>
+              <Text style={navy.sideHeading}>Contact</Text>
+              {contacts.map((c, i) => <Text key={i} style={navy.sideContact}>{c}</Text>)}
+            </View>
+          ) : null}
+          {hobbies.length ? (
+            <View>
+              <Text style={navy.sideHeading}>Intérêts</Text>
+              {hobbies.map((h: string, i: number) => <Text key={i} style={navy.sideContact}>{h}</Text>)}
+            </View>
+          ) : null}
         </View>
-        <View style={tpl.dRule} />
-        <SummaryBlock text={data.cv_summary} />
-        <ExperienceBlock items={data.cv_experiences || []} />
-        <EducationBlock items={data.education || []} />
-        <BulletList heading="Compétences" items={data.keywords_matched || []} />
-        <BulletList heading="Langues" items={data.languages || []} />
+
+        <View style={navy.main}>
+          <Text style={navy.name}>{p.name}</Text>
+          {p.title ? <Text style={navy.title}>{p.title}</Text> : null}
+
+          {edu.length ? (
+            <View>
+              <Text style={navy.heading}>Formation</Text>
+              <View style={navy.headingRule} />
+              {edu.map((e: any, i: number) => (
+                <Text key={i} style={navy.formationItem}>
+                  {[e.dates, e.degree, e.institution].filter(Boolean).join(' - ')}
+                  {e.description ? ` — ${e.description}` : ''}
+                </Text>
+              ))}
+            </View>
+          ) : null}
+
+          {exps.length ? (
+            <View>
+              <Text style={navy.heading}>Expérience</Text>
+              <View style={navy.headingRule} />
+              {exps.map((exp: any, i: number) => (
+                <View key={i} style={navy.expRow}>
+                  <View style={navy.expDateCol}>
+                    <Text style={navy.expDate}>{exp.dates}</Text>
+                    {exp.company ? <Text style={navy.expCompany}>{exp.company}</Text> : null}
+                  </View>
+                  <View style={navy.expBodyCol}>
+                    <Text style={navy.expRole}>{exp.title}</Text>
+                    {(exp.bullet_points || []).map((bp: string, j: number) => (
+                      <View key={j} style={navy.bulletRow}>
+                        <Text style={navy.bulletDot}>•</Text>
+                        <Text style={navy.bulletText}>{bp}</Text>
+                      </View>
+                    ))}
+                  </View>
+                </View>
+              ))}
+            </View>
+          ) : null}
+
+          {(langs.length || skills.length) ? (
+            <View>
+              <Text style={navy.heading}>Compétences</Text>
+              <View style={navy.headingRule} />
+              <View style={navy.compCols}>
+                <View style={navy.compCol}>
+                  <Text style={navy.compSub}>Langues</Text>
+                  {langs.map((l: string, i: number) => <Text key={i} style={navy.compItem}>{l}</Text>)}
+                </View>
+                <View style={navy.compCol}>
+                  <Text style={navy.compSub}>Logiciels maîtrisés</Text>
+                  {skills.map((s: string, i: number) => <Text key={i} style={navy.compItem}>{s}</Text>)}
+                </View>
+              </View>
+            </View>
+          ) : null}
+        </View>
       </Page>
     </Document>
   );
@@ -404,7 +510,7 @@ export const ATSPdfDocument = ({ data, photoUrl, template = 'standard' }: ATSPdf
   const contactString = contactParts.join(' | ');
 
   if (template === 'modern') return <ModernDoc data={data} photoUrl={photoUrl} />;
-  if (template === 'executive') return <ExecutiveDoc data={data} />;
+  if (template === 'executive') return <ExecutiveDoc data={data} photoUrl={photoUrl} />;
 
   return (
     <Document>
