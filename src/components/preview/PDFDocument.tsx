@@ -230,12 +230,158 @@ const letterStyles = StyleSheet.create({
   }
 });
 
+/* ───────── Gabarits Modern & Executive (encre uniquement) ─────────
+   Rendus distincts du Standard (Times) : Helvetica, noir/gris sur blanc. */
+
+const EXEC_FONT = 'Helvetica';
+const EXEC_BOLD = 'Helvetica-Bold';
+const EXEC_ITALIC = 'Helvetica-Oblique';
+const INK = '#1a1a1a';
+const INK_SOFT = '#4a4a4a';
+const INK_DARK = '#2d2b2b';
+
+const body = StyleSheet.create({
+  section: { marginBottom: 12 },
+  heading: { fontSize: 10, fontFamily: EXEC_BOLD, color: INK, textTransform: 'uppercase', letterSpacing: 1, borderBottomWidth: 1, borderBottomColor: INK, paddingBottom: 2, marginBottom: 6 },
+  summary: { fontSize: 9, lineHeight: 1.4, color: INK_SOFT },
+  expItem: { marginBottom: 7 },
+  expHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 1 },
+  jobTitle: { fontSize: 9.5, fontFamily: EXEC_BOLD, color: INK, width: '70%' },
+  dates: { fontSize: 8.5, fontFamily: EXEC_ITALIC, color: INK_SOFT, textAlign: 'right' },
+  company: { fontSize: 9, fontFamily: EXEC_ITALIC, color: INK_SOFT, marginBottom: 2 },
+  bulletRow: { flexDirection: 'row', marginBottom: 1.5, paddingLeft: 2 },
+  bullet: { width: 8, fontSize: 9, color: INK },
+  bulletText: { flex: 1, fontSize: 9, lineHeight: 1.35, color: INK },
+  item: { fontSize: 9, lineHeight: 1.35, color: INK, marginBottom: 2.5 },
+});
+
+const bodyLight = StyleSheet.create({
+  heading: { fontSize: 9.5, fontFamily: EXEC_BOLD, color: '#ffffff', textTransform: 'uppercase', letterSpacing: 1, borderBottomWidth: 0.5, borderBottomColor: '#8a8a8a', paddingBottom: 2, marginBottom: 6 },
+  item: { fontSize: 8.5, lineHeight: 1.35, color: '#e6e6e6', marginBottom: 2.5 },
+});
+
+const tpl = StyleSheet.create({
+  sbPage: { backgroundColor: '#fff', fontFamily: EXEC_FONT, flexDirection: 'row' },
+  sbBar: { position: 'absolute', top: 0, left: 0, bottom: 0, width: '34%', backgroundColor: INK_DARK },
+  sbSide: { width: '34%', paddingVertical: 28, paddingHorizontal: 16 },
+  sbMain: { width: '66%', paddingVertical: 28, paddingHorizontal: 22 },
+  sbPhoto: { width: 74, height: 86, objectFit: 'cover', marginBottom: 12, alignSelf: 'center' },
+  sbName: { fontSize: 20, fontFamily: EXEC_BOLD, color: INK, textTransform: 'uppercase' },
+  sbTitle: { fontSize: 10.5, fontFamily: EXEC_ITALIC, color: INK_SOFT, marginBottom: 10 },
+  exPage: { paddingTop: 30, paddingBottom: 30, paddingLeft: 44, paddingRight: 44, backgroundColor: '#fff', fontFamily: EXEC_FONT },
+  exHeadWrap: { alignItems: 'center', marginBottom: 4 },
+  exName: { fontSize: 22, fontFamily: EXEC_BOLD, color: INK, textTransform: 'uppercase', letterSpacing: 2, textAlign: 'center' },
+  exTitle: { fontSize: 11, fontFamily: EXEC_ITALIC, color: INK_SOFT, textAlign: 'center', marginTop: 3 },
+  exContact: { fontSize: 8.5, color: INK_SOFT, textAlign: 'center', marginTop: 5 },
+  dRule: { borderTopWidth: 1, borderBottomWidth: 1, borderColor: INK, height: 3, marginVertical: 14 },
+});
+
+const contactArr = (p: any): string[] => [p.location, p.phone, p.email, p.linkedin, p.website].filter(Boolean);
+
+const SummaryBlock = ({ text }: { text?: string }) => text ? (
+  <View style={body.section}><Text style={body.heading}>Profil professionnel</Text><Text style={body.summary}>{text}</Text></View>
+) : null;
+
+const ExperienceBlock = ({ items }: { items: any[] }) => items.length ? (
+  <View style={body.section}>
+    <Text style={body.heading}>Expérience professionnelle</Text>
+    {items.map((exp: any, i: number) => (
+      <View key={i} style={body.expItem}>
+        <View style={body.expHeader}>
+          <Text style={body.jobTitle}>{exp.title}</Text>
+          <Text style={body.dates}>{exp.dates}</Text>
+        </View>
+        {exp.company ? <Text style={body.company}>{exp.company}</Text> : null}
+        {(exp.bullet_points || []).map((bp: string, j: number) => (
+          <View key={j} style={body.bulletRow}><Text style={body.bullet}>•</Text><Text style={body.bulletText}>{bp}</Text></View>
+        ))}
+      </View>
+    ))}
+  </View>
+) : null;
+
+const EducationBlock = ({ items }: { items: any[] }) => items.length ? (
+  <View style={body.section}>
+    <Text style={body.heading}>Formation</Text>
+    {items.map((edu: any, i: number) => (
+      <View key={i} style={body.expItem}>
+        <View style={body.expHeader}>
+          <Text style={body.jobTitle}>{edu.degree}</Text>
+          <Text style={body.dates}>{edu.dates}</Text>
+        </View>
+        {edu.institution ? <Text style={body.company}>{edu.institution}</Text> : null}
+        {edu.description ? <Text style={body.summary}>{edu.description}</Text> : null}
+      </View>
+    ))}
+  </View>
+) : null;
+
+const BulletList = ({ heading, items, light }: { heading: string; items: string[]; light?: boolean }) => items.length ? (
+  <View style={body.section}>
+    <Text style={light ? bodyLight.heading : body.heading}>{heading}</Text>
+    {items.map((it, i) => <Text key={i} style={light ? bodyLight.item : body.item}>{light ? it : `• ${it}`}</Text>)}
+  </View>
+) : null;
+
+const ModernDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null }) => {
+  const p = data.personal_info || {};
+  const contacts = contactArr(p);
+  return (
+    <Document>
+      <Page size="A4" style={tpl.sbPage}>
+        <View fixed style={tpl.sbBar} />
+        <View style={tpl.sbSide}>
+          {photoUrl ? <Image src={photoUrl} style={tpl.sbPhoto} /> : null}
+          {contacts.length ? (
+            <View style={body.section}>
+              <Text style={bodyLight.heading}>Contact</Text>
+              {contacts.map((c, i) => <Text key={i} style={bodyLight.item}>{c}</Text>)}
+            </View>
+          ) : null}
+          <BulletList heading="Compétences" items={data.keywords_matched || []} light />
+          <BulletList heading="Langues" items={data.languages || []} light />
+          <BulletList heading="Centres d'intérêt" items={data.hobbies || []} light />
+        </View>
+        <View style={tpl.sbMain}>
+          <Text style={tpl.sbName}>{p.name}</Text>
+          {p.title ? <Text style={tpl.sbTitle}>{p.title}</Text> : null}
+          <SummaryBlock text={data.cv_summary} />
+          <ExperienceBlock items={data.cv_experiences || []} />
+          <EducationBlock items={data.education || []} />
+        </View>
+      </Page>
+    </Document>
+  );
+};
+
+const ExecutiveDoc = ({ data }: { data: any }) => {
+  const p = data.personal_info || {};
+  return (
+    <Document>
+      <Page size="A4" style={tpl.exPage}>
+        <View style={tpl.exHeadWrap}>
+          <Text style={tpl.exName}>{p.name}</Text>
+          {p.title ? <Text style={tpl.exTitle}>{p.title}</Text> : null}
+          <Text style={tpl.exContact}>{contactArr(p).join('  ·  ')}</Text>
+        </View>
+        <View style={tpl.dRule} />
+        <SummaryBlock text={data.cv_summary} />
+        <ExperienceBlock items={data.cv_experiences || []} />
+        <EducationBlock items={data.education || []} />
+        <BulletList heading="Compétences" items={data.keywords_matched || []} />
+        <BulletList heading="Langues" items={data.languages || []} />
+      </Page>
+    </Document>
+  );
+};
+
 interface ATSPdfProps {
   data: any;
   photoUrl?: string | null;
+  template?: 'standard' | 'modern' | 'executive';
 }
 
-export const ATSPdfDocument = ({ data, photoUrl }: ATSPdfProps) => {
+export const ATSPdfDocument = ({ data, photoUrl, template = 'standard' }: ATSPdfProps) => {
   const personal = data.personal_info || {
     name: "Curriculum Vitae",
     title: "",
@@ -256,6 +402,9 @@ export const ATSPdfDocument = ({ data, photoUrl }: ATSPdfProps) => {
   if (personal.linkedin) contactParts.push(personal.linkedin);
   if (personal.website) contactParts.push(personal.website);
   const contactString = contactParts.join(' | ');
+
+  if (template === 'modern') return <ModernDoc data={data} photoUrl={photoUrl} />;
+  if (template === 'executive') return <ExecutiveDoc data={data} />;
 
   return (
     <Document>

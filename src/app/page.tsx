@@ -14,12 +14,11 @@ import { History } from '@/components/ui/History';
 import { Pricing } from '@/components/ui/Pricing';
 import { Landing } from '@/components/ui/Landing';
 import { CVBuilder } from '@/components/ui/CVBuilder';
-import { ProTemplates } from '@/components/ui/ProTemplates';
 import Link from 'next/link';
 
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<'landing' | 'generator' | 'templates' | 'history' | 'pricing'>('landing');
+  const [activeTab, setActiveTab] = useState<'landing' | 'generator' | 'history' | 'pricing'>('landing');
   const [session, setSession] = useState<any>(null);
   const [userPlan, setUserPlan] = useState<string>('Gratuit');
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -40,8 +39,6 @@ export default function Home() {
   const [jdMode, setJdMode] = useState<'search' | 'paste'>('search');
   const [cvMode, setCvMode] = useState<'upload' | 'build'>('upload');
   const [loadedJobMeta, setLoadedJobMeta] = useState<{ jobTitle: string; companyName: string } | null>(null);
-  // Gabarit choisi depuis l'écran Modèles Pro, présélectionné à l'étape résultat.
-  const [selectedTemplate, setSelectedTemplate] = useState<string>('standard');
 
   // Charge le plan RÉEL depuis le serveur : source de vérité, survit au refresh.
   const refreshPlan = async () => {
@@ -242,12 +239,6 @@ export default function Home() {
             className={`${styles.navLink} ${activeTab === 'history' ? styles.navLinkActive : ''}`}
           >
             Mon Historique
-          </button>
-          <button
-            onClick={() => setActiveTab('templates')}
-            className={`${styles.navLink} ${activeTab === 'templates' ? styles.navLinkActive : ''}`}
-          >
-            Modèles Pro
           </button>
           <button
             onClick={() => setActiveTab('pricing')}
@@ -500,7 +491,6 @@ export default function Home() {
                 signatureUrl={signatureUrl}
                 setSignatureUrl={setSignatureUrl}
                 userPlan={userPlan}
-                initialTemplate={selectedTemplate}
                 onReset={() => {
                   setStep(1);
                   setCvFile(null);
@@ -525,16 +515,6 @@ export default function Home() {
       {activeTab === 'history' && session && (
         <section style={{ width: '100%', maxWidth: '1200px', padding: '0 2rem' }}>
           <History onLoadCv={handleLoadFromHistory} onNavigateToGenerator={() => setActiveTab('generator')} />
-        </section>
-      )}
-
-      {activeTab === 'templates' && (
-        <section style={{ width: '100%', maxWidth: '1200px', padding: '0 2rem' }}>
-          <ProTemplates
-            userPlan={userPlan}
-            onViewPricing={() => setActiveTab('pricing')}
-            onUse={(id) => { setSelectedTemplate(id); setStep(1); setActiveTab('generator'); }}
-          />
         </section>
       )}
 
