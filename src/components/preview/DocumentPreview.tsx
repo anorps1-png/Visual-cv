@@ -440,13 +440,8 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.scoreBoard}>
-          <div className={styles.scoreCircle}>
-            <span className={styles.scoreText}>{cvData.score}%</span>
-          </div>
-          <div>
-            <h3>Compatibilité</h3>
-            <p className={styles.keywords}>Mots-clés trouvés : {cvData.keywords_matched.join(', ')}</p>
-          </div>
+          <span className="tag tag-accent">Score ATS : {cvData.score}%</span>
+          <p className={styles.keywords}>Mots-clés trouvés : {cvData.keywords_matched.join(', ')}</p>
         </div>
         <div className={styles.actions}>
           {onNewDocuments && (
@@ -478,25 +473,19 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
         </div>
       </div>
 
-      <div className={styles.tabs}>
-        <button 
-          className={`${styles.tab} ${activeTab === 'cv' ? styles.activeTab : ''}`}
-          onClick={() => setActiveTab('cv')}
-        >
-          CV Optimisé
-        </button>
-        <button 
-          className={`${styles.tab} ${activeTab === 'letter' ? styles.activeTab : ''}`}
-          onClick={() => setActiveTab('letter')}
-        >
-          Lettre de motivation
-        </button>
-        <button 
-          className={`${styles.tab} ${activeTab === 'email' ? styles.activeTab : ''}`}
-          onClick={() => setActiveTab('email')}
-        >
-          Email
-        </button>
+      <div className="seg">
+        <label className="seg-opt">
+          <input type="radio" name="doc-view" checked={activeTab === 'cv'} onChange={() => setActiveTab('cv')} />
+          CV
+        </label>
+        <label className="seg-opt">
+          <input type="radio" name="doc-view" checked={activeTab === 'letter'} onChange={() => setActiveTab('letter')} />
+          Lettre
+        </label>
+        <label className="seg-opt">
+          <input type="radio" name="doc-view" checked={activeTab === 'email'} onChange={() => setActiveTab('email')} />
+          E-mail
+        </label>
       </div>
 
       <div className={styles.content}>

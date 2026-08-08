@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import styles from './History.module.css';
-import { Button } from './Button';
 
 interface HistoryCv {
   id: string;
@@ -90,11 +89,11 @@ export function History({ onLoadCv, onNavigateToGenerator }: HistoryProps) {
     try {
       if (!item.generatedCVUrl) return;
       const parsedCV = JSON.parse(item.generatedCVUrl);
-      
+
       // Inject the cover letter and email text into the parsed CV structure
       parsedCV.cover_letter = item.coverLetterUrl || '';
       parsedCV.email_text = item.emailText || '';
-      
+
       onLoadCv(parsedCV, {
         jobTitle: item.jobTitle || 'Poste',
         companyName: item.companyName || 'Entreprise'
@@ -107,18 +106,18 @@ export function History({ onLoadCv, onNavigateToGenerator }: HistoryProps) {
 
   if (isLoading) {
     return (
-      <div className={styles.loadingContainer}>
+      <div className={styles.state}>
         <div className={styles.spinner}></div>
-        <p>Chargement de votre historique...</p>
+        <p className="text-muted">Chargement de votre historique…</p>
       </div>
     );
   }
 
   if (errorMsg) {
     return (
-      <div className={styles.errorContainer}>
+      <div className={styles.state}>
         <p className={styles.errorText}>{errorMsg}</p>
-        <Button onClick={fetchHistory} style={{ marginTop: '1rem' }}>Réessayer</Button>
+        <button className="btn btn-secondary" onClick={fetchHistory}>Réessayer</button>
       </div>
     );
   }
@@ -126,44 +125,47 @@ export function History({ onLoadCv, onNavigateToGenerator }: HistoryProps) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2>Mon Historique SaaS</h2>
-        <p>Retrouvez et modifiez vos candidatures passées en un clin d'œil.</p>
+        <h2>Mon historique</h2>
+        <p className="text-muted">Retrouvez et rouvrez vos candidatures passées en un clic.</p>
       </div>
 
       {cvList.length === 0 ? (
-        <div className={styles.emptyState}>
-          <div className={styles.emptyIcon}>📂</div>
-          <h3>Aucune candidature trouvée</h3>
-          <p>Vous n'avez pas encore généré de CV optimisé avec cette version.</p>
-          <Button onClick={onNavigateToGenerator} style={{ marginTop: '1.5rem' }}>
-            Créer ma première candidature
-          </Button>
+        <div className={styles.empty}>
+          <h3>Aucune candidature</h3>
+          <p className="text-muted">Vous n’avez pas encore généré de dossier.</p>
+          <button className="btn btn-primary" onClick={onNavigateToGenerator}>Créer ma première candidature</button>
         </div>
       ) : (
-        <div className={styles.grid}>
-          {cvList.map((item) => (
-            <div key={item.id} className={styles.card} onClick={() => handleSelect(item)}>
-              <div className={styles.cardHeader}>
-                <span className={styles.date}>
-                  {new Date(item.createdAt).toLocaleDateString('fr-FR', {
-                    day: 'numeric',
-                    month: 'short',
-                    year: 'numeric'
-                  })}
-                </span>
-                <button className={styles.deleteBtn} onClick={(e) => handleDelete(item.id, e)} title="Supprimer">
-                  &times;
-                </button>
-              </div>
-              <h3 className={styles.jobTitle}>{item.jobTitle || 'Poste non spécifié'}</h3>
-              <p className={styles.companyName}>🏢 {item.companyName || 'Entreprise non spécifiée'}</p>
-              
-              <div className={styles.cardFooter}>
-                <span className={styles.badge}>Optimisé ATS</span>
-                <span className={styles.loadLink}>Charger l'aperçu &rarr;</span>
-              </div>
-            </div>
-          ))}
+        <div className={styles.tableWrap}>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Poste</th>
+                <th>Entreprise</th>
+                <th>Date</th>
+                <th>Score ATS</th>
+                <th aria-label="Actions"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {cvList.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.jobTitle || 'Poste non spécifié'}</td>
+                  <td>{item.companyName || '—'}</td>
+                  <td>
+                    {new Date(item.createdAt).toLocaleDateString('fr-FR', {
+                      day: 'numeric', month: 'short', year: 'numeric',
+                    })}
+                  </td>
+                  <td><span className="tag tag-accent">Optimisé ATS</span></td>
+                  <td className={styles.actions}>
+                    <button className="btn btn-ghost" onClick={() => handleSelect(item)}>Ouvrir →</button>
+                    <button className="btn btn-ghost" onClick={(e) => handleDelete(item.id, e)} aria-label="Supprimer" title="Supprimer">×</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>

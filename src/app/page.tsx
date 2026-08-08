@@ -14,37 +14,16 @@ import { History } from '@/components/ui/History';
 import { Pricing } from '@/components/ui/Pricing';
 import { Landing } from '@/components/ui/Landing';
 import { CVBuilder } from '@/components/ui/CVBuilder';
+import { ProTemplates } from '@/components/ui/ProTemplates';
 import Link from 'next/link';
-import { Sun, Moon } from 'lucide-react';
 
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<'landing' | 'generator' | 'history' | 'pricing'>('landing');
+  const [activeTab, setActiveTab] = useState<'landing' | 'generator' | 'templates' | 'history' | 'pricing'>('landing');
   const [session, setSession] = useState<any>(null);
   const [userPlan, setUserPlan] = useState<string>('Gratuit');
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    } else {
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const initialTheme = systemPrefersDark ? 'dark' : 'light';
-      setTheme(initialTheme);
-      document.documentElement.setAttribute('data-theme', initialTheme);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const nextTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(nextTheme);
-    document.documentElement.setAttribute('data-theme', nextTheme);
-    localStorage.setItem('theme', nextTheme);
-  };
 
   // original generator states
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
@@ -235,7 +214,7 @@ export default function Home() {
     <main className={styles.main} style={{ paddingTop: '0' }}>
       <nav className={styles.navbar}>
         <div className={styles.navLogo} onClick={() => setActiveTab('landing')} style={{ cursor: 'pointer' }}>
-          🇨🇲 Visual CV <span className="tag tag-accent">SaaS</span>
+          VIRTUAL CV
         </div>
         <div className={styles.navLinks}>
           <button 
@@ -263,6 +242,12 @@ export default function Home() {
             Mon Historique
           </button>
           <button
+            onClick={() => setActiveTab('templates')}
+            className={`${styles.navLink} ${activeTab === 'templates' ? styles.navLinkActive : ''}`}
+          >
+            Modèles Pro
+          </button>
+          <button
             onClick={() => setActiveTab('pricing')}
             className={`${styles.navLink} ${activeTab === 'pricing' ? styles.navLinkActive : ''}`}
           >
@@ -275,9 +260,6 @@ export default function Home() {
           )}
         </div>
         <div className={styles.userSection}>
-          <button onClick={toggleTheme} className={styles.themeToggleBtn} aria-label="Toggle Theme">
-            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-          </button>
           {session ? (
             <>
               <span className={styles.userEmail} title={session.user.email}>
@@ -337,21 +319,15 @@ export default function Home() {
               <div className={styles.card}>
                 <h2>Première étape : Votre Profil</h2>
                 
-                <div className={styles.tabHeader}>
-                  <button 
-                    type="button"
-                    className={`${styles.tabBtn} ${cvMode === 'upload' ? styles.activeTabBtn : ''}`}
-                    onClick={() => setCvMode('upload')}
-                  >
-                    Importer un CV existant (PDF)
-                  </button>
-                  <button 
-                    type="button"
-                    className={`${styles.tabBtn} ${cvMode === 'build' ? styles.activeTabBtn : ''}`}
-                    onClick={() => setCvMode('build')}
-                  >
-                    Créer de A à Z
-                  </button>
+                <div className="seg" style={{ marginBottom: 'var(--space-4)' }}>
+                  <label className="seg-opt">
+                    <input type="radio" name="cv-mode" checked={cvMode === 'upload'} onChange={() => setCvMode('upload')} />
+                    Importer un CV (PDF)
+                  </label>
+                  <label className="seg-opt">
+                    <input type="radio" name="cv-mode" checked={cvMode === 'build'} onChange={() => setCvMode('build')} />
+                    Créer de A à Zéro
+                  </label>
                 </div>
 
                 <div className={styles.tabContent}>
@@ -447,21 +423,15 @@ export default function Home() {
               <div className={styles.card}>
                 <h2>L'offre d'emploi cible</h2>
                 
-                <div className={styles.tabHeader}>
-                  <button 
-                    type="button"
-                    className={`${styles.tabBtn} ${jdMode === 'search' ? styles.activeTabBtn : ''}`}
-                    onClick={() => setJdMode('search')}
-                  >
-                    Rechercher une offre réelle
-                  </button>
-                  <button
-                    type="button"
-                    className={`${styles.tabBtn} ${jdMode === 'paste' ? styles.activeTabBtn : ''}`}
-                    onClick={() => setJdMode('paste')}
-                  >
-                    Coller le texte ou importer (PDF / image)
-                  </button>
+                <div className="seg" style={{ marginBottom: 'var(--space-4)' }}>
+                  <label className="seg-opt">
+                    <input type="radio" name="jd-mode" checked={jdMode === 'search'} onChange={() => setJdMode('search')} />
+                    Rechercher une offre
+                  </label>
+                  <label className="seg-opt">
+                    <input type="radio" name="jd-mode" checked={jdMode === 'paste'} onChange={() => setJdMode('paste')} />
+                    Coller le texte
+                  </label>
                 </div>
 
                 <div className={styles.tabContent}>
@@ -552,6 +522,12 @@ export default function Home() {
       {activeTab === 'history' && session && (
         <section style={{ width: '100%', maxWidth: '1200px', padding: '0 2rem' }}>
           <History onLoadCv={handleLoadFromHistory} onNavigateToGenerator={() => setActiveTab('generator')} />
+        </section>
+      )}
+
+      {activeTab === 'templates' && (
+        <section style={{ width: '100%', maxWidth: '1200px', padding: '0 2rem' }}>
+          <ProTemplates userPlan={userPlan} onViewPricing={() => setActiveTab('pricing')} />
         </section>
       )}
 

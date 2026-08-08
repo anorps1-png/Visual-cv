@@ -11,7 +11,7 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Visual CV Cameroon",
+  title: "Virtual CV",
   description: "Générez un CV optimisé ATS et une lettre de motivation en un clic",
 };
 

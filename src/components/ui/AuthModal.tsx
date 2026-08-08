@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import styles from './AuthModal.module.css';
-import { Button } from './Button';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -37,13 +36,13 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
           },
         });
         if (error) throw error;
-        
+
         // Supabase sign up might send email confirmation, or auto-login
         if (data.session) {
           onSuccess(data.session);
           onClose();
         } else {
-          setSuccessMsg('Compte créé avec succès ! Veuillez vérifier vos e-mails pour valider votre compte.');
+          setSuccessMsg('Compte créé ! Vérifiez vos e-mails pour valider votre compte.');
         }
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({
@@ -51,86 +50,79 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
           password,
         });
         if (error) throw error;
-        
+
         if (data.session) {
           onSuccess(data.session);
           onClose();
         }
       }
     } catch (err: any) {
-      console.warn("Auth Error:", err);
+      console.warn('Auth Error:', err);
       setErrorMsg(err.message || 'Une erreur est survenue lors de l\'authentification.');
     } finally {
       setIsLoading(false);
     }
   };
 
+  const setMode = (signup: boolean) => {
+    setIsSignUp(signup);
+    setErrorMsg(null);
+    setSuccessMsg(null);
+  };
+
   return (
-    <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={onClose}>&times;</button>
-        
-        <h2 className={styles.title}>
-          {isSignUp ? 'Créer un compte SaaS' : 'Connexion à votre espace'}
-        </h2>
-        <p className={styles.subtitle}>
-          {isSignUp 
-            ? 'Accédez à l\'historique de vos candidatures et à des crédits exclusifs.' 
-            : 'Retrouvez tous vos CVs optimisés et vos lettres de motivation.'}
-        </p>
+    <div className="dialog-backdrop" onClick={onClose}>
+      <div className="dialog" onClick={(e) => e.stopPropagation()}>
+        <div className="dialog-title">{isSignUp ? 'Inscription' : 'Connexion'}</div>
+
+        <div className="seg" style={{ alignSelf: 'flex-start' }}>
+          <label className="seg-opt">
+            <input type="radio" name="auth-mode" checked={!isSignUp} onChange={() => setMode(false)} />
+            Connexion
+          </label>
+          <label className="seg-opt">
+            <input type="radio" name="auth-mode" checked={isSignUp} onChange={() => setMode(true)} />
+            Inscription
+          </label>
+        </div>
 
         {errorMsg && <div className={styles.error}>{errorMsg}</div>}
         {successMsg && <div className={styles.success}>{successMsg}</div>}
 
         <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.inputGroup}>
+          <div className="field">
             <label htmlFor="auth-email">Adresse e-mail</label>
             <input
               id="auth-email"
               type="email"
-              placeholder="ex: jean.dupont@email.com"
+              className="input"
+              placeholder="ex : jean.dupont@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className={styles.input}
             />
           </div>
 
-          <div className={styles.inputGroup}>
+          <div className="field">
             <label htmlFor="auth-password">Mot de passe</label>
             <input
               id="auth-password"
               type="password"
+              className="input"
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className={styles.input}
             />
           </div>
 
-          <Button type="submit" isLoading={isLoading} style={{ width: '100%', marginTop: '1rem', padding: '0.75rem' }}>
-            {isSignUp ? 'S\'inscrire' : 'Se connecter'}
-          </Button>
+          <div className="dialog-actions">
+            <button type="button" className="btn btn-secondary" onClick={onClose}>Annuler</button>
+            <button type="submit" className="btn btn-primary" disabled={isLoading}>
+              {isLoading ? '…' : isSignUp ? 'S\'inscrire' : 'Se connecter'}
+            </button>
+          </div>
         </form>
-
-        <div className={styles.switchMode}>
-          {isSignUp ? (
-            <span>
-              Déjà un compte ?{' '}
-              <button className={styles.linkBtn} onClick={() => { setIsSignUp(false); setErrorMsg(null); }}>
-                Se connecter
-              </button>
-            </span>
-          ) : (
-            <span>
-              Pas encore de compte ?{' '}
-              <button className={styles.linkBtn} onClick={() => { setIsSignUp(true); setErrorMsg(null); }}>
-                Créer un compte
-              </button>
-            </span>
-          )}
-        </div>
       </div>
     </div>
   );
