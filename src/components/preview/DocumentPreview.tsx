@@ -55,7 +55,7 @@ interface DocumentPreviewProps {
 
 export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signatureUrl, setSignatureUrl, userPlan = 'Gratuit' }: DocumentPreviewProps) {
   const [activeTab, setActiveTab] = useState<'cv' | 'letter' | 'email'>('cv');
-  const [cvTemplate, setCvTemplate] = useState<'standard' | 'modern' | 'executive'>('standard');
+  const [cvTemplate, setCvTemplate] = useState<'standard' | 'sidebar' | 'bandeau' | 'monogramme' | 'international'>('standard');
   const isPremium = userPlan === 'Étudiant' || userPlan === 'Professionnel';
   const [cvData, setCvData] = useState<GeneratedData>({
     ...data,
@@ -235,10 +235,6 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
     } finally {
       setIsCvLoading(false);
     }
-  };
-
-  const handleTemplateSelect = (template: 'standard' | 'modern' | 'executive') => {
-    setCvTemplate(template);
   };
 
   // Enregistrer la lettre de motivation PDF en demandant le dossier cible
@@ -492,24 +488,21 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
         {activeTab === 'cv' && (
           <div className={styles.document}>
             <div className={styles.templateSelector}>
-              <button 
-                className={`${styles.templateBtn} ${cvTemplate === 'standard' ? styles.activeTemplate : ''}`}
-                onClick={() => handleTemplateSelect('standard')}
-              >
-                Standard
-              </button>
-              <button 
-                className={`${styles.templateBtn} ${cvTemplate === 'modern' ? styles.activeTemplate : ''}`}
-                onClick={() => handleTemplateSelect('modern')}
-              >
-                Modern <span className={styles.premiumBadge}>PRO</span>
-              </button>
-              <button 
-                className={`${styles.templateBtn} ${cvTemplate === 'executive' ? styles.activeTemplate : ''}`}
-                onClick={() => handleTemplateSelect('executive')}
-              >
-                Executive <span className={styles.premiumBadge}>PRO</span>
-              </button>
+              {([
+                ['standard', 'Standard', false],
+                ['sidebar', 'Exécutif — Sidebar', true],
+                ['bandeau', 'Exécutif — Bandeau', true],
+                ['monogramme', 'Exécutif — Monogramme', true],
+                ['international', 'Exécutif — International', true],
+              ] as const).map(([id, label, pro]) => (
+                <button
+                  key={id}
+                  className={`${styles.templateBtn} ${cvTemplate === id ? styles.activeTemplate : ''}`}
+                  onClick={() => setCvTemplate(id)}
+                >
+                  {label}{pro && <span className={styles.premiumBadge}>PRO</span>}
+                </button>
+              ))}
             </div>
 
             {!isPremium && cvTemplate !== 'standard' && (
@@ -519,8 +512,10 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
             )}
 
             <div className={
-              cvTemplate === 'modern' ? styles.cvLayoutModern : 
-              cvTemplate === 'executive' ? styles.cvLayoutExecutive : 
+              cvTemplate === 'sidebar' ? styles.cvLayoutSidebar :
+              cvTemplate === 'bandeau' ? styles.cvLayoutBandeau :
+              cvTemplate === 'monogramme' ? styles.cvLayoutMonogramme :
+              cvTemplate === 'international' ? styles.cvLayoutInternational :
               styles.cvLayout
             }>
               {/* Sidebar */}
