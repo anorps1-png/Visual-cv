@@ -35,6 +35,13 @@ interface Payment {
 const PLANS = ['Gratuit', 'Étudiant', 'Professionnel'];
 const fcfa = (n: number) => `${n.toLocaleString('fr-FR')} FCFA`;
 
+const TAB_LABELS: Record<Tab, string> = {
+  stats: 'Statistiques',
+  users: 'Utilisateurs',
+  payments: 'Paiements',
+  jobs: 'Offres',
+};
+
 export default function AdminPage() {
   const [authState, setAuthState] = useState<'checking' | 'denied' | 'ok'>('checking');
   const [tab, setTab] = useState<Tab>('stats');
@@ -47,43 +54,58 @@ export default function AdminPage() {
   }, []);
 
   if (authState === 'checking') {
-    return <div className={styles.center}>Vérification des droits…</div>;
+    return <div className={styles.center}><p className="text-muted">Vérification des droits…</p></div>;
   }
   if (authState === 'denied') {
     return (
       <div className={styles.center}>
         <h2>Accès refusé</h2>
-        <p>Cette page est réservée aux administrateurs.</p>
-        <Link href="/" className={styles.link}>← Retour à l’accueil</Link>
+        <p className="text-muted">Cette page est réservée aux administrateurs.</p>
+        <Link href="/" className="btn btn-ghost">← Retour à l’accueil</Link>
       </div>
     );
   }
 
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <h1>Administration</h1>
-        <Link href="/" className={styles.link}>← Retour à l’app</Link>
-      </header>
-
-      <nav className={styles.tabs}>
-        {(['stats', 'users', 'payments', 'jobs'] as Tab[]).map((t) => (
-          <button
-            key={t}
-            className={`${styles.tab} ${tab === t ? styles.tabActive : ''}`}
-            onClick={() => setTab(t)}
-          >
-            {t === 'stats' ? 'Statistiques' : t === 'users' ? 'Utilisateurs' : t === 'payments' ? 'Paiements' : 'Offres'}
-          </button>
-        ))}
+    <div>
+      <nav className="nav">
+        <span className="nav-brand">Administration</span>
+        <Link href="/" className="btn btn-ghost">← Retour à l’app</Link>
       </nav>
 
-      <section className={styles.section}>
-        {tab === 'stats' && <StatsPanel />}
-        {tab === 'users' && <UsersPanel />}
-        {tab === 'payments' && <PaymentsPanel />}
-        {tab === 'jobs' && <JobsPanel />}
-      </section>
+      <div className={styles.container}>
+        <div className={styles.segWrap} role="tablist" aria-label="Sections d’administration">
+          <div className="seg">
+            {(Object.keys(TAB_LABELS) as Tab[]).map((t) => (
+              <label key={t} className="seg-opt">
+                <input
+                  type="radio"
+                  name="admin-tab"
+                  checked={tab === t}
+                  onChange={() => setTab(t)}
+                />
+                {TAB_LABELS[t]}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <section className={styles.panel}>
+          {tab === 'stats' && <StatsPanel />}
+          {tab === 'users' && <UsersPanel />}
+          {tab === 'payments' && <PaymentsPanel />}
+          {tab === 'jobs' && <JobsPanel />}
+        </section>
+      </div>
+    </div>
+  );
+}
+
+function StatCard({ kicker, value }: { kicker: string; value: number | string }) {
+  return (
+    <div className="card">
+      <span className="card-kicker">{kicker}</span>
+      <span className={styles.statValue}>{value}</span>
     </div>
   );
 }
@@ -100,18 +122,15 @@ function StatsPanel() {
   }, []);
 
   if (err) return <p className={styles.error}>{err}</p>;
-  if (!stats) return <p>Chargement…</p>;
+  if (!stats) return <p className="text-muted">Chargement…</p>;
 
   return (
     <div className={styles.cards}>
-      <div className={styles.card}><span className={styles.cardValue}>{stats.userCount}</span><span className={styles.cardLabel}>Utilisateurs</span></div>
-      <div className={styles.card}><span className={styles.cardValue}>{stats.cvCount}</span><span className={styles.cardLabel}>CV générés</span></div>
-      <div className={styles.card}><span className={styles.cardValue}>{fcfa(stats.revenueThisMonth)}</span><span className={styles.cardLabel}>Revenus du mois</span></div>
+      <StatCard kicker="Utilisateurs" value={stats.userCount} />
+      <StatCard kicker="CV générés" value={stats.cvCount} />
+      <StatCard kicker="Revenus du mois" value={fcfa(stats.revenueThisMonth)} />
       {PLANS.map((p) => (
-        <div key={p} className={styles.card}>
-          <span className={styles.cardValue}>{stats.planBreakdown[p] ?? 0}</span>
-          <span className={styles.cardLabel}>Plan {p}</span>
-        </div>
+        <StatCard key={p} kicker={`Plan ${p}`} value={stats.planBreakdown[p] ?? 0} />
       ))}
     </div>
   );
@@ -153,14 +172,14 @@ function UsersPanel() {
 
   return (
     <div className={styles.tableWrap}>
-      <table className={styles.table}>
+      <table className="table">
         <thead>
           <tr><th>Email</th><th>Inscrit le</th><th>Usage (mois)</th><th>Plan</th></tr>
         </thead>
         <tbody>
           {users.map((u) => (
             <tr key={u.id}>
-              <td>{u.email}{u.isAdmin && <span className={styles.badge}>admin</span>}</td>
+              <td>{u.email}{u.isAdmin && <span className={`tag tag-accent ${styles.inlineTag}`}>admin</span>}</td>
               <td>{new Date(u.createdAt).toLocaleDateString('fr-FR')}</td>
               <td>{u.usage.used}{u.usage.limit >= 0 ? ` / ${u.usage.limit}` : ' / ∞'}</td>
               <td>
@@ -168,19 +187,25 @@ function UsersPanel() {
                   value={u.plan}
                   disabled={saving === u.id}
                   onChange={(e) => changePlan(u.id, e.target.value)}
-                  className={styles.select}
+                  className={`input ${styles.planSelect}`}
                 >
                   {PLANS.map((p) => <option key={p} value={p}>{p}</option>)}
                 </select>
               </td>
             </tr>
           ))}
-          {users.length === 0 && <tr><td colSpan={4}>Aucun utilisateur.</td></tr>}
+          {users.length === 0 && <tr><td colSpan={4} className="text-muted">Aucun utilisateur.</td></tr>}
         </tbody>
       </table>
     </div>
   );
 }
+
+const STATUS_TAG: Record<string, string> = {
+  paid: 'tag-accent',
+  pending: 'tag-neutral',
+  failed: 'tag-outline',
+};
 
 function PaymentsPanel() {
   const [payments, setPayments] = useState<Payment[]>([]);
@@ -197,7 +222,7 @@ function PaymentsPanel() {
 
   return (
     <div className={styles.tableWrap}>
-      <table className={styles.table}>
+      <table className="table">
         <thead>
           <tr><th>Date</th><th>Plan</th><th>Montant</th><th>Fournisseur</th><th>Statut</th></tr>
         </thead>
@@ -208,10 +233,10 @@ function PaymentsPanel() {
               <td>{p.plan}</td>
               <td>{fcfa(p.amount)}</td>
               <td>{p.provider}</td>
-              <td><span className={`${styles.status} ${styles['status_' + p.status]}`}>{p.status}</span></td>
+              <td><span className={`tag ${STATUS_TAG[p.status] ?? 'tag-neutral'}`}>{p.status}</span></td>
             </tr>
           ))}
-          {payments.length === 0 && <tr><td colSpan={5}>Aucun paiement enregistré.</td></tr>}
+          {payments.length === 0 && <tr><td colSpan={5} className="text-muted">Aucun paiement enregistré.</td></tr>}
         </tbody>
       </table>
     </div>
@@ -242,8 +267,8 @@ function JobsPanel() {
 
   return (
     <div>
-      <p>Le scraping s’exécute automatiquement chaque jour. Vous pouvez aussi le relancer maintenant :</p>
-      <button className={styles.primaryBtn} onClick={trigger} disabled={running}>
+      <p className="text-muted">Le scraping s’exécute automatiquement chaque jour. Vous pouvez aussi le relancer maintenant :</p>
+      <button className="btn btn-primary" onClick={trigger} disabled={running}>
         {running ? 'Scraping en cours… (jusqu’à 1 min)' : 'Relancer le scraping des offres'}
       </button>
       {result && <p className={styles.result}>{result}</p>}

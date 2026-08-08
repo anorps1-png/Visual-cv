@@ -1,128 +1,65 @@
+/*
+ * Écran /admin — bâti sur le design system Modernist (voir modernist.css).
+ * Les composants (nav, seg, table, card, tag, btn, input) viennent des classes
+ * globales Modernist. Ce module ne porte plus que la MISE EN PAGE.
+ */
+
 .container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: var(--space-6) var(--space-4) var(--space-8);
 }
 
 .center {
   max-width: 600px;
   margin: 6rem auto;
-  text-align: center;
-  color: var(--text-main);
-}
-
-.header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-.header h1 { font-size: 1.6rem; color: var(--text-main); }
-
-.link {
-  color: var(--primary);
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-.link:hover { text-decoration: underline; }
-
-.tabs {
-  display: flex;
-  gap: 0.5rem;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-.tab {
-  background: none;
-  border: none;
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  border-bottom: 2px solid transparent;
-}
-.tabActive {
-  color: var(--primary);
-  border-bottom-color: var(--primary);
-  font-weight: 600;
-}
-
-.section { color: var(--text-main); }
-
-/* Stat cards */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
-}
-.card {
-  background: var(--bg-offset);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.25rem;
+  padding: 0 var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-}
-.cardValue { font-size: 1.5rem; font-weight: 700; color: var(--text-main); }
-.cardLabel { font-size: 0.85rem; color: var(--text-muted); }
-
-/* Tables */
-.tableWrap { overflow-x: auto; }
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
-.table th, .table td {
-  text-align: left;
-  padding: 0.7rem 0.75rem;
-  border-bottom: 1px solid var(--border);
-  color: var(--text-main);
-  white-space: nowrap;
-}
-.table th { color: var(--text-muted); font-weight: 600; }
-
-.badge {
-  margin-left: 0.5rem;
-  font-size: 0.7rem;
-  padding: 0.1rem 0.4rem;
-  border-radius: 6px;
-  background: rgba(37, 99, 235, 0.12);
-  color: var(--primary);
+  align-items: flex-start; /* Modernist : tout est ferré à gauche */
+  gap: var(--space-3);
 }
 
-.select {
-  padding: 0.35rem 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--bg-main);
-  color: var(--text-main);
+/* Onglets = segmented control Modernist ; scroll horizontal sur petit écran
+   pour ne pas casser le bloc bordé. */
+.segWrap {
+  margin-bottom: var(--space-6);
+  overflow-x: auto;
 }
 
-.status {
-  font-size: 0.78rem;
-  padding: 0.15rem 0.5rem;
-  border-radius: 6px;
-  text-transform: capitalize;
+.panel {
+  min-height: 200px;
 }
-.status_paid { background: rgba(16, 185, 129, 0.15); color: var(--success); }
-.status_pending { background: rgba(234, 179, 8, 0.15); color: #b45309; }
-.status_failed { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
 
-.primaryBtn {
-  margin-top: 1rem;
-  padding: 0.7rem 1.2rem;
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 0.95rem;
+/* Cartes de statistiques : surface plate, aucune ombre (« nothing floats »). */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: var(--space-3);
 }
-.primaryBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+.statValue {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 30px;
+  line-height: 1.05;
+}
 
-.result { margin-top: 1rem; color: var(--text-main); }
-.error { color: #ef4444; }
+.tableWrap {
+  overflow-x: auto;
+}
+
+.inlineTag {
+  margin-left: var(--space-2);
+}
+
+.planSelect {
+  max-width: 200px;
+}
+
+.error {
+  color: var(--color-accent-700);
+}
+
+.result {
+  margin-top: var(--space-4);
+}

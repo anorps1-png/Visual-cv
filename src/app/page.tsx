@@ -235,7 +235,7 @@ export default function Home() {
     <main className={styles.main} style={{ paddingTop: '0' }}>
       <nav className={styles.navbar}>
         <div className={styles.navLogo} onClick={() => setActiveTab('landing')} style={{ cursor: 'pointer' }}>
-          🇨🇲 Visual CV <span className={styles.navLogoSpan}>SaaS</span>
+          🇨🇲 Visual CV <span className="tag tag-accent">SaaS</span>
         </div>
         <div className={styles.navLinks}>
           <button 
@@ -283,7 +283,7 @@ export default function Home() {
               <span className={styles.userEmail} title={session.user.email}>
                 {session.user.email}
               </span>
-              <span className={styles.navLogoSpan} style={{ backgroundColor: 'rgba(16, 185, 129, 0.1)', color: 'var(--success)' }}>
+              <span className="tag tag-neutral">
                 {userPlan}
               </span>
               <button onClick={handleLogout} className={styles.logoutBtn}>

@@ -1,97 +1,101 @@
+/*
+ * Home — chrome de l'app aligné sur le design system Modernist (modernist.css) :
+ * plat, rouge sur blanc, Archivo, filets de 2px, ferré à gauche, zéro ombre.
+ * Les sous-composants (Landing, CVBuilder, Pricing…) héritent déjà des tokens.
+ */
+
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 4rem 2rem;
+  padding: 0 0 var(--space-8);
   min-height: 100vh;
 }
 
+/* — En-tête du générateur (ferré à gauche : « do not center hero copy ») — */
 .header {
-  text-align: center;
-  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+  margin-bottom: var(--space-8);
+  padding: 0 var(--space-4);
 }
-
 .header h1 {
-  font-size: 3rem;
-  font-weight: 800;
-  color: var(--primary);
-  margin-bottom: 1rem;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: var(--font-heading-weight);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
 }
-
 .header p {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: var(--text-muted);
 }
 
+/* — Stepper : chips rectangulaires reliés par un filet 2px — */
 .stepper {
   display: flex;
   align-items: center;
-  justify-content: center;
   width: 100%;
   max-width: 600px;
-  margin-bottom: 3rem;
+  margin-bottom: var(--space-8);
+  padding: 0 var(--space-4);
 }
-
 .stepIndicator {
-  background-color: var(--bg-offset);
+  background-color: var(--color-surface);
   color: var(--text-muted);
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-  font-weight: 600;
-  border: 2px solid var(--border);
-  transition: all 0.3s ease;
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 13px;
+  border: 2px solid var(--color-divider);
+  white-space: nowrap;
 }
-
 .stepIndicator.active {
-  background-color: var(--primary);
-  color: white;
-  border-color: var(--primary);
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
 }
-
 .stepLine {
   flex-grow: 1;
   height: 2px;
-  background-color: var(--border);
-  margin: 0 1rem;
+  background-color: var(--color-divider);
+  margin: 0 var(--space-3);
 }
 
 .contentArea {
   width: 100%;
   max-width: 600px;
+  padding: 0 var(--space-4);
   animation: fadeIn 0.3s ease-out;
 }
 
+/* — Cartes d'étape : surface plate, aucune ombre (« nothing floats ») — */
 .card {
-  background: var(--bg-main);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 2rem;
+  background: var(--color-surface);
+  padding: var(--space-6);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  gap: var(--space-4);
 }
-
 .card h2 {
-  font-size: 1.5rem;
-  color: var(--text-main);
-  margin-bottom: 0.5rem;
+  font-size: 25px;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
 }
 
 .textButton {
   color: var(--text-muted);
   font-size: 0.875rem;
   text-align: left;
-  margin-top: 1rem;
+  margin-top: var(--space-3);
 }
-
 .textButton:hover {
-  color: var(--primary);
+  color: var(--color-accent);
   text-decoration: underline;
 }
 
 .generateBox {
-  margin-top: 1rem;
+  margin-top: var(--space-3);
 }
 
 @keyframes fadeIn {
@@ -99,24 +103,23 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* — Bandeau d'erreur : teinte accent, filet accent — */
 .errorBanner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(239, 68, 68, 0.1);
-  border: 1px solid var(--error);
-  color: var(--error);
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
+  background-color: var(--color-accent-100);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent-700);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
   font-size: 0.875rem;
   animation: fadeIn 0.3s ease-out;
 }
-
 .closeError {
   background: transparent;
   border: none;
-  color: var(--error);
+  color: var(--color-accent-700);
   font-size: 1.25rem;
   cursor: pointer;
   padding: 0 0.25rem;
@@ -125,203 +128,157 @@
   align-items: center;
   justify-content: center;
 }
+.closeError:hover { opacity: 0.8; }
 
-.closeError:hover {
-  opacity: 0.8;
-}
-
+/* — Sélecteurs (calqués sur .input Modernist) — */
 .selectorGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-4);
   text-align: left;
 }
-
 .selectorLabel {
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 12px;
   color: var(--text-muted);
 }
-
 .selectInput {
   width: 100%;
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background-color: var(--bg-offset);
-  color: var(--text-main);
-  font-size: 1rem;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid var(--color-divider);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 14px;
+  caret-color: var(--color-accent);
   outline: none;
   cursor: pointer;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+.selectInput:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
+.selectInput:focus-visible { border-color: var(--color-accent); }
 
-.selectInput:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
-}
-
-/* Photo Upload Box Styles */
+/* — Photo de profil — */
 .photoUploadBox {
-  margin-top: 1.5rem;
-  border-top: 1px dashed var(--border);
-  padding-top: 1.5rem;
+  margin-top: var(--space-4);
+  border-top: 2px solid var(--color-divider);
+  padding-top: var(--space-4);
   text-align: left;
 }
-
 .photoLabel {
   display: block;
-  font-weight: 600;
-  color: var(--text-main);
-  margin-bottom: 0.75rem;
-  font-size: 0.95rem;
+  font-size: 12px;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+  margin-bottom: var(--space-2);
 }
-
 .photoUploadControls {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-4);
 }
-
 .photoPreviewWrapper {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  background-color: var(--bg-offset);
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: 1px solid var(--border);
+  gap: var(--space-4);
+  background-color: var(--color-bg);
+  padding: var(--space-3);
+  border: 1px solid var(--color-divider);
   width: 100%;
 }
-
 .photoPreview {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  border-radius: 50% !important;
   object-fit: cover;
-  border: 2px solid var(--primary);
+  border: 2px solid var(--color-accent);
 }
-
 .photoRemoveBtn {
   font-size: 0.875rem;
-  color: var(--error);
+  color: var(--color-accent-700);
   font-weight: 600;
 }
-
-.photoRemoveBtn:hover {
-  text-decoration: underline;
-}
-
-.photoInputWrapper {
-  width: 100%;
-}
-
+.photoRemoveBtn:hover { text-decoration: underline; }
+.photoInputWrapper { width: 100%; }
 .photoInput {
   width: 100%;
   font-size: 0.875rem;
   color: var(--text-muted);
 }
 
-/* Tab Header and Buttons */
+/* — Onglets internes (CV / offre) — */
 .tabHeader {
   display: flex;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 1.5rem;
-  gap: 1rem;
+  border-bottom: 2px solid var(--color-divider);
+  margin-bottom: var(--space-4);
+  gap: var(--space-4);
 }
-
 .tabBtn {
-  padding: 0.75rem 1rem;
-  font-weight: 600;
-  font-size: 0.95rem;
+  padding: var(--space-2) var(--space-1);
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 14px;
   color: var(--text-muted);
   border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  transition: all 0.2s ease;
+  margin-bottom: -2px;
   cursor: pointer;
 }
-
-.tabBtn:hover {
-  color: var(--text-main);
-}
-
+.tabBtn:hover { color: var(--color-text); }
 .activeTabBtn {
-  color: var(--primary);
-  border-bottom-color: var(--primary);
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
 }
-
 .tabContent {
   width: 100%;
   animation: fadeIn 0.3s ease-out;
 }
 
-/* Styles pour la barre de navigation SaaS */
+/* — Barre de navigation — */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 1200px;
-  padding: 1.25rem 2rem;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 2rem;
-  background-color: var(--bg-main);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 2px solid var(--color-divider);
+  margin-bottom: var(--space-8);
+  background-color: var(--color-bg);
   position: sticky;
   top: 0;
   z-index: 100;
 }
-
 .navLogo {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--primary);
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: var(--font-heading-weight);
+  color: var(--color-text);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
-
-.navLogoSpan {
-  background-color: rgba(37, 99, 235, 0.1);
-  padding: 0.25rem 0.5rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
 .navLinks {
   display: flex;
-  gap: 1.5rem;
+  gap: var(--space-6);
 }
-
 .navLink {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 14px;
   color: var(--text-muted);
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  transition: all 0.2s;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
 }
-
-.navLink:hover {
-  color: var(--text-main);
-  background-color: var(--secondary);
-}
-
-.navLinkActive {
-  color: var(--primary);
-  background-color: rgba(37, 99, 235, 0.08);
-}
+.navLink:hover { color: var(--color-text); }
+.navLinkActive { color: var(--color-accent); }
 
 .userSection {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-3);
 }
-
 .userEmail {
   font-size: 0.875rem;
   color: var(--text-muted);
@@ -331,49 +288,39 @@
   white-space: nowrap;
 }
 
+/* — Boutons de la nav (calqués sur .btn Modernist) — */
 .loginBtn {
-  background-color: var(--primary);
-  color: #ffffff;
-  padding: 0.5rem 1.25rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
-  transition: background-color 0.2s;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  padding: var(--space-2) calc(var(--space-3) * 1.2);
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 14px;
 }
-
-.loginBtn:hover {
-  background-color: var(--primary-hover);
-}
+.loginBtn:hover { background-color: var(--color-accent-600); }
+.loginBtn:active { background-color: var(--color-accent-700); }
 
 .logoutBtn {
-  border: 1px solid var(--border);
-  color: var(--text-main);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
+  border: 1px solid var(--color-divider);
+  color: var(--color-text);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 14px;
 }
-
-.logoutBtn:hover {
-  background-color: var(--secondary);
-}
+.logoutBtn:hover { background-color: color-mix(in srgb, var(--color-text) 7%, transparent); }
 
 .themeToggleBtn {
-  border: 1px solid var(--border);
+  border: 1px solid var(--color-divider);
   color: var(--text-muted);
-  padding: 0.5rem;
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
   cursor: pointer;
 }
-
 .themeToggleBtn:hover {
-  background-color: var(--secondary);
-  color: var(--text-main);
-  border-color: var(--text-muted);
+  background-color: color-mix(in srgb, var(--color-text) 7%, transparent);
+  color: var(--color-text);
 }
