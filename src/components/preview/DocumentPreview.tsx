@@ -51,11 +51,17 @@ interface DocumentPreviewProps {
   signatureUrl: string | null;
   setSignatureUrl: (url: string | null) => void;
   userPlan?: string;
+  initialTemplate?: string;
 }
 
-export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signatureUrl, setSignatureUrl, userPlan = 'Gratuit' }: DocumentPreviewProps) {
+type CvTemplate = 'standard' | 'sidebar' | 'bandeau' | 'monogramme' | 'international';
+const CV_TEMPLATES: CvTemplate[] = ['standard', 'sidebar', 'bandeau', 'monogramme', 'international'];
+
+export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signatureUrl, setSignatureUrl, userPlan = 'Gratuit', initialTemplate }: DocumentPreviewProps) {
   const [activeTab, setActiveTab] = useState<'cv' | 'letter' | 'email'>('cv');
-  const [cvTemplate, setCvTemplate] = useState<'standard' | 'sidebar' | 'bandeau' | 'monogramme' | 'international'>('standard');
+  const [cvTemplate, setCvTemplate] = useState<CvTemplate>(
+    (CV_TEMPLATES as string[]).includes(initialTemplate || '') ? (initialTemplate as CvTemplate) : 'standard'
+  );
   const isPremium = userPlan === 'Étudiant' || userPlan === 'Professionnel';
   const [cvData, setCvData] = useState<GeneratedData>({
     ...data,
@@ -204,7 +210,7 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
     setIsCvLoading(true);
     try {
       const { pdf } = await import('@react-pdf/renderer');
-      const blob = await pdf(<ATSPdfDocument data={cvData} photoUrl={photoUrl} />).toBlob();
+      const blob = await pdf(<ATSPdfDocument data={cvData} photoUrl={photoUrl} template={cvTemplate} />).toBlob();
       
       if ('showSaveFilePicker' in window) {
         // @ts-ignore

@@ -40,6 +40,8 @@ export default function Home() {
   const [jdMode, setJdMode] = useState<'search' | 'paste'>('search');
   const [cvMode, setCvMode] = useState<'upload' | 'build'>('upload');
   const [loadedJobMeta, setLoadedJobMeta] = useState<{ jobTitle: string; companyName: string } | null>(null);
+  // Gabarit choisi depuis l'écran Modèles Pro, présélectionné à l'étape résultat.
+  const [selectedTemplate, setSelectedTemplate] = useState<string>('standard');
 
   // Charge le plan RÉEL depuis le serveur : source de vérité, survit au refresh.
   const refreshPlan = async () => {
@@ -492,12 +494,13 @@ export default function Home() {
             )}
 
             {step === 4 && generatedData && (
-              <DocumentPreview 
-                data={generatedData} 
+              <DocumentPreview
+                data={generatedData}
                 photoUrl={photoUrl}
                 signatureUrl={signatureUrl}
                 setSignatureUrl={setSignatureUrl}
                 userPlan={userPlan}
+                initialTemplate={selectedTemplate}
                 onReset={() => {
                   setStep(1);
                   setCvFile(null);
@@ -530,7 +533,7 @@ export default function Home() {
           <ProTemplates
             userPlan={userPlan}
             onViewPricing={() => setActiveTab('pricing')}
-            onUse={() => { setStep(1); setActiveTab('generator'); }}
+            onUse={(id) => { setSelectedTemplate(id); setStep(1); setActiveTab('generator'); }}
           />
         </section>
       )}

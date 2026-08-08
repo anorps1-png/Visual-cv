@@ -157,10 +157,10 @@ function InternationalCV() {
 }
 
 const TEMPLATES = [
-  { id: 'executive-sidebar', name: 'Exécutif — Sidebar', desc: 'Bandeau latéral sombre, contact et compétences à gauche.', Preview: SidebarCV },
-  { id: 'executive-banner', name: 'Exécutif — Bandeau', desc: 'En-tête pleine largeur, corps sur deux colonnes.', Preview: BandeauCV },
-  { id: 'executive-monogram', name: 'Exécutif — Monogramme', desc: 'En-tête centré, monogramme et double filet.', Preview: MonogrammeCV },
-  { id: 'executive-international', name: 'Exécutif — International', desc: 'Emplacement logo, compétences et langues.', Preview: InternationalCV },
+  { id: 'sidebar', name: 'Exécutif — Sidebar', desc: 'Bandeau latéral sombre, contact et compétences à gauche.', Preview: SidebarCV },
+  { id: 'bandeau', name: 'Exécutif — Bandeau', desc: 'En-tête pleine largeur, corps sur deux colonnes.', Preview: BandeauCV },
+  { id: 'monogramme', name: 'Exécutif — Monogramme', desc: 'En-tête centré, monogramme et double filet.', Preview: MonogrammeCV },
+  { id: 'international', name: 'Exécutif — International', desc: 'Emplacement logo, compétences et langues.', Preview: InternationalCV },
 ];
 
 export function ProTemplates({ userPlan, onViewPricing, onUse }: ProTemplatesProps) {
