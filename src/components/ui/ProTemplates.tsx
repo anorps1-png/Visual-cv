@@ -6,6 +6,7 @@ import styles from './ProTemplates.module.css';
 interface ProTemplatesProps {
   userPlan: string;
   onViewPricing: () => void;
+  onUse: (templateId: string) => void;
 }
 
 /**
@@ -162,7 +163,7 @@ const TEMPLATES = [
   { id: 'executive-international', name: 'Exécutif — International', desc: 'Emplacement logo, compétences et langues.', Preview: InternationalCV },
 ];
 
-export function ProTemplates({ userPlan, onViewPricing }: ProTemplatesProps) {
+export function ProTemplates({ userPlan, onViewPricing, onUse }: ProTemplatesProps) {
   const isPro = userPlan === 'Professionnel';
 
   return (
@@ -198,7 +199,7 @@ export function ProTemplates({ userPlan, onViewPricing }: ProTemplatesProps) {
               </div>
               <button
                 className="btn btn-primary"
-                onClick={isPro ? undefined : onViewPricing}
+                onClick={() => (isPro ? onUse(id) : onViewPricing())}
               >
                 {isPro ? 'Utiliser' : 'Débloquer'}
               </button>

@@ -527,7 +527,11 @@ export default function Home() {
 
       {activeTab === 'templates' && (
         <section style={{ width: '100%', maxWidth: '1200px', padding: '0 2rem' }}>
-          <ProTemplates userPlan={userPlan} onViewPricing={() => setActiveTab('pricing')} />
+          <ProTemplates
+            userPlan={userPlan}
+            onViewPricing={() => setActiveTab('pricing')}
+            onUse={() => { setStep(1); setActiveTab('generator'); }}
+          />
         </section>
       )}
 
