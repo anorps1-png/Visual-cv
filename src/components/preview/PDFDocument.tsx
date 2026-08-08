@@ -263,7 +263,7 @@ const bodyLight = StyleSheet.create({
 const tpl = StyleSheet.create({
   sbPage: { backgroundColor: '#fff', fontFamily: EXEC_FONT, flexDirection: 'row' },
   sbBar: { position: 'absolute', top: 0, left: 0, bottom: 0, width: '34%', backgroundColor: INK_DARK },
-  sbSide: { width: '34%', paddingVertical: 28, paddingHorizontal: 16 },
+  sbSide: { width: '34%', paddingVertical: 28, paddingHorizontal: 16, backgroundColor: INK_DARK },
   sbMain: { width: '66%', paddingVertical: 28, paddingHorizontal: 22 },
   sbPhoto: { width: 74, height: 86, objectFit: 'cover', marginBottom: 12, alignSelf: 'center' },
   sbName: { fontSize: 20, fontFamily: EXEC_BOLD, color: INK, textTransform: 'uppercase' },
@@ -358,7 +358,7 @@ const NAVY = '#25374d';
 const navy = StyleSheet.create({
   page: { backgroundColor: '#ffffff', fontFamily: EXEC_FONT, flexDirection: 'row' },
   bar: { position: 'absolute', top: 0, left: 0, bottom: 0, width: '35%', backgroundColor: NAVY },
-  side: { width: '35%', paddingVertical: 22, paddingHorizontal: 16 },
+  side: { width: '35%', paddingVertical: 22, paddingHorizontal: 16, backgroundColor: NAVY },
   main: { width: '65%', paddingVertical: 28, paddingHorizontal: 24 },
   photo: { width: '100%', height: 128, objectFit: 'cover', marginBottom: 16 },
   sideHeading: { fontSize: 10, fontFamily: EXEC_BOLD, color: '#ffffff', textTransform: 'uppercase', letterSpacing: 2, textAlign: 'center', marginTop: 10, marginBottom: 6 },
