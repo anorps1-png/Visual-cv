@@ -282,7 +282,10 @@ const tpl = StyleSheet.create({
   colR: { width: '32%' },
 
   sbPage: { backgroundColor: '#fff', fontFamily: EXEC_FONT, flexDirection: 'row' },
-  sbSide: { width: '34%', backgroundColor: INK_DARK, paddingVertical: 28, paddingHorizontal: 16 },
+  // Calque de fond pleine hauteur (répété sur chaque page via `fixed`), pour que
+  // la colonne sombre descende toujours jusqu'en bas, même sur un CV court.
+  sbBar: { position: 'absolute', top: 0, left: 0, bottom: 0, width: '34%', backgroundColor: INK_DARK },
+  sbSide: { width: '34%', paddingVertical: 28, paddingHorizontal: 16 },
   sbMain: { width: '66%', paddingVertical: 28, paddingHorizontal: 22 },
   sbPhoto: { width: 74, height: 86, objectFit: 'cover', marginBottom: 12, alignSelf: 'center' },
   sbName: { fontSize: 20, fontFamily: EXEC_BOLD, color: INK, textTransform: 'uppercase' },
@@ -368,6 +371,7 @@ const ExecSidebar = ({ data, photoUrl }: { data: any; photoUrl?: string | null }
   return (
     <Document>
       <Page size="A4" style={tpl.sbPage}>
+        <View fixed style={tpl.sbBar} />
         <View style={tpl.sbSide}>
           {photoUrl ? <Image src={photoUrl} style={tpl.sbPhoto} /> : null}
           {contacts.length ? (
