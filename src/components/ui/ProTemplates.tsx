@@ -10,15 +10,60 @@ interface ProTemplatesProps {
 }
 
 /**
- * Modèles Pro — 4 modèles de CV « exécutif », réservés au plan Professionnel.
- * Les aperçus sont rendus en ENCRE uniquement (noir/gris, aucune couleur
- * d'accent) : un vrai CV doit rester neutre pour un recruteur. Le bordeaux est
- * réservé au chrome de l'app (titres de cartes, bouton « Utiliser »).
+ * Modèles Pro — présente les 3 modèles de CV : Standard (gratuit), Modern et
+ * Executive (réservés au plan Professionnel). Les aperçus sont rendus en ENCRE
+ * uniquement (noir/gris) : un vrai CV doit rester neutre pour un recruteur.
  */
 
-/* — Aperçus (contenu illustratif : remplacé au runtime par le CV réel) — */
+const EXPERIENCE = [
+  ['Directeur Financier', 'Kaelis Group · 2019—2024'],
+  ['Contrôleur de gestion', 'Meridian SA · 2015—2019'],
+  ['Analyste financier', 'Atlas Bank · 2012—2015'],
+];
 
-function SidebarCV() {
+function Entries({ items }: { items: string[][] }) {
+  return (
+    <>
+      {items.map(([t, m]) => (
+        <div className={styles.entry} key={t}>
+          <div className={styles.entryTitle}>{t}</div>
+          <div className={styles.entryMeta}>{m}</div>
+          <div className={styles.line} />
+          <div className={styles.lineShort} />
+        </div>
+      ))}
+    </>
+  );
+}
+
+/* Standard : deux colonnes claires. */
+function StandardCV() {
+  return (
+    <div className={`${styles.cv} ${styles.cvSidebar}`}>
+      <aside className={styles.sideLight}>
+        <div className={styles.stdPhoto} />
+        <div className={styles.sideLabelDark}>Contact</div>
+        <span>Yaoundé</span>
+        <span>a.obama@mail.co</span>
+        <span>+237 6 00 00 00</span>
+        <div className={styles.sideLabelDark}>Compétences</div>
+        <span>Contrôle de gestion</span>
+        <span>Consolidation IFRS</span>
+        <span>Trésorerie</span>
+        <span>Audit</span>
+      </aside>
+      <div className={styles.main}>
+        <div className={styles.stdName}>AYISSI OBAMA</div>
+        <div className={styles.stdRole}>Directeur Administratif &amp; Financier</div>
+        <div className={styles.secLabel}>Expérience</div>
+        <Entries items={EXPERIENCE} />
+      </div>
+    </div>
+  );
+}
+
+/* Modern : bandeau latéral sombre. */
+function ModernCV() {
   return (
     <div className={`${styles.cv} ${styles.cvSidebar}`}>
       <aside className={styles.side}>
@@ -41,60 +86,14 @@ function SidebarCV() {
       </aside>
       <div className={styles.main}>
         <div className={styles.secLabel}>Expérience</div>
-        {[
-          ['Directeur Financier', 'Kaelis Group · 2019—2024'],
-          ['Contrôleur de gestion', 'Meridian SA · 2015—2019'],
-          ['Analyste financier', 'Atlas Bank · 2012—2015'],
-        ].map(([t, m]) => (
-          <div className={styles.entry} key={t}>
-            <div className={styles.entryTitle}>{t}</div>
-            <div className={styles.entryMeta}>{m}</div>
-            <div className={styles.line} />
-            <div className={styles.lineShort} />
-          </div>
-        ))}
+        <Entries items={EXPERIENCE} />
       </div>
     </div>
   );
 }
 
-function BandeauCV() {
-  return (
-    <div className={`${styles.cv} ${styles.cvBandeau}`}>
-      <header className={styles.band}>
-        <div className={styles.bandName}>AYISSI OBAMA</div>
-        <div className={styles.bandRole}>Directeur Administratif &amp; Financier</div>
-        <div className={styles.bandContact}>Yaoundé · a.obama@mail.co · +237 6 00 00 00</div>
-      </header>
-      <div className={styles.cols2}>
-        <div>
-          <div className={styles.secLabel}>Expérience</div>
-          {[
-            ['Directeur Financier', 'Kaelis Group · 2019—2024'],
-            ['Contrôleur de gestion', 'Meridian SA · 2015—2019'],
-          ].map(([t, m]) => (
-            <div className={styles.entry} key={t}>
-              <div className={styles.entryTitle}>{t}</div>
-              <div className={styles.entryMeta}>{m}</div>
-              <div className={styles.line} />
-              <div className={styles.lineShort} />
-            </div>
-          ))}
-        </div>
-        <div className={styles.colRight}>
-          <div className={styles.secLabel}>Compétences clés</div>
-          <span>Consolidation IFRS</span>
-          <span>Contrôle de gestion</span>
-          <span>Trésorerie &amp; risques</span>
-          <span>Reporting &amp; audit</span>
-          <span>Management d’équipe</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function MonogrammeCV() {
+/* Executive : en-tête centré, double filet, style lettre. */
+function ExecutiveCV() {
   return (
     <div className={`${styles.cv} ${styles.cvMono}`}>
       <div className={styles.monogram}>AO</div>
@@ -102,65 +101,15 @@ function MonogrammeCV() {
       <div className={styles.monoRole}>Directeur Administratif &amp; Financier</div>
       <div className={styles.doubleRule}><span /><span /></div>
       <div className={styles.secLabel}>Expérience</div>
-      {[
-        ['Directeur Financier', 'Kaelis Group · 2019—2024'],
-        ['Contrôleur de gestion', 'Meridian SA · 2015—2019'],
-        ['Analyste financier', 'Atlas Bank · 2012—2015'],
-      ].map(([t, m]) => (
-        <div className={styles.entry} key={t}>
-          <div className={styles.entryTitle}>{t}</div>
-          <div className={styles.entryMeta}>{m}</div>
-          <div className={styles.line} />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function InternationalCV() {
-  return (
-    <div className={`${styles.cv} ${styles.cvIntl}`}>
-      <header className={styles.intlHead}>
-        <div>
-          <div className={styles.intlName}>AYISSI OBAMA</div>
-          <div className={styles.intlRole}>Chief Financial Officer</div>
-        </div>
-        <div className={styles.logoSquare} aria-hidden />
-      </header>
-      <div className={styles.doubleRule}><span /><span /></div>
-      <div className={styles.cols2}>
-        <div className={styles.colRight}>
-          <div className={styles.secLabel}>Compétences</div>
-          <span>IFRS · US GAAP</span>
-          <span>M&amp;A · Due diligence</span>
-          <div className={styles.secLabel} style={{ marginTop: 8 }}>Langues</div>
-          <span>Français — natif</span>
-          <span>Anglais — courant</span>
-        </div>
-        <div>
-          <div className={styles.secLabel}>Expérience</div>
-          {[
-            ['CFO', 'Kaelis Group · 2019—2024'],
-            ['Finance Manager', 'Meridian SA · 2015—2019'],
-          ].map(([t, m]) => (
-            <div className={styles.entry} key={t}>
-              <div className={styles.entryTitle}>{t}</div>
-              <div className={styles.entryMeta}>{m}</div>
-              <div className={styles.line} />
-              <div className={styles.lineShort} />
-            </div>
-          ))}
-        </div>
-      </div>
+      <Entries items={EXPERIENCE} />
     </div>
   );
 }
 
 const TEMPLATES = [
-  { id: 'sidebar', name: 'Exécutif — Sidebar', desc: 'Bandeau latéral sombre, contact et compétences à gauche.', Preview: SidebarCV },
-  { id: 'bandeau', name: 'Exécutif — Bandeau', desc: 'En-tête pleine largeur, corps sur deux colonnes.', Preview: BandeauCV },
-  { id: 'monogramme', name: 'Exécutif — Monogramme', desc: 'En-tête centré, monogramme et double filet.', Preview: MonogrammeCV },
-  { id: 'international', name: 'Exécutif — International', desc: 'Emplacement logo, compétences et langues.', Preview: InternationalCV },
+  { id: 'standard', name: 'Standard', desc: 'Deux colonnes, sobre et parfaitement lisible par les ATS.', pro: false, Preview: StandardCV },
+  { id: 'modern', name: 'Modern', desc: 'Bandeau latéral sombre : contact et compétences à gauche.', pro: true, Preview: ModernCV },
+  { id: 'executive', name: 'Executive', desc: 'En-tête centré, double filet, style lettre de direction.', pro: true, Preview: ExecutiveCV },
 ];
 
 export function ProTemplates({ userPlan, onViewPricing, onUse }: ProTemplatesProps) {
@@ -170,42 +119,45 @@ export function ProTemplates({ userPlan, onViewPricing, onUse }: ProTemplatesPro
     <div className={styles.wrap}>
       <div className={styles.head}>
         <div>
-          <span className="tag tag-accent">Réservé au plan Professionnel</span>
+          <span className="tag tag-accent">Modern &amp; Executive réservés au plan Professionnel</span>
           <h2 className={styles.title}>Modèles Pro</h2>
           <p className="text-muted">
-            Quatre mises en page « exécutif » pour vos candidatures de direction.
-            Le contenu ci-dessous est illustratif — votre CV réel les remplira.
+            Trois mises en page pour vos candidatures. Le contenu ci-dessous est
+            illustratif — votre CV réel les remplira.
           </p>
         </div>
       </div>
 
       {!isPro && (
         <div className={styles.notice}>
-          <span>Ces modèles sont réservés au plan Professionnel.</span>
+          <span>Les modèles Modern et Executive sont réservés au plan Professionnel.</span>
           <button className="btn btn-primary" onClick={onViewPricing}>Voir les tarifs</button>
         </div>
       )}
 
       <div className={styles.grid}>
-        {TEMPLATES.map(({ id, name, desc, Preview }) => (
-          <div className={styles.card} key={id}>
-            <div className={styles.paper}>
-              <Preview />
-            </div>
-            <div className={styles.footer}>
-              <div>
-                <div className={styles.tName}>{name}</div>
-                <div className={styles.tDesc}>{desc}</div>
+        {TEMPLATES.map(({ id, name, desc, pro, Preview }) => {
+          const locked = pro && !isPro;
+          return (
+            <div className={styles.card} key={id}>
+              <div className={styles.paper}>
+                <Preview />
               </div>
-              <button
-                className="btn btn-primary"
-                onClick={() => (isPro ? onUse(id) : onViewPricing())}
-              >
-                {isPro ? 'Utiliser' : 'Débloquer'}
-              </button>
+              <div className={styles.footer}>
+                <div>
+                  <div className={styles.tName}>{name}{!pro && <span className={`tag tag-neutral ${styles.freeTag}`}>Gratuit</span>}</div>
+                  <div className={styles.tDesc}>{desc}</div>
+                </div>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => (locked ? onViewPricing() : onUse(id))}
+                >
+                  {locked ? 'Débloquer' : 'Utiliser'}
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

@@ -54,8 +54,8 @@ interface DocumentPreviewProps {
   initialTemplate?: string;
 }
 
-type CvTemplate = 'standard' | 'sidebar' | 'bandeau' | 'monogramme' | 'international';
-const CV_TEMPLATES: CvTemplate[] = ['standard', 'sidebar', 'bandeau', 'monogramme', 'international'];
+type CvTemplate = 'standard' | 'modern' | 'executive';
+const CV_TEMPLATES: CvTemplate[] = ['standard', 'modern', 'executive'];
 
 export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signatureUrl, setSignatureUrl, userPlan = 'Gratuit', initialTemplate }: DocumentPreviewProps) {
   const [activeTab, setActiveTab] = useState<'cv' | 'letter' | 'email'>('cv');
@@ -210,7 +210,7 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
     setIsCvLoading(true);
     try {
       const { pdf } = await import('@react-pdf/renderer');
-      const blob = await pdf(<ATSPdfDocument data={cvData} photoUrl={photoUrl} template={cvTemplate} />).toBlob();
+      const blob = await pdf(<ATSPdfDocument data={cvData} photoUrl={photoUrl} />).toBlob();
       
       if ('showSaveFilePicker' in window) {
         // @ts-ignore
@@ -496,10 +496,8 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
             <div className={styles.templateSelector}>
               {([
                 ['standard', 'Standard', false],
-                ['sidebar', 'Exécutif — Sidebar', true],
-                ['bandeau', 'Exécutif — Bandeau', true],
-                ['monogramme', 'Exécutif — Monogramme', true],
-                ['international', 'Exécutif — International', true],
+                ['modern', 'Modern', true],
+                ['executive', 'Executive', true],
               ] as const).map(([id, label, pro]) => (
                 <button
                   key={id}
@@ -518,10 +516,8 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
             )}
 
             <div className={
-              cvTemplate === 'sidebar' ? styles.cvLayoutSidebar :
-              cvTemplate === 'bandeau' ? styles.cvLayoutBandeau :
-              cvTemplate === 'monogramme' ? styles.cvLayoutMonogramme :
-              cvTemplate === 'international' ? styles.cvLayoutInternational :
+              cvTemplate === 'modern' ? styles.cvLayoutModern :
+              cvTemplate === 'executive' ? styles.cvLayoutExecutive :
               styles.cvLayout
             }>
               {/* Sidebar */}

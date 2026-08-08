@@ -302,60 +302,6 @@
   text-align: left;
 }
 
-/* ── Modèles Pro (remplacent Modern/Executive) ──
-   Contenu du CV en ENCRE uniquement : le bordeaux reste au chrome de l'app. */
-
-/* Exécutif — Sidebar : bandeau latéral encre. */
-.cvLayoutSidebar { display: grid; grid-template-columns: 300px 1fr; gap: 0; background: #fff; }
-.cvLayoutSidebar .cvSidebar {
-  background: #2d2b2b; color: #f3f2f2; border-right: 0; padding: var(--space-6);
-}
-.cvLayoutSidebar .cvSidebar .cvSection h3 { color: #f3f2f2; border-bottom-color: rgba(243, 242, 242, 0.25); }
-.cvLayoutSidebar .sidebarInput,
-.cvLayoutSidebar .sidebarListItemInput,
-.cvLayoutSidebar .sidebarTextarea { color: #f3f2f2; }
-.cvLayoutSidebar .sidebarEditGroup label { color: #bab6b6; }
-.cvLayoutSidebar .cvMain { padding: var(--space-6); }
-.cvLayoutSidebar .cvMain .cvSection h3 { color: #201e1d; border-bottom-color: var(--color-divider); }
-.cvLayoutSidebar .cvHeader { border-bottom-color: #201e1d; }
-.cvLayoutSidebar .cvHeader h2, .cvLayoutSidebar .titleInput { color: #605d5d; }
-
-/* Exécutif — Bandeau : en-tête pleine largeur encre, puis corps et infos. */
-.cvLayoutBandeau { display: flex; flex-direction: column; gap: var(--space-4); background: #fff; }
-.cvLayoutBandeau .cvMain { order: 1; width: 100%; }
-.cvLayoutBandeau .cvSidebar {
-  order: 2; width: 100%; border-right: 0; border-top: 2px solid var(--color-divider);
-  padding: var(--space-4) 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);
-}
-.cvLayoutBandeau .cvHeader {
-  background: #2d2b2b; padding: var(--space-4); border-bottom: 0; margin-bottom: var(--space-4);
-}
-.cvLayoutBandeau .cvHeader h1, .cvLayoutBandeau .nameInput { color: #f3f2f2; }
-.cvLayoutBandeau .cvHeader h2, .cvLayoutBandeau .titleInput { color: #d7d3d3; }
-.cvLayoutBandeau .cvMain .cvSection h3 { color: #201e1d; border-bottom-color: var(--color-divider); }
-
-/* Exécutif — Monogramme : en-tête centré, double filet. */
-.cvLayoutMonogramme { display: flex; flex-direction: column; gap: var(--space-4); background: #fff; }
-.cvLayoutMonogramme .cvMain { order: 1; width: 100%; text-align: center; }
-.cvLayoutMonogramme .cvSidebar {
-  order: 2; width: 100%; border-right: 0; border-top: 2px solid var(--color-divider);
-  padding: var(--space-4) 0 0; text-align: center;
-}
-.cvLayoutMonogramme .cvHeader { text-align: center; border-bottom: 3px double #201e1d; padding-bottom: var(--space-4); }
-.cvLayoutMonogramme .nameInput { text-align: center; text-transform: uppercase; letter-spacing: 2px; }
-.cvLayoutMonogramme .titleInput { text-align: center; color: #605d5d; font-style: italic; }
-.cvLayoutMonogramme .cvMain .cvSection h3 { text-align: center; color: #201e1d; border-bottom-color: var(--color-divider); }
-
-/* Exécutif — International : deux colonnes, carré logo, double filet. */
-.cvLayoutInternational { display: flex; gap: 2rem; background: #fff; }
-.cvLayoutInternational .cvHeader { position: relative; border-bottom: 3px double #201e1d; padding-right: 56px; }
-.cvLayoutInternational .cvHeader::after {
-  content: ''; position: absolute; top: 0; right: 0; width: 44px; height: 44px;
-  background: var(--color-neutral-200); border: 1px solid var(--color-divider);
-}
-.cvLayoutInternational .cvMain .cvSection h3 { color: #201e1d; border-bottom-color: var(--color-divider); }
-.cvLayoutInternational .cvHeader h2, .cvLayoutInternational .titleInput { color: #605d5d; }
-
 .cvSidebar {
   width: 35%;
   border-right: 1px solid var(--border);
