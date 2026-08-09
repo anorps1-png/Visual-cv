@@ -511,9 +511,9 @@ const ExecutiveDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null 
               <View style={navy.headingRule} />
               {edu.map((e: any, i: number) => (
                 <View key={i} style={navy.formationBlock}>
-                  {e.dates ? <Text style={navy.formationDate}>{e.dates}</Text> : null}
                   {e.degree ? <Text style={navy.formationDegree}>{e.degree}</Text> : null}
                   {e.institution ? <Text style={navy.formationSchool}>{e.institution}</Text> : null}
+                  {e.dates ? <Text style={navy.formationDate}>{e.dates}</Text> : null}
                 </View>
               ))}
             </View>
@@ -606,9 +606,9 @@ export const ATSPdfDocument = ({ data, photoUrl, template = 'standard' }: ATSPdf
                 <Text style={styles.sectionHeading}>Formation</Text>
                 {education.map((edu: any, index: number) => (
                   <View key={index} style={styles.educationItem}>
-                    {edu.dates ? <Text style={styles.institutionDate}>{edu.dates}</Text> : null}
                     {edu.degree ? <Text style={styles.degree}>{edu.degree}</Text> : null}
                     {edu.institution ? <Text style={styles.institutionName}>{edu.institution}</Text> : null}
+                    {edu.dates ? <Text style={styles.institutionDate}>{edu.dates}</Text> : null}
                     {edu.description ? (
                       <Text style={styles.summaryText}>{edu.description}</Text>
                     ) : null}
