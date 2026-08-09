@@ -676,7 +676,7 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
                         <div className={styles.bulletsList}>
                           {exp.bullet_points.map((bp, i) => (
                             <div key={i} className={styles.bulletItem}>
-                              <span className={styles.bulletMarker}>•</span>
+                              <span className={styles.bulletMarker}>–</span>
                               <textarea 
                                 value={bp} 
                                 onChange={(e) => updateExperienceBullet(idx, i, e.target.value)} 

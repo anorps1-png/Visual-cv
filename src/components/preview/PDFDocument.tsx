@@ -291,6 +291,12 @@ const modern = StyleSheet.create({
   compName: { fontSize: 8.5, color: '#374151', textTransform: 'uppercase', width: '52%' },
   compTrack: { flex: 1, height: 4, backgroundColor: '#d1d5db' },
   compFill: { height: 4, backgroundColor: '#6b7280', width: '80%' },
+  skillRow: { flexDirection: 'row', marginBottom: 3.5 },
+  skillDash: { width: 9, fontSize: 8.5, color: MINK },
+  skillText: { flex: 1, fontSize: 8.5, color: '#374151', lineHeight: 1.4 },
+  bulletRow: { flexDirection: 'row', marginBottom: 2.5 },
+  bulletDash: { width: 10, fontSize: 9, color: MINK },
+  bulletText: { flex: 1, fontSize: 9, color: '#374151', lineHeight: 1.45, textAlign: 'justify' },
 });
 
 const ModernDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null }) => {
@@ -342,16 +348,22 @@ const ModernDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null }) 
               </View>
             ) : null}
 
-            {edu.length ? (
+            {skills.length ? (
               <View>
                 <View style={modern.rule} />
-                <View style={modern.lHeadRow}><Text style={modern.lHead}>Formation</Text><View style={modern.lHeadRule} /></View>
-                {edu.map((e: any, i: number) => (
-                  <View key={i} style={modern.eduItem}>
-                    {e.degree ? <Text style={modern.eduDegree}>{e.degree}</Text> : null}
-                    {e.institution ? <Text style={modern.eduSchool}>{e.institution}</Text> : null}
-                    {e.dates ? <Text style={modern.eduDate}>{e.dates}</Text> : null}
-                  </View>
+                <View style={modern.lHeadRow}><Text style={modern.lHead}>Compétences</Text><View style={modern.lHeadRule} /></View>
+                {skills.map((s: string, i: number) => (
+                  <View key={i} style={modern.skillRow}><Text style={modern.skillDash}>–</Text><Text style={modern.skillText}>{s}</Text></View>
+                ))}
+              </View>
+            ) : null}
+
+            {(data.languages || []).length ? (
+              <View>
+                <View style={modern.rule} />
+                <View style={modern.lHeadRow}><Text style={modern.lHead}>Langues</Text><View style={modern.lHeadRule} /></View>
+                {(data.languages || []).map((l: string, i: number) => (
+                  <View key={i} style={modern.skillRow}><Text style={modern.skillDash}>–</Text><Text style={modern.skillText}>{l}</Text></View>
                 ))}
               </View>
             ) : null}
@@ -366,25 +378,24 @@ const ModernDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null }) 
                   <View key={i} style={modern.expItem}>
                     <Text style={modern.expTitle}>{[exp.title, exp.dates].filter(Boolean).join('   |   ')}</Text>
                     {exp.company ? <Text style={modern.expCompany}>{exp.company}</Text> : null}
-                    {(exp.bullet_points || []).length ? (
-                      <Text style={modern.expDesc}>{(exp.bullet_points || []).join(' ')}</Text>
-                    ) : null}
+                    {(exp.bullet_points || []).map((bp: string, j: number) => (
+                      <View key={j} style={modern.bulletRow}><Text style={modern.bulletDash}>–</Text><Text style={modern.bulletText}>{bp}</Text></View>
+                    ))}
                   </View>
                 ))}
               </View>
             ) : null}
 
-            {skills.length ? (
+            {edu.length ? (
               <View>
-                <View style={modern.rHeadWrap}><Text style={modern.rHead}>Compétences</Text></View>
-                <View style={modern.compGrid}>
-                  {skills.map((s: string, i: number) => (
-                    <View key={i} style={modern.compRow}>
-                      <Text style={modern.compName}>{s}</Text>
-                      <View style={modern.compTrack}><View style={modern.compFill} /></View>
-                    </View>
-                  ))}
-                </View>
+                <View style={modern.rHeadWrap}><Text style={modern.rHead}>Formation</Text></View>
+                {edu.map((e: any, i: number) => (
+                  <View key={i} style={modern.eduItem}>
+                    {e.degree ? <Text style={modern.eduDegree}>{e.degree}</Text> : null}
+                    {e.institution ? <Text style={modern.eduSchool}>{e.institution}</Text> : null}
+                    {e.dates ? <Text style={modern.eduDate}>{e.dates}</Text> : null}
+                  </View>
+                ))}
               </View>
             ) : null}
           </View>
