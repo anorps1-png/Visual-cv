@@ -37,4 +37,9 @@ describe('PDF templates route distinctly', () => {
     const t = (await pdfText('standard')).replace(/\s+/g, '');
     expect(t).not.toContain('PHOTO');
   });
-}, 30000);
+
+  it('modern renders (centered header + À propos + compétences)', async () => {
+    const t = (await pdfText('modern')).replace(/\s+/g, '');
+    expect(t).toContain('PROPOS');   // « À PROPOS DE MOI » propre au gabarit modern
+  });
+}, 40000);

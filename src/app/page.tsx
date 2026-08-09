@@ -299,7 +299,7 @@ export default function Home() {
 
           <section 
             className={styles.contentArea} 
-            style={{ maxWidth: step === 2 && jdMode === 'search' ? '850px' : '600px', width: '100%', transition: 'max-width 0.3s ease' }}
+            style={{ maxWidth: step === 4 ? '1180px' : step === 2 && jdMode === 'search' ? '850px' : '600px', width: '100%', transition: 'max-width 0.3s ease' }}
           >
             {errorMsg && (
               <div className={styles.errorBanner}>
