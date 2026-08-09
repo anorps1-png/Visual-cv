@@ -894,5 +894,137 @@
   margin-bottom: 0.5rem;
 }
 
+/* ═════════ Aperçu éditable = structure des PDF (3 gabarits) ═════════ */
+.tplStandard, .tplModern, .tplExec {
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  color: #1f2937;
+  background: #fff;
+  text-align: left;
+  line-height: 1.5;
+}
+.tplStandard input, .tplStandard textarea,
+.tplModern input, .tplModern textarea,
+.tplExec input, .tplExec textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  padding: 2px;
+  margin: 0;
+  resize: vertical;
+  line-height: 1.5;
+}
+.tplStandard input:focus, .tplStandard textarea:focus,
+.tplModern input:focus, .tplModern textarea:focus,
+.tplExec input:focus, .tplExec textarea:focus {
+  outline: 1px solid rgba(109, 20, 36, 0.35);
+  background: rgba(0, 0, 0, 0.02);
+}
+.tplExec .exLeft input:focus, .tplExec .exLeft textarea:focus {
+  outline-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Sections & titres génériques */
+.pvSection { margin-bottom: 1.25rem; }
+.pvHeading {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  color: #1f2937;
+}
+.pvContact { font-size: 0.85rem; }
+.pvContactRow { display: flex; gap: 0.4rem; align-items: baseline; margin-bottom: 0.15rem; }
+.pvContactRow label { font-weight: 700; white-space: nowrap; }
+.pvContactRow input { flex: 1; }
+.pvSummary, .pvSkills { font-size: 0.85rem; }
+.pvListRow, .pvBulletRow { display: flex; gap: 0.4rem; align-items: flex-start; }
+.pvDash { flex: 0 0 auto; line-height: 1.6; }
+.pvBulletInput { flex: 1; }
+.pvListRow input { flex: 1; }
+
+/* Expérience / Formation */
+.pvExpItem { margin-bottom: 1rem; }
+.pvExpTitle { font-weight: 700; text-transform: uppercase; font-size: 0.9rem; }
+.pvExpMeta { display: flex; gap: 0.5rem; align-items: baseline; }
+.pvExpCompany { font-style: italic; color: #4b5563; flex: 1; }
+.pvExpDates { color: #4b5563; text-align: right; max-width: 45%; }
+.pvBullets { margin-top: 0.35rem; }
+.pvEduItem { margin-bottom: 0.9rem; }
+.pvEduDegree { font-weight: 700; font-size: 0.9rem; }
+.pvEduSchool { font-style: italic; color: #374151; }
+.pvEduDates { color: #4b5563; font-size: 0.85rem; }
+
+/* Photo ronde (Modern) + placeholders */
+.pvPhotoRound {
+  width: 130px; height: 130px;
+  border-radius: 50% !important;
+  object-fit: cover; display: block;
+  margin: 0 auto 1rem;
+}
+.mdPhotoPh {
+  width: 130px; height: 130px;
+  border-radius: 50% !important;
+  background: #dcdcdc;
+  display: flex; align-items: center; justify-content: center;
+  color: #8a8a8a; font-size: 0.7rem; letter-spacing: 1px;
+  margin: 0 auto 1rem;
+}
+
+/* ───── STANDARD ───── */
+.tplStandard { padding: 2.5rem; }
+.stdHeader {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 1.5rem; border-bottom: 2px solid #000;
+  padding-bottom: 0.85rem; margin-bottom: 1.5rem;
+}
+.stdHeaderLeft { flex: 1; }
+.stdName { font-size: 1.9rem; font-weight: 800; text-transform: uppercase; }
+.stdTitle { font-style: italic; color: #374151; margin-bottom: 0.3rem; }
+.stdHeaderRight { flex: 0 0 auto; }
+.stdPhoto { width: 84px; height: 96px; object-fit: cover; border: 1px solid #000; display: block; }
+.stdCols { display: grid; grid-template-columns: 1.35fr 1fr; gap: 2rem; }
+.tplStandard .pvHeading { border-bottom: 1px solid #000; padding-bottom: 0.2rem; }
+
+/* ───── MODERN ───── */
+.mdHeader { text-align: center; padding: 1.5rem 2rem 0; }
+.mdName { text-align: center; font-size: 2rem; text-transform: uppercase; letter-spacing: 4px; font-weight: 400; }
+.mdSubtitle { text-align: center; text-transform: uppercase; letter-spacing: 3px; color: #4b5563; font-size: 0.8rem; }
+.mdOrnament { display: flex; align-items: center; justify-content: center; gap: 0.6rem; width: 55%; margin: 0.8rem auto 0; }
+.mdOrnLine { flex: 1; height: 1px; background: #1f2937; }
+.mdOrnDia { font-size: 0.7rem; letter-spacing: 2px; color: #1f2937; white-space: nowrap; }
+.mdBody { display: grid; grid-template-columns: 35% 1fr; }
+.mdLeft { background: #ececec; padding: 1.75rem 1.35rem; }
+.mdRight { padding: 1.75rem 1.6rem; }
+.mdLeft .pvHeading { border-bottom: 1px solid #9ca3af; padding-bottom: 0.25rem; }
+.mdRight .pvHeading { border-top: 2px solid #1f2937; padding-top: 0.4rem; }
+
+/* ───── EXECUTIVE ───── */
+.tplExec { display: grid; grid-template-columns: 35% 1fr; }
+.exLeft { background: #25374d; color: #fff; padding: 1.75rem 1.35rem; }
+.exLeft input, .exLeft textarea { color: #fff; }
+.exLeft input::placeholder, .exLeft textarea::placeholder { color: rgba(255, 255, 255, 0.5); }
+.exLeft .pvHeading { color: #fff; text-align: center; letter-spacing: 0.15em; }
+.exLeft .pvContactRow label { color: #d7dce3; }
+.exLeft .pvEduSchool { color: #d7dce3; }
+.exLeft .pvEduDates { color: #aeb8c4; }
+.exRight { padding: 2rem 1.9rem; }
+.exName { font-size: 2rem; font-weight: 800; color: #1f2937; }
+.exTitle { text-transform: uppercase; letter-spacing: 3px; color: #6b7280; margin-bottom: 1rem; }
+.exRight .pvHeading { color: #1f2937; border-bottom: 1.5px solid #25374d; display: inline-block; padding-bottom: 0.2rem; }
+.exPhoto { width: 100%; height: 150px; object-fit: cover; border-radius: 0 !important; margin-bottom: 1rem; display: block; }
+.exPhotoPh {
+  width: 100%; height: 150px;
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255, 255, 255, 0.65); font-size: 0.7rem; letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
 
 

@@ -210,6 +210,77 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
     setCvData({ ...cvData, hobbies: updated });
   };
 
+  /* ───────── Blocs de champs éditables réutilisés par les 3 gabarits ─────────
+     L'aperçu reproduit la STRUCTURE du PDF (colonnes, ordre, couleurs, tirets)
+     tout en restant modifiable en ligne. */
+  const fName = (cls: string) => (
+    <input type="text" value={cvData.personal_info?.name || ''} onChange={(e) => updatePersonalInfo('name', e.target.value)} className={cls} placeholder="Votre Nom" />
+  );
+  const fTitle = (cls: string) => (
+    <input type="text" value={cvData.personal_info?.title || ''} onChange={(e) => updatePersonalInfo('title', e.target.value)} className={cls} placeholder="Titre ciblé" />
+  );
+  const fPhoto = (imgCls: string, phCls?: string) => (
+    photoUrl ? <img src={photoUrl} alt="Photo de profil" className={imgCls} /> : (phCls ? <div className={phCls}>PHOTO</div> : null)
+  );
+  const fContact = () => (
+    <div className={styles.pvContact}>
+      <div className={styles.pvContactRow}><label>Tél :</label><input type="text" value={cvData.personal_info?.phone || ''} onChange={(e) => updatePersonalInfo('phone', e.target.value)} /></div>
+      <div className={styles.pvContactRow}><label>Email :</label><input type="text" value={cvData.personal_info?.email || ''} onChange={(e) => updatePersonalInfo('email', e.target.value)} /></div>
+      <div className={styles.pvContactRow}><label>Adresse :</label><input type="text" value={cvData.personal_info?.location || ''} onChange={(e) => updatePersonalInfo('location', e.target.value)} /></div>
+      {cvData.personal_info?.linkedin !== undefined && (
+        <div className={styles.pvContactRow}><label>LinkedIn :</label><input type="text" value={cvData.personal_info.linkedin} onChange={(e) => updatePersonalInfo('linkedin', e.target.value)} /></div>
+      )}
+      {cvData.personal_info?.website !== undefined && (
+        <div className={styles.pvContactRow}><label>Site :</label><input type="text" value={cvData.personal_info.website} onChange={(e) => updatePersonalInfo('website', e.target.value)} /></div>
+      )}
+    </div>
+  );
+  const fSummary = () => (
+    <textarea value={cvData.cv_summary || ''} onChange={(e) => setCvData({ ...cvData, cv_summary: e.target.value })} className={styles.pvSummary} rows={5} />
+  );
+  const fSkills = () => (
+    <textarea value={cvData.keywords_matched.join(', ')} onChange={(e) => setCvData({ ...cvData, keywords_matched: e.target.value.split(',').map(s => s.trim()).filter(Boolean) })} className={styles.pvSkills} rows={4} placeholder="Compétences séparées par des virgules" />
+  );
+  const fLanguages = () => (cvData.languages && cvData.languages.length > 0) ? (
+    <>{cvData.languages.map((lang: string, i: number) => (
+      <div key={i} className={styles.pvListRow}><span className={styles.pvDash}>–</span><input type="text" value={lang} onChange={(e) => updateLanguage(i, e.target.value)} /></div>
+    ))}</>
+  ) : null;
+  const fHobbies = () => (cvData.hobbies && cvData.hobbies.length > 0) ? (
+    <>{cvData.hobbies.map((h: string, i: number) => (
+      <div key={i} className={styles.pvListRow}><span className={styles.pvDash}>–</span><input type="text" value={h} onChange={(e) => updateHobby(i, e.target.value)} /></div>
+    ))}</>
+  ) : null;
+  const fExperience = () => (cvData.cv_experiences && cvData.cv_experiences.length > 0) ? (
+    <>{cvData.cv_experiences.map((exp, idx) => (
+      <div key={idx} className={styles.pvExpItem}>
+        <input type="text" value={exp.title} onChange={(e) => updateExperience(idx, 'title', e.target.value)} className={styles.pvExpTitle} />
+        <div className={styles.pvExpMeta}>
+          <input type="text" value={exp.company} onChange={(e) => updateExperience(idx, 'company', e.target.value)} className={styles.pvExpCompany} />
+          <input type="text" value={exp.dates} onChange={(e) => updateExperience(idx, 'dates', e.target.value)} className={styles.pvExpDates} />
+        </div>
+        <div className={styles.pvBullets}>
+          {exp.bullet_points.map((bp, i) => (
+            <div key={i} className={styles.pvBulletRow}><span className={styles.pvDash}>–</span>
+              <textarea value={bp} onChange={(e) => updateExperienceBullet(idx, i, e.target.value)} className={styles.pvBulletInput} rows={1} />
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}</>
+  ) : null;
+  const fEducation = () => (cvData.education && cvData.education.length > 0) ? (
+    <>{cvData.education.map((edu, idx) => (
+      <div key={idx} className={styles.pvEduItem}>
+        <input type="text" value={edu.degree} onChange={(e) => updateEducation(idx, 'degree', e.target.value)} className={styles.pvEduDegree} />
+        <input type="text" value={edu.institution} onChange={(e) => updateEducation(idx, 'institution', e.target.value)} className={styles.pvEduSchool} />
+        <input type="text" value={edu.dates} onChange={(e) => updateEducation(idx, 'dates', e.target.value)} className={styles.pvEduDates} />
+      </div>
+    ))}</>
+  ) : null;
+  const pvSection = (title: string, node: React.ReactNode, headCls?: string) =>
+    node ? <div className={styles.pvSection}><h3 className={headCls || styles.pvHeading}>{title}</h3>{node}</div> : null;
+
   // Enregistrer le CV PDF en demandant le dossier cible
   const saveCvPdf = async () => {
     setIsCvLoading(true);
@@ -529,227 +600,77 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
               </div>
             )}
 
-            <div className={
-              cvTemplate === 'modern' ? styles.cvLayoutModern :
-              cvTemplate === 'executive' ? styles.cvLayoutExecutive :
-              styles.cvLayout
-            }>
-              {/* Sidebar */}
-              <div className={styles.cvSidebar}>
-                {photoUrl ? (
-                  <img src={photoUrl} alt="Photo de profil" className={styles.previewPhoto} />
-                ) : null}
-                
-                <div className={styles.cvSection}>
-                  <h3>Contact</h3>
-                  <div className={styles.sidebarEditGroup}>
-                    <label>Tél :</label>
-                    <input 
-                      type="text" 
-                      value={cvData.personal_info?.phone || ''} 
-                      onChange={(e) => updatePersonalInfo('phone', e.target.value)} 
-                      className={styles.sidebarInput} 
-                    />
+            {cvTemplate === 'standard' && (
+              <div className={styles.tplStandard}>
+                <div className={styles.stdHeader}>
+                  <div className={styles.stdHeaderLeft}>
+                    {fName(styles.stdName)}
+                    {fTitle(styles.stdTitle)}
+                    {fContact()}
                   </div>
-                  <div className={styles.sidebarEditGroup}>
-                    <label>Email :</label>
-                    <input 
-                      type="text" 
-                      value={cvData.personal_info?.email || ''} 
-                      onChange={(e) => updatePersonalInfo('email', e.target.value)} 
-                      className={styles.sidebarInput} 
-                    />
-                  </div>
-                  <div className={styles.sidebarEditGroup}>
-                    <label>Lieu :</label>
-                    <input 
-                      type="text" 
-                      value={cvData.personal_info?.location || ''} 
-                      onChange={(e) => updatePersonalInfo('location', e.target.value)} 
-                      className={styles.sidebarInput} 
-                    />
-                  </div>
-                  {cvData.personal_info?.linkedin !== undefined && (
-                    <div className={styles.sidebarEditGroup}>
-                      <label>LinkedIn :</label>
-                      <input 
-                        type="text" 
-                        value={cvData.personal_info.linkedin} 
-                        onChange={(e) => updatePersonalInfo('linkedin', e.target.value)} 
-                        className={styles.sidebarInput} 
-                      />
-                    </div>
-                  )}
-                  {cvData.personal_info?.website !== undefined && (
-                    <div className={styles.sidebarEditGroup}>
-                      <label>Site :</label>
-                      <input 
-                        type="text" 
-                        value={cvData.personal_info.website} 
-                        onChange={(e) => updatePersonalInfo('website', e.target.value)} 
-                        className={styles.sidebarInput} 
-                      />
-                    </div>
-                  )}
+                  <div className={styles.stdHeaderRight}>{fPhoto(styles.stdPhoto)}</div>
                 </div>
-
-                <div className={styles.cvSection}>
-                  <h3>Compétences</h3>
-                  <textarea 
-                    value={cvData.keywords_matched.join(', ')} 
-                    onChange={(e) => setCvData({ ...cvData, keywords_matched: e.target.value.split(',').map(s => s.trim()).filter(Boolean) })} 
-                    className={styles.sidebarTextarea} 
-                    rows={4}
-                    placeholder="Compétences séparées par des virgules"
-                  />
+                <div className={styles.stdCols}>
+                  <div className={styles.stdLeftCol}>
+                    {pvSection('Profil professionnel', fSummary())}
+                    {pvSection('Expérience professionnelle', fExperience())}
+                    {pvSection('Formation', fEducation())}
+                  </div>
+                  <div className={styles.stdRightCol}>
+                    {pvSection('Compétences', fSkills())}
+                    {pvSection('Langues', fLanguages())}
+                    {pvSection("Centres d'intérêt", fHobbies())}
+                  </div>
                 </div>
-
-                {cvData.languages && cvData.languages.length > 0 ? (
-                  <div className={styles.cvSection}>
-                    <h3>Langues</h3>
-                    {cvData.languages.map((lang: string, i: number) => (
-                      <input 
-                        key={i}
-                        type="text" 
-                        value={lang} 
-                        onChange={(e) => updateLanguage(i, e.target.value)} 
-                        className={styles.sidebarListItemInput} 
-                      />
-                    ))}
-                  </div>
-                ) : null}
-
-                {cvData.hobbies && cvData.hobbies.length > 0 ? (
-                  <div className={styles.cvSection}>
-                    <h3>Hobbies</h3>
-                    {cvData.hobbies.map((hobby: string, i: number) => (
-                      <input 
-                        key={i}
-                        type="text" 
-                        value={hobby} 
-                        onChange={(e) => updateHobby(i, e.target.value)} 
-                        className={styles.sidebarListItemInput} 
-                      />
-                    ))}
-                  </div>
-                ) : null}
               </div>
+            )}
 
-              {/* Main Column */}
-              <div className={styles.cvMain}>
-                <div className={styles.cvHeader}>
-                  <input 
-                    type="text" 
-                    value={cvData.personal_info?.name || ''} 
-                    onChange={(e) => updatePersonalInfo('name', e.target.value)} 
-                    className={styles.nameInput} 
-                    placeholder="Votre Nom"
-                  />
-                  <input 
-                    type="text" 
-                    value={cvData.personal_info?.title || ''} 
-                    onChange={(e) => updatePersonalInfo('title', e.target.value)} 
-                    className={styles.titleInput} 
-                    placeholder="Titre ciblé"
-                  />
-                </div>
-
-                <div className={styles.cvSection}>
-                  <h3>Profil Professionnel</h3>
-                  <textarea 
-                    value={cvData.cv_summary || ''} 
-                    onChange={(e) => setCvData({ ...cvData, cv_summary: e.target.value })} 
-                    className={styles.summaryTextarea}
-                    rows={4}
-                  />
-                </div>
-
-                {cvData.cv_experiences && cvData.cv_experiences.length > 0 ? (
-                  <div className={styles.cvSection}>
-                    <h3>Expérience Professionnelle</h3>
-                    {cvData.cv_experiences.map((exp, idx) => (
-                      <div key={idx} className={styles.experience}>
-                        <div className={styles.expHeader}>
-                          <input 
-                            type="text" 
-                            value={exp.title} 
-                            onChange={(e) => updateExperience(idx, 'title', e.target.value)} 
-                            className={styles.jobTitleInput}
-                          />
-                          <div className={styles.metaInputs}>
-                            <input 
-                              type="text" 
-                              value={exp.company} 
-                              onChange={(e) => updateExperience(idx, 'company', e.target.value)} 
-                              className={styles.companyInput}
-                            />
-                            <input 
-                              type="text" 
-                              value={exp.dates} 
-                              onChange={(e) => updateExperience(idx, 'dates', e.target.value)} 
-                              className={styles.datesInput}
-                            />
-                          </div>
-                        </div>
-                        <div className={styles.bulletsList}>
-                          {exp.bullet_points.map((bp, i) => (
-                            <div key={i} className={styles.bulletItem}>
-                              <span className={styles.bulletMarker}>–</span>
-                              <textarea 
-                                value={bp} 
-                                onChange={(e) => updateExperienceBullet(idx, i, e.target.value)} 
-                                className={styles.bulletTextarea}
-                                rows={1}
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
+            {cvTemplate === 'modern' && (
+              <div className={styles.tplModern}>
+                <div className={styles.mdHeader}>
+                  {fName(styles.mdName)}
+                  {fTitle(styles.mdSubtitle)}
+                  <div className={styles.mdOrnament}>
+                    <span className={styles.mdOrnLine} />
+                    <span className={styles.mdOrnDia}>◆◆◆ • ◆◆◆</span>
+                    <span className={styles.mdOrnLine} />
                   </div>
-                ) : null}
-
-                {cvData.education && cvData.education.length > 0 ? (
-                  <div className={styles.cvSection}>
-                    <h3>Formation</h3>
-                    {cvData.education.map((edu, idx) => (
-                      <div key={idx} className={styles.education}>
-                        <div className={styles.expHeader}>
-                          <input 
-                            type="text" 
-                            value={edu.degree} 
-                            onChange={(e) => updateEducation(idx, 'degree', e.target.value)} 
-                            className={styles.jobTitleInput}
-                          />
-                          <div className={styles.metaInputs}>
-                            <input 
-                              type="text" 
-                              value={edu.institution} 
-                              onChange={(e) => updateEducation(idx, 'institution', e.target.value)} 
-                              className={styles.companyInput}
-                            />
-                            <input 
-                              type="text" 
-                              value={edu.dates} 
-                              onChange={(e) => updateEducation(idx, 'dates', e.target.value)} 
-                              className={styles.datesInput}
-                            />
-                          </div>
-                        </div>
-                        {edu.description !== undefined && (
-                          <input 
-                            type="text" 
-                            value={edu.description} 
-                            onChange={(e) => updateEducation(idx, 'description', e.target.value)} 
-                            className={styles.eduDescInput}
-                          />
-                        )}
-                      </div>
-                    ))}
+                </div>
+                <div className={styles.mdBody}>
+                  <div className={styles.mdLeft}>
+                    {fPhoto(styles.pvPhotoRound, styles.mdPhotoPh)}
+                    {pvSection('À propos de moi', fSummary())}
+                    {pvSection('Contact', fContact())}
+                    {pvSection('Compétences', fSkills())}
+                    {pvSection('Langues', fLanguages())}
                   </div>
-                ) : null}
+                  <div className={styles.mdRight}>
+                    {pvSection('Expérience professionnelle', fExperience())}
+                    {pvSection('Formation', fEducation())}
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
+
+            {cvTemplate === 'executive' && (
+              <div className={styles.tplExec}>
+                <div className={styles.exLeft}>
+                  {fPhoto(styles.exPhoto, styles.exPhotoPh)}
+                  {pvSection('Profil', fSummary())}
+                  {pvSection('Contact', fContact())}
+                  {pvSection('Intérêts', fHobbies())}
+                  {pvSection('Compétences', fSkills())}
+                  {pvSection('Langues', fLanguages())}
+                </div>
+                <div className={styles.exRight}>
+                  {fName(styles.exName)}
+                  {fTitle(styles.exTitle)}
+                  {pvSection('Expérience', fExperience())}
+                  {pvSection('Formation', fEducation())}
+                </div>
+              </div>
+            )}
+
           </div>
         )}
 
