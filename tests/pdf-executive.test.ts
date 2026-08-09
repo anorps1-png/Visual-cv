@@ -18,8 +18,8 @@ const data = {
   email_text: '',
 };
 
-async function pdfText(template: 'standard' | 'modern' | 'executive') {
-  const buf = await renderToBuffer(React.createElement(ATSPdfDocument, { data, template }) as any);
+async function pdfText(template: 'standard' | 'modern' | 'executive', compact = false) {
+  const buf = await renderToBuffer(React.createElement(ATSPdfDocument, { data, template, compact }) as any);
   const pdf = await getDocumentProxy(new Uint8Array(buf));
   const { text } = await extractText(pdf, { mergePages: true });
   return text as string;
@@ -42,4 +42,9 @@ describe('PDF templates route distinctly', () => {
     const t = (await pdfText('modern')).replace(/\s+/g, '');
     expect(t).toContain('PROPOS');   // « À PROPOS DE MOI » propre au gabarit modern
   });
-}, 40000);
+
+  it('compact variant renders (fit-to-one-page path)', async () => {
+    const t = (await pdfText('executive', true)).replace(/\s+/g, '');
+    expect(t).toContain('PHOTO');    // le rendu compact (marges/polices reduites) ne casse pas
+  });
+}, 50000);

@@ -5,6 +5,15 @@ import styles from './DocumentPreview.module.css';
 import { Button } from '../ui/Button';
 import { ATSPdfDocument, CoverLetterPdfDocument } from './PDFDocument';
 
+// Compte les pages d'un PDF @react-pdf sans dépendance : les objets page
+// portent « /Type /Page » (à ne pas confondre avec l'arbre « /Type /Pages »).
+async function countPdfPages(blob: Blob): Promise<number> {
+  const bytes = new Uint8Array(await blob.arrayBuffer());
+  const text = new TextDecoder('latin1').decode(bytes);
+  const matches = text.match(/\/Type\s*\/Page(?![s])/g);
+  return matches ? matches.length : 1;
+}
+
 interface GeneratedData {
   score: number;
   keywords_matched: string[];
@@ -206,7 +215,16 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
     setIsCvLoading(true);
     try {
       const { pdf } = await import('@react-pdf/renderer');
-      const blob = await pdf(<ATSPdfDocument data={cvData} photoUrl={photoUrl} template={cvTemplate} />).toBlob();
+      const render = (compact: boolean) =>
+        pdf(<ATSPdfDocument data={cvData} photoUrl={photoUrl} template={cvTemplate} compact={compact} />).toBlob();
+      // Rendu normal ; si ça déborde sur une 2e page peu remplie, la version
+      // compacte (marges/polices réduites) ne tient que si le débordement est
+      // faible → on l'adopte alors pour rester sur une seule page.
+      let blob = await render(false);
+      if ((await countPdfPages(blob)) >= 2) {
+        const compactBlob = await render(true);
+        if ((await countPdfPages(compactBlob)) <= 1) blob = compactBlob;
+      }
       
       if ('showSaveFilePicker' in window) {
         // @ts-ignore

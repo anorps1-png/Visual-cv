@@ -7,6 +7,23 @@ Font.register({ family: 'Lato', src: 'https://cdn.jsdelivr.net/gh/google/fonts@m
 Font.register({ family: 'LatoBold', src: 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/lato/Lato-Bold.ttf' });
 Font.register({ family: 'LatoItalic', src: 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/lato/Lato-Italic.ttf' });
 
+// Compaction « tenir sur une page » : réduit polices/marges/paddings d'un facteur.
+// Utilisé par le rendu 2 passes (cf. DocumentPreview.saveCvPdf).
+const COMPACT_K = 0.85;
+const SCALE_PROPS = ['fontSize', 'padding', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'paddingVertical', 'paddingHorizontal', 'margin', 'marginTop', 'marginBottom', 'marginLeft', 'marginRight', 'marginVertical', 'marginHorizontal'];
+function scale(styleMap: any, k: number): any {
+  const out: any = {};
+  for (const key of Object.keys(styleMap)) {
+    const st = styleMap[key];
+    if (st && typeof st === 'object' && !Array.isArray(st)) {
+      const ns: any = { ...st };
+      for (const p of SCALE_PROPS) if (typeof ns[p] === 'number') ns[p] = Math.round(ns[p] * k * 100) / 100;
+      out[key] = ns;
+    } else out[key] = st;
+  }
+  return out;
+}
+
 const styles = StyleSheet.create({
   page: {
     paddingTop: 22,
@@ -164,6 +181,7 @@ const styles = StyleSheet.create({
     marginBottom: 2.5,
   }
 });
+const stylesC = scale(styles, COMPACT_K);
 
 const letterStyles = StyleSheet.create({
   page: {
@@ -298,88 +316,90 @@ const modern = StyleSheet.create({
   bulletDash: { width: 10, fontSize: 9, color: MINK },
   bulletText: { flex: 1, fontSize: 9, color: '#374151', lineHeight: 1.45, textAlign: 'justify' },
 });
+const modernC = scale(modern, COMPACT_K);
 
-const ModernDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null }) => {
+const ModernDoc = ({ data, photoUrl, compact }: { data: any; photoUrl?: string | null; compact?: boolean }) => {
+  const sx = compact ? modernC : modern;
   const p = data.personal_info || {};
   const exps = data.cv_experiences || [];
   const edu = data.education || [];
   const skills = data.keywords_matched || [];
   return (
     <Document>
-      <Page size="A4" style={modern.page}>
+      <Page size="A4" style={sx.page}>
         {/* En-tête centré + séparateur losangé */}
-        <View style={modern.header}>
-          <Text style={modern.name}>{p.name}</Text>
-          {p.title ? <Text style={modern.subtitle}>{p.title}</Text> : null}
+        <View style={sx.header}>
+          <Text style={sx.name}>{p.name}</Text>
+          {p.title ? <Text style={sx.subtitle}>{p.title}</Text> : null}
         </View>
-        <View style={modern.ornament}>
-          <View style={modern.ornLine} />
-          <View style={modern.ornMid}>
-            <View style={modern.diamond} /><View style={modern.diamond} /><View style={modern.diamond} />
-            <View style={modern.ornDot} />
-            <View style={modern.diamond} /><View style={modern.diamond} /><View style={modern.diamond} />
+        <View style={sx.ornament}>
+          <View style={sx.ornLine} />
+          <View style={sx.ornMid}>
+            <View style={sx.diamond} /><View style={sx.diamond} /><View style={sx.diamond} />
+            <View style={sx.ornDot} />
+            <View style={sx.diamond} /><View style={sx.diamond} /><View style={sx.diamond} />
           </View>
-          <View style={modern.ornLine} />
+          <View style={sx.ornLine} />
         </View>
 
-        <View style={modern.body}>
+        <View style={sx.body}>
           {/* Colonne gauche — gris clair */}
-          <View style={modern.left}>
-            <View style={modern.photoWrap}>
+          <View style={sx.left}>
+            <View style={sx.photoWrap}>
               {photoUrl
-                ? <Image src={photoUrl} style={modern.photo} />
-                : <View style={modern.photoPlaceholder}><Text style={modern.photoPlaceholderText}>PHOTO</Text></View>}
+                ? <Image src={photoUrl} style={sx.photo} />
+                : <View style={sx.photoPlaceholder}><Text style={sx.photoPlaceholderText}>PHOTO</Text></View>}
             </View>
-            <View style={modern.rule} />
+            <View style={sx.rule} />
 
             {data.cv_summary ? (
               <View>
-                <View style={modern.lHeadRow}><Text style={modern.lHead}>À propos de moi</Text><View style={modern.lHeadRule} /></View>
-                <Text style={modern.about}>{data.cv_summary}</Text>
+                <View style={sx.lHeadRow}><Text style={sx.lHead}>À propos de moi</Text><View style={sx.lHeadRule} /></View>
+                <Text style={sx.about}>{data.cv_summary}</Text>
               </View>
             ) : null}
 
             {(p.phone || p.email || p.location) ? (
               <View style={{ marginTop: 14 }}>
-                {p.phone ? <Text style={modern.contactLine}><Text style={modern.contactLabel}>Tél </Text>: {p.phone}</Text> : null}
-                {p.email ? <Text style={modern.contactLine}><Text style={modern.contactLabel}>Email </Text>: {p.email}</Text> : null}
-                {p.location ? <Text style={modern.contactLine}><Text style={modern.contactLabel}>Adresse </Text>: {p.location}</Text> : null}
-                {p.linkedin ? <Text style={modern.contactLine}><Text style={modern.contactLabel}>LinkedIn </Text>: {p.linkedin}</Text> : null}
+                {p.phone ? <Text style={sx.contactLine}><Text style={sx.contactLabel}>Tél </Text>: {p.phone}</Text> : null}
+                {p.email ? <Text style={sx.contactLine}><Text style={sx.contactLabel}>Email </Text>: {p.email}</Text> : null}
+                {p.location ? <Text style={sx.contactLine}><Text style={sx.contactLabel}>Adresse </Text>: {p.location}</Text> : null}
+                {p.linkedin ? <Text style={sx.contactLine}><Text style={sx.contactLabel}>LinkedIn </Text>: {p.linkedin}</Text> : null}
               </View>
             ) : null}
 
             {skills.length ? (
               <View>
-                <View style={modern.rule} />
-                <View style={modern.lHeadRow}><Text style={modern.lHead}>Compétences</Text><View style={modern.lHeadRule} /></View>
+                <View style={sx.rule} />
+                <View style={sx.lHeadRow}><Text style={sx.lHead}>Compétences</Text><View style={sx.lHeadRule} /></View>
                 {skills.map((s: string, i: number) => (
-                  <View key={i} style={modern.skillRow}><Text style={modern.skillDash}>–</Text><Text style={modern.skillText}>{s}</Text></View>
+                  <View key={i} style={sx.skillRow}><Text style={sx.skillDash}>–</Text><Text style={sx.skillText}>{s}</Text></View>
                 ))}
               </View>
             ) : null}
 
             {(data.languages || []).length ? (
               <View>
-                <View style={modern.rule} />
-                <View style={modern.lHeadRow}><Text style={modern.lHead}>Langues</Text><View style={modern.lHeadRule} /></View>
+                <View style={sx.rule} />
+                <View style={sx.lHeadRow}><Text style={sx.lHead}>Langues</Text><View style={sx.lHeadRule} /></View>
                 {(data.languages || []).map((l: string, i: number) => (
-                  <View key={i} style={modern.skillRow}><Text style={modern.skillDash}>–</Text><Text style={modern.skillText}>{l}</Text></View>
+                  <View key={i} style={sx.skillRow}><Text style={sx.skillDash}>–</Text><Text style={sx.skillText}>{l}</Text></View>
                 ))}
               </View>
             ) : null}
           </View>
 
           {/* Colonne droite — blanche */}
-          <View style={modern.right}>
+          <View style={sx.right}>
             {exps.length ? (
               <View>
-                <View style={modern.rHeadWrap}><Text style={modern.rHead}>Expérience professionnelle</Text></View>
+                <View style={sx.rHeadWrap}><Text style={sx.rHead}>Expérience professionnelle</Text></View>
                 {exps.map((exp: any, i: number) => (
-                  <View key={i} style={modern.expItem}>
-                    <Text style={modern.expTitle}>{[exp.title, exp.dates].filter(Boolean).join('   |   ')}</Text>
-                    {exp.company ? <Text style={modern.expCompany}>{exp.company}</Text> : null}
+                  <View key={i} style={sx.expItem}>
+                    <Text style={sx.expTitle}>{[exp.title, exp.dates].filter(Boolean).join('   |   ')}</Text>
+                    {exp.company ? <Text style={sx.expCompany}>{exp.company}</Text> : null}
                     {(exp.bullet_points || []).map((bp: string, j: number) => (
-                      <View key={j} style={modern.bulletRow}><Text style={modern.bulletDash}>–</Text><Text style={modern.bulletText}>{bp}</Text></View>
+                      <View key={j} style={sx.bulletRow}><Text style={sx.bulletDash}>–</Text><Text style={sx.bulletText}>{bp}</Text></View>
                     ))}
                   </View>
                 ))}
@@ -388,12 +408,12 @@ const ModernDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null }) 
 
             {edu.length ? (
               <View>
-                <View style={modern.rHeadWrap}><Text style={modern.rHead}>Formation</Text></View>
+                <View style={sx.rHeadWrap}><Text style={sx.rHead}>Formation</Text></View>
                 {edu.map((e: any, i: number) => (
-                  <View key={i} style={modern.eduItem}>
-                    {e.degree ? <Text style={modern.eduDegree}>{e.degree}</Text> : null}
-                    {e.institution ? <Text style={modern.eduSchool}>{e.institution}</Text> : null}
-                    {e.dates ? <Text style={modern.eduDate}>{e.dates}</Text> : null}
+                  <View key={i} style={sx.eduItem}>
+                    {e.degree ? <Text style={sx.eduDegree}>{e.degree}</Text> : null}
+                    {e.institution ? <Text style={sx.eduSchool}>{e.institution}</Text> : null}
+                    {e.dates ? <Text style={sx.eduDate}>{e.dates}</Text> : null}
                   </View>
                 ))}
               </View>
@@ -439,8 +459,10 @@ const navy = StyleSheet.create({
   compSub: { fontSize: 8.5, fontFamily: EXEC_BOLD, color: '#1f2937', marginBottom: 4 },
   compItem: { fontSize: 8.5, color: '#374151', marginBottom: 2 },
 });
+const navyC = scale(navy, COMPACT_K);
 
-const ExecutiveDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null }) => {
+const ExecutiveDoc = ({ data, photoUrl, compact }: { data: any; photoUrl?: string | null; compact?: boolean }) => {
+  const sx = compact ? navyC : navy;
   const p = data.personal_info || {};
   const contacts = contactArr(p);
   const exps = data.cv_experiences || [];
@@ -450,64 +472,64 @@ const ExecutiveDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null 
   const hobbies = data.hobbies || [];
   return (
     <Document>
-      <Page size="A4" style={navy.page}>
-        <View fixed style={navy.bar} />
-        <View style={navy.side}>
+      <Page size="A4" style={sx.page}>
+        <View fixed style={sx.bar} />
+        <View style={sx.side}>
           {photoUrl
-            ? <Image src={photoUrl} style={navy.photo} />
-            : <View style={navy.photoPlaceholder}><Text style={navy.photoPlaceholderText}>PHOTO</Text></View>}
+            ? <Image src={photoUrl} style={sx.photo} />
+            : <View style={sx.photoPlaceholder}><Text style={sx.photoPlaceholderText}>PHOTO</Text></View>}
           {data.cv_summary ? (
             <View>
-              <Text style={navy.sideHeading}>Profil</Text>
-              <Text style={navy.sideBody}>{data.cv_summary}</Text>
+              <Text style={sx.sideHeading}>Profil</Text>
+              <Text style={sx.sideBody}>{data.cv_summary}</Text>
             </View>
           ) : null}
           {contacts.length ? (
             <View>
-              <Text style={navy.sideHeading}>Contact</Text>
-              {contacts.map((c: string, i: number) => <Text key={i} style={navy.sideContact}>{c}</Text>)}
+              <Text style={sx.sideHeading}>Contact</Text>
+              {contacts.map((c: string, i: number) => <Text key={i} style={sx.sideContact}>{c}</Text>)}
             </View>
           ) : null}
           {hobbies.length ? (
             <View>
-              <Text style={navy.sideHeading}>Intérêts</Text>
-              {hobbies.map((h: string, i: number) => <Text key={i} style={navy.sideContact}>{h}</Text>)}
+              <Text style={sx.sideHeading}>Intérêts</Text>
+              {hobbies.map((h: string, i: number) => <Text key={i} style={sx.sideContact}>{h}</Text>)}
             </View>
           ) : null}
           {skills.length ? (
             <View>
-              <Text style={navy.sideHeading}>Compétences</Text>
-              {skills.map((s: string, i: number) => <Text key={i} style={navy.sideContact}>{s}</Text>)}
+              <Text style={sx.sideHeading}>Compétences</Text>
+              {skills.map((s: string, i: number) => <Text key={i} style={sx.sideContact}>{s}</Text>)}
             </View>
           ) : null}
           {langs.length ? (
             <View>
-              <Text style={navy.sideHeading}>Langues</Text>
-              {langs.map((l: string, i: number) => <Text key={i} style={navy.sideContact}>{l}</Text>)}
+              <Text style={sx.sideHeading}>Langues</Text>
+              {langs.map((l: string, i: number) => <Text key={i} style={sx.sideContact}>{l}</Text>)}
             </View>
           ) : null}
         </View>
 
-        <View style={navy.main}>
-          <Text style={navy.name}>{p.name}</Text>
-          {p.title ? <Text style={navy.title}>{p.title}</Text> : null}
+        <View style={sx.main}>
+          <Text style={sx.name}>{p.name}</Text>
+          {p.title ? <Text style={sx.title}>{p.title}</Text> : null}
 
           {exps.length ? (
             <View>
-              <Text style={navy.heading}>Expérience</Text>
-              <View style={navy.headingRule} />
+              <Text style={sx.heading}>Expérience</Text>
+              <View style={sx.headingRule} />
               {exps.map((exp: any, i: number) => (
-                <View key={i} style={navy.expRow}>
-                  <View style={navy.expDateCol}>
-                    <Text style={navy.expDate}>{exp.dates}</Text>
-                    {exp.company ? <Text style={navy.expCompany}>{exp.company}</Text> : null}
+                <View key={i} style={sx.expRow}>
+                  <View style={sx.expDateCol}>
+                    <Text style={sx.expDate}>{exp.dates}</Text>
+                    {exp.company ? <Text style={sx.expCompany}>{exp.company}</Text> : null}
                   </View>
-                  <View style={navy.expBodyCol}>
-                    <Text style={navy.expRole}>{exp.title}</Text>
+                  <View style={sx.expBodyCol}>
+                    <Text style={sx.expRole}>{exp.title}</Text>
                     {(exp.bullet_points || []).map((bp: string, j: number) => (
-                      <View key={j} style={navy.bulletRow}>
-                        <Text style={navy.bulletDot}>•</Text>
-                        <Text style={navy.bulletText}>{bp}</Text>
+                      <View key={j} style={sx.bulletRow}>
+                        <Text style={sx.bulletDot}>•</Text>
+                        <Text style={sx.bulletText}>{bp}</Text>
                       </View>
                     ))}
                   </View>
@@ -518,13 +540,13 @@ const ExecutiveDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null 
 
           {edu.length ? (
             <View>
-              <Text style={navy.heading}>Formation</Text>
-              <View style={navy.headingRule} />
+              <Text style={sx.heading}>Formation</Text>
+              <View style={sx.headingRule} />
               {edu.map((e: any, i: number) => (
-                <View key={i} style={navy.formationBlock}>
-                  {e.degree ? <Text style={navy.formationDegree}>{e.degree}</Text> : null}
-                  {e.institution ? <Text style={navy.formationSchool}>{e.institution}</Text> : null}
-                  {e.dates ? <Text style={navy.formationDate}>{e.dates}</Text> : null}
+                <View key={i} style={sx.formationBlock}>
+                  {e.degree ? <Text style={sx.formationDegree}>{e.degree}</Text> : null}
+                  {e.institution ? <Text style={sx.formationSchool}>{e.institution}</Text> : null}
+                  {e.dates ? <Text style={sx.formationDate}>{e.dates}</Text> : null}
                 </View>
               ))}
             </View>
@@ -539,9 +561,11 @@ interface ATSPdfProps {
   data: any;
   photoUrl?: string | null;
   template?: 'standard' | 'modern' | 'executive';
+  compact?: boolean;
 }
 
-export const ATSPdfDocument = ({ data, photoUrl, template = 'standard' }: ATSPdfProps) => {
+export const ATSPdfDocument = ({ data, photoUrl, template = 'standard', compact = false }: ATSPdfProps) => {
+  const sx = compact ? stylesC : styles;
   const personal = data.personal_info || {
     name: "Curriculum Vitae",
     title: "",
@@ -563,48 +587,48 @@ export const ATSPdfDocument = ({ data, photoUrl, template = 'standard' }: ATSPdf
   if (personal.website) contactParts.push(personal.website);
   const contactString = contactParts.join(' | ');
 
-  if (template === 'modern') return <ModernDoc data={data} photoUrl={photoUrl} />;
-  if (template === 'executive') return <ExecutiveDoc data={data} photoUrl={photoUrl} />;
+  if (template === 'modern') return <ModernDoc data={data} photoUrl={photoUrl} compact={compact} />;
+  if (template === 'executive') return <ExecutiveDoc data={data} photoUrl={photoUrl} compact={compact} />;
 
   return (
     <Document>
-      <Page size="A4" style={styles.page}>
-        <View style={styles.header}>
-          <View style={styles.headerLeft}>
-            <Text style={styles.name}>{personal.name}</Text>
-            {personal.title ? <Text style={styles.title}>{personal.title}</Text> : null}
-            <Text style={styles.contactInfo}>{contactString}</Text>
+      <Page size="A4" style={sx.page}>
+        <View style={sx.header}>
+          <View style={sx.headerLeft}>
+            <Text style={sx.name}>{personal.name}</Text>
+            {personal.title ? <Text style={sx.title}>{personal.title}</Text> : null}
+            <Text style={sx.contactInfo}>{contactString}</Text>
           </View>
-          <View style={styles.headerRight}>
+          <View style={sx.headerRight}>
             {photoUrl ? (
-              <Image src={photoUrl} style={styles.photo} />
+              <Image src={photoUrl} style={sx.photo} />
             ) : null}
           </View>
         </View>
 
-        <View style={styles.columnsContainer}>
-          <View style={styles.leftColumn}>
+        <View style={sx.columnsContainer}>
+          <View style={sx.leftColumn}>
             {data.cv_summary ? (
-              <View style={styles.section}>
-                <Text style={styles.sectionHeading}>Profil professionnel</Text>
-                <Text style={styles.summaryText}>{data.cv_summary}</Text>
+              <View style={sx.section}>
+                <Text style={sx.sectionHeading}>Profil professionnel</Text>
+                <Text style={sx.summaryText}>{data.cv_summary}</Text>
               </View>
             ) : null}
 
             {experiences.length > 0 ? (
-              <View style={styles.section}>
-                <Text style={styles.sectionHeading}>Expérience Professionnelle</Text>
+              <View style={sx.section}>
+                <Text style={sx.sectionHeading}>Expérience Professionnelle</Text>
                 {experiences.map((exp: any, index: number) => (
-                  <View key={index} style={styles.experienceItem}>
-                    <View style={styles.experienceHeader}>
-                      <Text style={styles.jobTitle}>{exp.title}</Text>
-                      <Text style={styles.companyDate}>{exp.dates}</Text>
+                  <View key={index} style={sx.experienceItem}>
+                    <View style={sx.experienceHeader}>
+                      <Text style={sx.jobTitle}>{exp.title}</Text>
+                      <Text style={sx.companyDate}>{exp.dates}</Text>
                     </View>
-                    {exp.company ? <Text style={styles.companyName}>{exp.company}</Text> : null}
+                    {exp.company ? <Text style={sx.companyName}>{exp.company}</Text> : null}
                     {exp.bullet_points.map((bp: string, i: number) => (
-                      <View key={i} style={styles.bulletPoint}>
-                        <Text style={styles.bullet}>•</Text>
-                        <Text style={styles.bulletText}>{bp}</Text>
+                      <View key={i} style={sx.bulletPoint}>
+                        <Text style={sx.bullet}>•</Text>
+                        <Text style={sx.bulletText}>{bp}</Text>
                       </View>
                     ))}
                   </View>
@@ -613,15 +637,15 @@ export const ATSPdfDocument = ({ data, photoUrl, template = 'standard' }: ATSPdf
             ) : null}
 
             {education.length > 0 ? (
-              <View style={styles.section}>
-                <Text style={styles.sectionHeading}>Formation</Text>
+              <View style={sx.section}>
+                <Text style={sx.sectionHeading}>Formation</Text>
                 {education.map((edu: any, index: number) => (
-                  <View key={index} style={styles.educationItem}>
-                    {edu.degree ? <Text style={styles.degree}>{edu.degree}</Text> : null}
-                    {edu.institution ? <Text style={styles.institutionName}>{edu.institution}</Text> : null}
-                    {edu.dates ? <Text style={styles.institutionDate}>{edu.dates}</Text> : null}
+                  <View key={index} style={sx.educationItem}>
+                    {edu.degree ? <Text style={sx.degree}>{edu.degree}</Text> : null}
+                    {edu.institution ? <Text style={sx.institutionName}>{edu.institution}</Text> : null}
+                    {edu.dates ? <Text style={sx.institutionDate}>{edu.dates}</Text> : null}
                     {edu.description ? (
-                      <Text style={styles.summaryText}>{edu.description}</Text>
+                      <Text style={sx.summaryText}>{edu.description}</Text>
                     ) : null}
                   </View>
                 ))}
@@ -629,30 +653,30 @@ export const ATSPdfDocument = ({ data, photoUrl, template = 'standard' }: ATSPdf
             ) : null}
           </View>
 
-          <View style={styles.rightColumn}>
+          <View style={sx.rightColumn}>
             {skills.length > 0 ? (
-              <View style={styles.section}>
-                <Text style={styles.sectionHeading}>Compétences</Text>
+              <View style={sx.section}>
+                <Text style={sx.sectionHeading}>Compétences</Text>
                 {skills.map((skill: string, i: number) => (
-                  <Text key={i} style={styles.sidebarText}>• {skill}</Text>
+                  <Text key={i} style={sx.sidebarText}>• {skill}</Text>
                 ))}
               </View>
             ) : null}
 
             {languages.length > 0 ? (
-              <View style={styles.section}>
-                <Text style={styles.sectionHeading}>Langues</Text>
+              <View style={sx.section}>
+                <Text style={sx.sectionHeading}>Langues</Text>
                 {languages.map((lang: string, i: number) => (
-                  <Text key={i} style={styles.sidebarText}>• {lang}</Text>
+                  <Text key={i} style={sx.sidebarText}>• {lang}</Text>
                 ))}
               </View>
             ) : null}
 
             {hobbies.length > 0 ? (
-              <View style={styles.section}>
-                <Text style={styles.sectionHeading}>Hobbies</Text>
+              <View style={sx.section}>
+                <Text style={sx.sectionHeading}>Hobbies</Text>
                 {hobbies.map((hobby: string, i: number) => (
-                  <Text key={i} style={styles.sidebarText}>• {hobby}</Text>
+                  <Text key={i} style={sx.sidebarText}>• {hobby}</Text>
                 ))}
               </View>
             ) : null}
