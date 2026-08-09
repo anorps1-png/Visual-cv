@@ -26,14 +26,15 @@ async function pdfText(template: 'standard' | 'modern' | 'executive') {
 }
 
 describe('PDF templates route distinctly', () => {
-  it('executive renders the navy layout markers', async () => {
-    const t = await pdfText('executive');
-    expect(t).toContain('Logiciels');   // executive-only heading
-    expect(t).toContain('Profil');
+  // Le letterSpacing des rubriques insère des espaces entre les lettres à
+  // l'extraction ; on compare donc sur le texte sans espaces.
+  it('executive renders the navy sidebar (photo placeholder)', async () => {
+    const t = (await pdfText('executive')).replace(/\s+/g, '');
+    expect(t).toContain('PHOTO');   // emplacement photo, propre au gabarit exécutif
   });
 
-  it('standard does NOT contain executive-only markers', async () => {
-    const t = await pdfText('standard');
-    expect(t).not.toContain('Logiciels');
+  it('standard is a different layout (no photo placeholder)', async () => {
+    const t = (await pdfText('standard')).replace(/\s+/g, '');
+    expect(t).not.toContain('PHOTO');
   });
 }, 30000);

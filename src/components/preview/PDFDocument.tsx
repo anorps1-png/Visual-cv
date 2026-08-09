@@ -1,5 +1,11 @@
 import React from 'react';
-import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
+
+// Police professionnelle (Lato) — TTF statiques servis par jsDelivr (miroir du
+// dépôt google/fonts), récupérés par le navigateur au moment du rendu PDF.
+Font.register({ family: 'Lato', src: 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/lato/Lato-Regular.ttf' });
+Font.register({ family: 'LatoBold', src: 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/lato/Lato-Bold.ttf' });
+Font.register({ family: 'LatoItalic', src: 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/lato/Lato-Italic.ttf' });
 
 const styles = StyleSheet.create({
   page: {
@@ -8,7 +14,7 @@ const styles = StyleSheet.create({
     paddingLeft: 26,
     paddingRight: 26,
     backgroundColor: '#FFFFFF',
-    fontFamily: 'Times-Roman',
+    fontFamily: 'Lato',
     flexDirection: 'column',
   },
   header: {
@@ -29,7 +35,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 20,
-    fontFamily: 'Times-Bold',
+    fontFamily: 'LatoBold',
     color: '#000000',
     marginBottom: 3,
     textTransform: 'uppercase',
@@ -37,7 +43,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 10.5,
     color: '#000000',
-    fontFamily: 'Times-Italic',
+    fontFamily: 'LatoItalic',
     marginBottom: 4,
   },
   contactInfo: {
@@ -68,7 +74,7 @@ const styles = StyleSheet.create({
   },
   sectionHeading: {
     fontSize: 11,
-    fontFamily: 'Times-Bold',
+    fontFamily: 'LatoBold',
     color: '#000000',
     borderBottomWidth: 1,
     borderBottomColor: '#000000',
@@ -92,19 +98,19 @@ const styles = StyleSheet.create({
   },
   jobTitle: {
     fontSize: 9.5,
-    fontFamily: 'Times-Bold',
+    fontFamily: 'LatoBold',
     color: '#000000',
     width: '68%',
   },
   companyDate: {
     fontSize: 9,
     color: '#000000',
-    fontFamily: 'Times-Italic',
+    fontFamily: 'LatoItalic',
     textAlign: 'right',
   },
   companyName: {
     fontSize: 9,
-    fontFamily: 'Times-Bold',
+    fontFamily: 'LatoBold',
     color: '#000000',
     marginBottom: 2,
   },
@@ -135,14 +141,14 @@ const styles = StyleSheet.create({
   },
   degree: {
     fontSize: 9.5,
-    fontFamily: 'Times-Bold',
+    fontFamily: 'LatoBold',
     color: '#000000',
     width: '68%',
   },
   institutionDate: {
     fontSize: 9,
     color: '#000000',
-    fontFamily: 'Times-Italic',
+    fontFamily: 'LatoItalic',
     textAlign: 'right',
   },
   institutionName: {
@@ -165,7 +171,7 @@ const letterStyles = StyleSheet.create({
     paddingLeft: 55,
     paddingRight: 55,
     backgroundColor: '#FFFFFF',
-    fontFamily: 'Times-Roman',
+    fontFamily: 'Lato',
     fontSize: 11,
     lineHeight: 1.5,
     color: '#000000',
@@ -201,7 +207,7 @@ const letterStyles = StyleSheet.create({
     marginBottom: 3,
   },
   subjectLine: {
-    fontFamily: 'Times-Bold',
+    fontFamily: 'LatoBold',
     fontSize: 11,
     marginTop: 20,
     marginBottom: 20,
@@ -233,9 +239,9 @@ const letterStyles = StyleSheet.create({
 /* ───────── Gabarits Modern & Executive (encre uniquement) ─────────
    Rendus distincts du Standard (Times) : Helvetica, noir/gris sur blanc. */
 
-const EXEC_FONT = 'Helvetica';
-const EXEC_BOLD = 'Helvetica-Bold';
-const EXEC_ITALIC = 'Helvetica-Oblique';
+const EXEC_FONT = 'Lato';
+const EXEC_BOLD = 'LatoBold';
+const EXEC_ITALIC = 'LatoItalic';
 const INK = '#1a1a1a';
 const INK_SOFT = '#4a4a4a';
 const INK_DARK = '#2d2b2b';
@@ -361,6 +367,8 @@ const navy = StyleSheet.create({
   side: { width: '35%', paddingVertical: 22, paddingHorizontal: 16, backgroundColor: NAVY },
   main: { width: '65%', paddingVertical: 28, paddingHorizontal: 24 },
   photo: { width: '100%', height: 128, objectFit: 'cover', marginBottom: 16 },
+  photoPlaceholder: { width: '100%', height: 128, marginBottom: 16, backgroundColor: 'rgba(255,255,255,0.10)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.35)', borderStyle: 'dashed', alignItems: 'center', justifyContent: 'center' },
+  photoPlaceholderText: { fontSize: 9, color: 'rgba(255,255,255,0.65)', letterSpacing: 1 },
   sideHeading: { fontSize: 10, fontFamily: EXEC_BOLD, color: '#ffffff', textTransform: 'uppercase', letterSpacing: 2, textAlign: 'center', marginTop: 10, marginBottom: 6 },
   sideBody: { fontSize: 8.5, color: '#d7dce3', lineHeight: 1.5, textAlign: 'center', marginBottom: 3 },
   sideContact: { fontSize: 8.5, color: '#d7dce3', lineHeight: 1.4, marginBottom: 4 },
@@ -397,7 +405,9 @@ const ExecutiveDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null 
       <Page size="A4" style={navy.page}>
         <View fixed style={navy.bar} />
         <View style={navy.side}>
-          {photoUrl ? <Image src={photoUrl} style={navy.photo} /> : null}
+          {photoUrl
+            ? <Image src={photoUrl} style={navy.photo} />
+            : <View style={navy.photoPlaceholder}><Text style={navy.photoPlaceholderText}>PHOTO</Text></View>}
           {data.cv_summary ? (
             <View>
               <Text style={navy.sideHeading}>Profil</Text>
@@ -407,7 +417,7 @@ const ExecutiveDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null 
           {contacts.length ? (
             <View>
               <Text style={navy.sideHeading}>Contact</Text>
-              {contacts.map((c, i) => <Text key={i} style={navy.sideContact}>{c}</Text>)}
+              {contacts.map((c: string, i: number) => <Text key={i} style={navy.sideContact}>{c}</Text>)}
             </View>
           ) : null}
           {hobbies.length ? (
@@ -416,24 +426,23 @@ const ExecutiveDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null 
               {hobbies.map((h: string, i: number) => <Text key={i} style={navy.sideContact}>{h}</Text>)}
             </View>
           ) : null}
+          {skills.length ? (
+            <View>
+              <Text style={navy.sideHeading}>Compétences</Text>
+              {skills.map((s: string, i: number) => <Text key={i} style={navy.sideContact}>{s}</Text>)}
+            </View>
+          ) : null}
+          {langs.length ? (
+            <View>
+              <Text style={navy.sideHeading}>Langues</Text>
+              {langs.map((l: string, i: number) => <Text key={i} style={navy.sideContact}>{l}</Text>)}
+            </View>
+          ) : null}
         </View>
 
         <View style={navy.main}>
           <Text style={navy.name}>{p.name}</Text>
           {p.title ? <Text style={navy.title}>{p.title}</Text> : null}
-
-          {edu.length ? (
-            <View>
-              <Text style={navy.heading}>Formation</Text>
-              <View style={navy.headingRule} />
-              {edu.map((e: any, i: number) => (
-                <Text key={i} style={navy.formationItem}>
-                  {[e.dates, e.degree, e.institution].filter(Boolean).join(' - ')}
-                  {e.description ? ` — ${e.description}` : ''}
-                </Text>
-              ))}
-            </View>
-          ) : null}
 
           {exps.length ? (
             <View>
@@ -459,20 +468,16 @@ const ExecutiveDoc = ({ data, photoUrl }: { data: any; photoUrl?: string | null 
             </View>
           ) : null}
 
-          {(langs.length || skills.length) ? (
+          {edu.length ? (
             <View>
-              <Text style={navy.heading}>Compétences</Text>
+              <Text style={navy.heading}>Formation</Text>
               <View style={navy.headingRule} />
-              <View style={navy.compCols}>
-                <View style={navy.compCol}>
-                  <Text style={navy.compSub}>Langues</Text>
-                  {langs.map((l: string, i: number) => <Text key={i} style={navy.compItem}>{l}</Text>)}
-                </View>
-                <View style={navy.compCol}>
-                  <Text style={navy.compSub}>Logiciels maîtrisés</Text>
-                  {skills.map((s: string, i: number) => <Text key={i} style={navy.compItem}>{s}</Text>)}
-                </View>
-              </View>
+              {edu.map((e: any, i: number) => (
+                <Text key={i} style={navy.formationItem}>
+                  {[e.dates, e.degree, e.institution].filter(Boolean).join(' - ')}
+                  {e.description ? ` — ${e.description}` : ''}
+                </Text>
+              ))}
             </View>
           ) : null}
         </View>
@@ -673,7 +678,7 @@ export const CoverLetterPdfDocument = ({
           {signatureUrl ? (
             <Image src={signatureUrl} style={letterStyles.signatureImage} />
           ) : null}
-          <Text style={{ fontFamily: 'Times-Bold' }}>{signatoryName}</Text>
+          <Text style={{ fontFamily: 'LatoBold' }}>{signatoryName}</Text>
         </View>
       </Page>
     </Document>
