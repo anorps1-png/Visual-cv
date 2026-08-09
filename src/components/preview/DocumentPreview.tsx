@@ -210,6 +210,19 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
     setCvData({ ...cvData, hobbies: updated });
   };
 
+  // Compétences : édition item par item (tirets), comme le PDF
+  const updateSkill = (index: number, value: string) => {
+    const updated = [...cvData.keywords_matched];
+    updated[index] = value;
+    setCvData({ ...cvData, keywords_matched: updated });
+  };
+  const removeSkill = (index: number) => {
+    setCvData({ ...cvData, keywords_matched: cvData.keywords_matched.filter((_, i) => i !== index) });
+  };
+  const addSkill = () => {
+    setCvData({ ...cvData, keywords_matched: [...cvData.keywords_matched, ''] });
+  };
+
   /* ───────── Blocs de champs éditables réutilisés par les 3 gabarits ─────────
      L'aperçu reproduit la STRUCTURE du PDF (colonnes, ordre, couleurs, tirets)
      tout en restant modifiable en ligne. */
@@ -239,7 +252,16 @@ export function DocumentPreview({ data, photoUrl, onReset, onNewDocuments, signa
     <textarea value={cvData.cv_summary || ''} onChange={(e) => setCvData({ ...cvData, cv_summary: e.target.value })} className={styles.pvSummary} rows={5} />
   );
   const fSkills = () => (
-    <textarea value={cvData.keywords_matched.join(', ')} onChange={(e) => setCvData({ ...cvData, keywords_matched: e.target.value.split(',').map(s => s.trim()).filter(Boolean) })} className={styles.pvSkills} rows={4} placeholder="Compétences séparées par des virgules" />
+    <div className={styles.pvEditList}>
+      {cvData.keywords_matched.map((s: string, i: number) => (
+        <div key={i} className={styles.pvListRow}>
+          <span className={styles.pvDash}>–</span>
+          <input type="text" value={s} onChange={(e) => updateSkill(i, e.target.value)} placeholder="Compétence" />
+          <button type="button" className={styles.pvRemoveBtn} onClick={() => removeSkill(i)} aria-label="Supprimer">×</button>
+        </div>
+      ))}
+      <button type="button" className={styles.pvAddBtn} onClick={addSkill}>+ Ajouter une compétence</button>
+    </div>
   );
   const fLanguages = () => (cvData.languages && cvData.languages.length > 0) ? (
     <>{cvData.languages.map((lang: string, i: number) => (
