@@ -1,0 +1,293 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4);
+  width: 100%;
+}
+
+.kickerTag {
+  margin-bottom: var(--space-3);
+  display: inline-block;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: var(--font-heading-weight);
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+}
+
+.lede {
+  max-width: 60ch;
+  color: color-mix(in srgb, var(--color-text) 75%, transparent);
+  margin-bottom: var(--space-6);
+  font-size: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+@media (max-width: 840px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.templateCard {
+  border: 2px solid var(--color-text);
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.previewWindow {
+  height: 400px;
+  border-bottom: 2px solid var(--color-divider);
+  background: #ffffff;
+  overflow: hidden;
+  font-family: var(--font-body);
+  color: #222222;
+  position: relative;
+}
+
+/* 1. Sidebar */
+.sidebarLayout {
+  display: grid;
+  grid-template-columns: 0.75fr 1.4fr;
+  height: 100%;
+}
+
+.darkSidebar {
+  background: var(--color-text);
+  color: #ffffff;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.avatarCircle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50% !important;
+  background: #555555;
+}
+
+.sidebarName {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.sidebarTitle {
+  font-size: 8px;
+  opacity: 0.75;
+  margin-top: 2px;
+}
+
+.sidebarDivider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  width: 100%;
+}
+
+.sidebarContact {
+  font-size: 6.5px;
+  opacity: 0.8;
+  text-align: left;
+  width: 100%;
+  line-height: 1.5;
+}
+
+.sidebarSectionHead {
+  font-size: 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+  text-align: left;
+  width: 100%;
+  font-weight: 700;
+}
+
+.sidebarSkills {
+  font-size: 6.5px;
+  text-align: left;
+  width: 100%;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.sidebarMain {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.sectionLabel {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #2b2b2b;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.jobHeading {
+  font-size: 8px;
+  font-weight: 700;
+  color: #111111;
+}
+
+.jobDates {
+  font-size: 7px;
+  opacity: 0.5;
+  margin-bottom: 3px;
+}
+
+.jobDesc {
+  font-size: 7.5px;
+  opacity: 0.75;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+/* 2. Bandeau */
+.bandeauHeader {
+  background: #262626;
+  color: #ffffff;
+  padding: 16px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bandeauName {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.bandeauSub {
+  font-size: 8px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.bandeauContact {
+  font-size: 6.5px;
+  opacity: 0.85;
+  text-align: right;
+  line-height: 1.5;
+}
+
+.bandeauBody {
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  text-align: left;
+}
+
+/* 3. Monogramme */
+.monogramLayout {
+  padding: 26px 30px;
+  text-align: center;
+}
+
+.monogramBadge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50% !important;
+  border: 1.5px solid #2b2b2b;
+  color: #2b2b2b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 13px;
+  margin: 0 auto 10px;
+}
+
+.monogramName {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+
+.monogramSub {
+  font-size: 9px;
+  color: #2b2b2b;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+.doubleRule1 {
+  height: 1px;
+  background: var(--color-divider);
+  margin: 12px 0;
+}
+
+.doubleRule2 {
+  height: 1px;
+  background: var(--color-divider);
+  margin: 2px 0 14px;
+}
+
+/* 4. International */
+.internationalLayout {
+  padding: 20px 24px;
+  text-align: left;
+}
+
+.intlHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.intlLogoSlot {
+  width: 34px;
+  height: 34px;
+  background: var(--color-neutral-200);
+  border: 1px solid var(--color-divider);
+}
+
+.intlDivider {
+  height: 1.5px;
+  background: var(--color-divider);
+  margin-bottom: 10px;
+}
+
+/* Card footer */
+.cardFooter {
+  padding: var(--space-4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-surface);
+}
+
+.templateName {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 18px;
+  margin-bottom: 2px;
+  color: var(--color-text);
+}
+
+.templateDesc {
+  font-size: 13px;
+  opacity: 0.65;
+  margin: 0;
+}

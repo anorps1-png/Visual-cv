@@ -1,80 +1,90 @@
 .container {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  padding: var(--space-6);
 }
 
 .title {
   margin-top: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: var(--text-base);
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+  color: var(--color-text);
 }
 
 .formGroup {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-4);
 }
 
 .label {
   display: block;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  color: var(--text-base);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: var(--space-1);
+  color: var(--color-text);
 }
 
 .input, .textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 1rem;
-  background-color: var(--background);
-  color: var(--text-base);
-  transition: border-color 0.2s ease;
+  padding: 8px 12px;
+  border: 1px solid var(--color-divider);
+  font: inherit;
+  font-size: 14px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  caret-color: var(--color-accent);
+  transition: border-color 0.15s ease;
+  outline: none;
 }
 
 .input:focus, .textarea:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: var(--color-accent);
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: var(--space-3);
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .sectionTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-divider);
+  color: var(--color-text);
 }
 
 .listGroup {
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.02);
+  margin-bottom: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--color-divider);
+  background-color: var(--color-bg);
   position: relative;
 }
 
 .removeBtn {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: var(--space-3);
+  right: var(--space-3);
   background: none;
   border: none;
-  color: #ef4444;
+  color: var(--color-accent);
   cursor: pointer;
-  font-size: 0.875rem;
+  font-size: 13px;
+  font-family: var(--font-heading);
   font-weight: 600;
 }
 
@@ -84,25 +94,28 @@
 
 .addBtn {
   background: none;
-  border: 2px dashed var(--border);
-  color: var(--text-muted);
+  border: 1px dashed var(--color-divider);
+  color: var(--color-text);
+  opacity: 0.8;
   width: 100%;
-  padding: 1rem;
-  border-radius: 8px;
+  padding: var(--space-3);
   cursor: pointer;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.15s ease;
 }
 
 .addBtn:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-  background-color: rgba(37, 99, 235, 0.05);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background-color: var(--color-accent-100);
+  opacity: 1;
 }
 
 .submitBtn {
-  margin-top: 2rem;
+  margin-top: var(--space-6);
   width: 100%;
-  padding: 1rem;
-  font-size: 1.125rem;
+  padding: var(--space-3);
+  font-size: 15px;
 }

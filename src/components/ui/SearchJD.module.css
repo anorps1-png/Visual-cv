@@ -1,13 +1,13 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--space-4);
   width: 100%;
 }
 
 .searchBar {
   display: flex;
-  gap: 0.75rem;
+  gap: var(--space-3);
 }
 
 .inputWrapper {
@@ -19,108 +19,119 @@
 
 .searchIcon {
   position: absolute;
-  left: 1rem;
-  color: var(--text-muted);
+  left: var(--space-3);
+  color: var(--color-text);
+  opacity: 0.5;
 }
 
 .input {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background-color: var(--bg-offset);
-  color: var(--text-main);
-  font-size: 1rem;
+  min-height: 38px;
+  padding: 8px 12px 8px 36px;
+  border: 1px solid var(--color-divider);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 14px;
+  caret-color: var(--color-accent);
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.15s ease;
 }
 
 .input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-  background-color: var(--bg-main);
+  border-color: var(--color-accent);
 }
 
 .layout {
   display: flex;
-  gap: 1.5rem;
+  gap: var(--space-6);
   min-height: 380px;
+}
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  .listSection, .detailSection {
+    width: 100% !important;
+    border-right: none !important;
+    padding-right: 0 !important;
+  }
 }
 
 .listSection {
   width: 45%;
-  border-right: 1px solid var(--border);
-  padding-right: 1.5rem;
+  border-right: 2px solid var(--color-divider);
+  padding-right: var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--space-3);
 }
 
 .listSection h4, .detailSection h4 {
-  font-size: 0.875rem;
+  font-size: 11px;
   text-transform: uppercase;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-2);
   text-align: left;
 }
 
 .statusText {
-  color: var(--text-muted);
-  font-size: 0.875rem;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  font-size: 14px;
   text-align: center;
-  padding: 2rem 0;
+  padding: var(--space-6) 0;
 }
 
 .jobList {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  max-height: 350px;
+  gap: var(--space-2);
+  max-height: 360px;
   overflow-y: auto;
-  padding-right: 0.25rem;
+  padding-right: var(--space-1);
 }
 
 .jobCard {
-  background-color: var(--bg-offset);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  padding: var(--space-3);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
   text-align: left;
 }
 
 .jobCard:hover {
-  border-color: var(--primary);
-  background-color: var(--bg-main);
+  border-color: var(--color-accent);
+  background-color: color-mix(in srgb, var(--color-accent) 4%, var(--color-surface));
 }
 
 .activeCard {
-  border-color: var(--primary);
-  background-color: var(--bg-main);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-100);
 }
 
 .jobCard h5 {
-  font-size: 0.95rem;
+  font-family: var(--font-heading);
   font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 0.5rem;
+  font-size: 14px;
+  color: var(--color-text);
+  margin-bottom: 4px;
 }
 
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  font-size: 0.75rem;
-  color: var(--text-muted);
+  gap: var(--space-2);
+  font-size: 12px;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
 }
 
 .meta span {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 4px;
 }
 
 .detailSection {
@@ -130,62 +141,66 @@
 .detailPanel {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space-3);
   text-align: left;
   height: 100%;
 }
 
 .detailHeader {
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-divider);
+  padding-bottom: var(--space-3);
 }
 
 .detailHeader h3 {
-  font-size: 1.25rem;
+  font-family: var(--font-heading);
   font-weight: 800;
-  color: var(--text-main);
+  font-size: 18px;
+  color: var(--color-text);
 }
 
 .detailCompany {
   font-weight: 600;
-  color: var(--primary);
-  margin-top: 0.25rem;
+  color: var(--color-accent);
+  margin-top: 4px;
+  font-size: 14px;
 }
 
 .detailLocation {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  margin-top: 0.25rem;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  margin-top: 2px;
 }
 
 .sourceLink {
   display: inline-block;
-  font-size: 0.75rem;
-  color: var(--primary);
-  margin-top: 0.5rem;
-  text-decoration: underline;
+  font-size: 12px;
+  color: var(--color-accent);
+  margin-top: var(--space-2);
+  text-underline-offset: 3px;
 }
 
 .descriptionBox {
   flex-grow: 1;
-  background-color: var(--bg-offset);
-  border-radius: 8px;
-  padding: 1rem;
-  max-height: 180px;
+  background-color: var(--color-bg);
+  padding: var(--space-3);
+  max-height: 200px;
   overflow-y: auto;
-  border: 1px solid var(--border);
+  border: 1px solid var(--color-divider);
 }
 
 .descriptionBox h5 {
-  font-size: 0.875rem;
-  color: var(--text-main);
-  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
 }
 
 .descriptionText {
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--color-text) 80%, transparent);
   white-space: pre-line;
 }
 
@@ -194,15 +209,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: var(--space-3);
   height: 100%;
-  color: var(--text-muted);
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
   text-align: center;
-  padding: 2rem;
-  border: 2px dashed var(--border);
-  border-radius: 8px;
+  padding: var(--space-6);
+  border: 2px solid var(--color-divider);
+  background: var(--color-surface);
 }
 
 .emptyIcon {
-  color: var(--border);
+  color: var(--color-divider);
 }

@@ -14,17 +14,17 @@ import { History } from '@/components/ui/History';
 import { Pricing } from '@/components/ui/Pricing';
 import { Landing } from '@/components/ui/Landing';
 import { CVBuilder } from '@/components/ui/CVBuilder';
+import { ProTemplates } from '@/components/ui/ProTemplates';
 import Link from 'next/link';
 
-
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<'landing' | 'generator' | 'history' | 'pricing'>('landing');
+  const [activeTab, setActiveTab] = useState<'landing' | 'generator' | 'history' | 'templates' | 'pricing'>('landing');
   const [session, setSession] = useState<any>(null);
   const [userPlan, setUserPlan] = useState<string>('Gratuit');
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
-  // original generator states
+  // Generator states
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [cvText, setCvText] = useState<string>('');
@@ -38,9 +38,10 @@ export default function Home() {
   const [signatureUrl, setSignatureUrl] = useState<string | null>(null);
   const [jdMode, setJdMode] = useState<'search' | 'paste'>('search');
   const [cvMode, setCvMode] = useState<'upload' | 'build'>('upload');
+  const [selectedTemplate, setSelectedTemplate] = useState<string>('standard');
   const [loadedJobMeta, setLoadedJobMeta] = useState<{ jobTitle: string; companyName: string } | null>(null);
 
-  // Charge le plan RÉEL depuis le serveur : source de vérité, survit au refresh.
+  // Charge le plan réel depuis le serveur
   const refreshPlan = async () => {
     try {
       const res = await authFetch('/api/me');
@@ -56,13 +57,11 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Check initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       if (session) refreshPlan();
     });
 
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       if (session) {
@@ -77,7 +76,6 @@ export default function Home() {
   }, []);
 
   const handleFileSelect = async (file: File) => {
-    // Login obligatoire : on ouvre la modale plutôt que d'appeler l'API pour rien.
     if (!session) {
       setIsAuthModalOpen(true);
       return;
@@ -87,7 +85,6 @@ export default function Home() {
     setIsParsing(true);
     setErrorMsg(null);
 
-    // Upload the file to our /api/cv/parse endpoint
     const formData = new FormData();
     formData.append('file', file);
 
@@ -96,8 +93,6 @@ export default function Home() {
       const data = await res.json();
       if (data.success) {
         setCvText(data.text);
-        // Photo détectée dans le CV : on pré-remplit (sans écraser une photo que
-        // l'utilisateur aurait déjà choisie manuellement).
         if (data.photo && !photoUrl) {
           setPhotoUrl(data.photo);
         }
@@ -121,7 +116,6 @@ export default function Home() {
   };
 
   const handleGenerate = async () => {
-    // Login obligatoire pour la génération IA.
     if (!session) {
       setIsAuthModalOpen(true);
       return;
@@ -145,7 +139,6 @@ export default function Home() {
         return;
       }
       if (res.status === 402) {
-        // Quota du plan atteint : on redirige vers les tarifs.
         setErrorMsg(resData.error || 'Limite de votre plan atteinte. Passez à un plan supérieur.');
         setActiveTab('pricing');
         return;
@@ -155,7 +148,7 @@ export default function Home() {
         setGeneratedData(genData);
         setStep(4);
 
-        // Auto-save to database if the user is authenticated
+        // Auto-save to database
         if (session) {
           try {
             const jobTitle = genData.personal_info?.title || 'Poste';
@@ -198,8 +191,6 @@ export default function Home() {
     setActiveTab('generator');
   };
 
-  // Après une souscription : on recharge le plan réel depuis le serveur
-  // (ne jamais faire confiance à un plan décidé côté client).
   const handleSelectPlan = () => {
     refreshPlan();
   };
@@ -210,9 +201,12 @@ export default function Home() {
   };
 
   return (
-    <main className={styles.main} style={{ paddingTop: '0' }}>
+    <main className={styles.main}>
       <nav className={styles.navbar}>
-        <div className={styles.navLogo} onClick={() => setActiveTab('landing')} style={{ cursor: 'pointer' }}>
+        <div
+          className={styles.navLogo}
+          onClick={() => setActiveTab('landing')}
+        >
           VIRTUAL CV
         </div>
         <div className={styles.navLinks}>
@@ -238,7 +232,13 @@ export default function Home() {
             }} 
             className={`${styles.navLink} ${activeTab === 'history' ? styles.navLinkActive : ''}`}
           >
-            Mon Historique
+            Historique
+          </button>
+          <button 
+            onClick={() => setActiveTab('templates')} 
+            className={`${styles.navLink} ${activeTab === 'templates' ? styles.navLinkActive : ''}`}
+          >
+            Modèles Pro
           </button>
           <button
             onClick={() => setActiveTab('pricing')}
@@ -258,16 +258,16 @@ export default function Home() {
               <span className={styles.userEmail} title={session.user.email}>
                 {session.user.email}
               </span>
-              <span className="tag tag-neutral">
+              <span className="tag tag-outline">
                 {userPlan}
               </span>
-              <button onClick={handleLogout} className={styles.logoutBtn}>
+              <button onClick={handleLogout} className="btn btn-secondary">
                 Déconnexion
               </button>
             </>
           ) : (
-            <button onClick={() => setIsAuthModalOpen(true)} className={styles.loginBtn}>
-              Connexion / Inscription
+            <button onClick={() => setIsAuthModalOpen(true)} className="btn btn-primary">
+              Connexion
             </button>
           )}
         </div>
@@ -279,27 +279,48 @@ export default function Home() {
           onViewPricing={() => setActiveTab('pricing')} 
         />
       )}
+
+      {activeTab === 'templates' && (
+        <ProTemplates
+          userPlan={userPlan}
+          onSelectTemplate={(templateId) => {
+            setSelectedTemplate(templateId);
+            setActiveTab('generator');
+            setStep(1);
+          }}
+          onUpgrade={() => setActiveTab('pricing')}
+        />
+      )}
       
       {activeTab === 'generator' && (
         <>
-          <header className={styles.header} style={{ marginTop: '2rem' }}>
-            <h1>Visual CV Cameroon</h1>
-            <p>Générez un CV optimisé ATS et une lettre de motivation en un clic.</p>
+          <header className={styles.generatorHeader}>
+            <div className={styles.generatorKicker}>GÉNÉRATEUR</div>
+            <h1 className={styles.generatorTitle}>Virtual CV</h1>
           </header>
           
           {step < 4 && (
             <div className={styles.stepper}>
-              <div className={`${styles.stepIndicator} ${step >= 1 ? styles.active : ''}`}>1. CV Maître</div>
-              <div className={styles.stepLine}></div>
-              <div className={`${styles.stepIndicator} ${step >= 2 ? styles.active : ''}`}>2. Offre</div>
-              <div className={styles.stepLine}></div>
-              <div className={`${styles.stepIndicator} ${step >= 3 ? styles.active : ''}`}>3. Génération</div>
+              <span className={`${styles.stepLabel} ${step >= 1 ? styles.stepLabelActive : ''}`}>
+                1. CV Maître
+              </span>
+              <div className={`${styles.stepRule} ${step >= 2 ? styles.stepRuleActive : ''}`} />
+              <span className={`${styles.stepLabel} ${step >= 2 ? styles.stepLabelActive : ''}`}>
+                2. Offre
+              </span>
+              <div className={`${styles.stepRule} ${step >= 3 ? styles.stepRuleActive : ''}`} />
+              <span className={`${styles.stepLabel} ${step >= 3 ? styles.stepLabelActive : ''}`}>
+                3. Génération
+              </span>
             </div>
           )}
 
           <section 
             className={styles.contentArea} 
-            style={{ maxWidth: step === 4 ? '1180px' : step === 2 && jdMode === 'search' ? '850px' : '600px', width: '100%', transition: 'max-width 0.3s ease' }}
+            style={{ 
+              maxWidth: step === 4 ? '1180px' : step === 2 && jdMode === 'search' ? '850px' : '760px',
+              transition: 'max-width 0.3s ease' 
+            }}
           >
             {errorMsg && (
               <div className={styles.errorBanner}>
@@ -310,16 +331,16 @@ export default function Home() {
 
             {step === 1 && (
               <div className={styles.card}>
-                <h2>Première étape : Votre Profil</h2>
+                <h2>Première étape : votre profil</h2>
                 
-                <div className="seg" style={{ marginBottom: 'var(--space-4)' }}>
+                <div className="seg" style={{ alignSelf: 'flex-start' }}>
                   <label className="seg-opt">
                     <input type="radio" name="cv-mode" checked={cvMode === 'upload'} onChange={() => setCvMode('upload')} />
                     Importer un CV (PDF)
                   </label>
                   <label className="seg-opt">
                     <input type="radio" name="cv-mode" checked={cvMode === 'build'} onChange={() => setCvMode('build')} />
-                    Créer de A à Zéro
+                    Créer de A à Z
                   </label>
                 </div>
 
@@ -329,7 +350,7 @@ export default function Home() {
                       <FileUpload onFileSelect={handleFileSelect} isLoading={isParsing} />
 
                       <div className={styles.photoUploadBox}>
-                        <label className={styles.photoLabel}>Photo de profil (Optionnelle) :</label>
+                        <label className={styles.photoLabel}>Photo de profil (optionnelle) :</label>
                         <div className={styles.photoUploadControls}>
                           {photoUrl ? (
                             <div className={styles.photoPreviewWrapper}>
@@ -371,8 +392,8 @@ export default function Home() {
                         setCvFile(new File([text], 'cv_builder.txt', { type: 'text/plain' }));
                         setStep(2);
                       }} />
-                      <div className={styles.photoUploadBox} style={{ marginTop: '2rem' }}>
-                        <label className={styles.photoLabel}>Photo de profil (Optionnelle) :</label>
+                      <div className={styles.photoUploadBox}>
+                        <label className={styles.photoLabel}>Photo de profil (optionnelle) :</label>
                         <div className={styles.photoUploadControls}>
                           {photoUrl ? (
                             <div className={styles.photoPreviewWrapper}>
@@ -416,7 +437,7 @@ export default function Home() {
               <div className={styles.card}>
                 <h2>L'offre d'emploi cible</h2>
                 
-                <div className="seg" style={{ marginBottom: 'var(--space-4)' }}>
+                <div className="seg" style={{ alignSelf: 'flex-start' }}>
                   <label className="seg-opt">
                     <input type="radio" name="jd-mode" checked={jdMode === 'search'} onChange={() => setJdMode('search')} />
                     Rechercher une offre
@@ -451,7 +472,7 @@ export default function Home() {
                 
                 <div className={styles.selectorGroup}>
                   <label htmlFor="llm-select" className={styles.selectorLabel}>
-                    Modèle d'IA à utiliser :
+                    Modèle d'IA :
                   </label>
                   <select
                     id="llm-select"
@@ -461,7 +482,7 @@ export default function Home() {
                     disabled={isGenerating}
                   >
                     <option value="openai">OpenAI (GPT-4o)</option>
-                    <option value="deepseek">DeepSeek (DeepSeek Chat)</option>
+                    <option value="deepseek">DeepSeek Chat</option>
                   </select>
                 </div>
 
@@ -469,7 +490,7 @@ export default function Home() {
                   <Button 
                     onClick={handleGenerate} 
                     isLoading={isGenerating}
-                    style={{ width: '100%', padding: '1rem', fontSize: '1.25rem' }}
+                    style={{ width: '100%', padding: 'var(--space-3)', fontSize: '16px' }}
                   >
                     Générer mon dossier de candidature
                   </Button>
@@ -513,13 +534,13 @@ export default function Home() {
       )}
 
       {activeTab === 'history' && session && (
-        <section style={{ width: '100%', maxWidth: '1200px', padding: '0 2rem' }}>
+        <section style={{ width: '100%', maxWidth: '1200px', padding: '0 var(--space-4)' }}>
           <History onLoadCv={handleLoadFromHistory} onNavigateToGenerator={() => setActiveTab('generator')} />
         </section>
       )}
 
       {activeTab === 'pricing' && (
-        <section style={{ width: '100%', maxWidth: '1200px', padding: '0 2rem' }}>
+        <section style={{ width: '100%', maxWidth: '1200px', padding: '0 var(--space-4)' }}>
           <Pricing currentPlan={userPlan} onSelectPlan={handleSelectPlan} onRequireAuth={() => setIsAuthModalOpen(true)} />
         </section>
       )}
